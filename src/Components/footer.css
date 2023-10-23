@@ -1,0 +1,135 @@
+.footer {
+    width: 100%;
+    background-color: #1465bb3b;
+}
+
+.privacy-accessibility {
+    padding: 10px 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.links-privacy {
+    display: flex;
+    gap: 3em;
+    font-size: 13px;
+}
+
+.links-privacy a {
+    color: black;
+    text-transform: uppercase;
+}
+
+.back-top {
+    color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    gap: .5em;
+    font-size: 13px;
+    text-transform: uppercase;
+    color: black;
+}
+
+.back-top:hover {
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.back-top i {
+    font-size: 12px;
+}
+
+/* --------------------------- */
+
+.main-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 30px 50px 30px;
+    height: max-content;
+    gap: 2em;
+}
+
+/* --------------------------- */
+
+.social-networks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    width: max-content;
+    height: 100%;
+}
+
+.icons {
+    display: flex;
+    gap: 1.5em;
+}
+
+.icons i {
+    font-size: 24px;
+}
+
+/* ------------------ */
+
+.detail-about {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    width: 500px;
+}
+
+
+/* ------------------ */
+
+.contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.contacts ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px
+}
+
+.contacts ul li {
+    font-size: 14px;
+}
+
+/* ------------------ */
+
+
+.copyright {
+    background-color: rgba(0, 0, 0, 0.1);
+    font-size: 12px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+}
+
+@media(max-width: 670px) {
+    .privacy-accessibility {
+        flex-direction: column;
+        align-items: center;
+        gap: 2em;
+    }
+
+    .main-footer {
+        flex-direction: column;
+        align-items: center;
+        gap: 3em;
+    }
+
+    .detail-about {
+        text-align: center;
+        width: 90%;
+    }
+}
+
+@media(max-width: 370px) {
+    .links-privacy {
+        flex-direction: column;
+        text-align: center;
+    }
+}
