@@ -1,4 +1,4 @@
-// import axios from "axios";
+import axios from "axios";
 import { useState } from 'react';
 import styles from './register.module.css'
 import { useNavigate } from 'react-router-dom';
@@ -28,28 +28,29 @@ export default function Register() {
     const navigate = useNavigate();
     
     function handleSubmitForm(e) {
-        navigate('/login');
-        
-        // const config = {
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     }
-        // }
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        }
 
-        // axios.post("http://127.0.0.1:8000/users/", 
-        // {
-        //     first_name: useForm.values.firstname,
-        //     last_name: useForm.values.lastname,
-        //     email: useForm.values.email,
-        //     username: useForm.values.username,
-        //     password: useForm.values.password,
-        // }, config)
+        axios.post("http://127.0.0.1:8000/users/", 
+        {
+            first_name: useForm.values.firstname,
+            last_name: useForm.values.lastname,
+            email: useForm.values.email,
+            username: useForm.values.username,
+            password: useForm.values.password,
+            confirm_password: useForm.values.confirm_password
+        }, config).then(navigate('/login')).catch(
+            response => console.log(response.response.data)
+        )
         
         e.preventDefault()
     }
 
     const useForm = useFormRegister({
-        initialValues: {firstname: "", lastname: "", email: "", username: "", password: ""}
+        initialValues: {firstname: "", lastname: "", email: "", username: "", password: "", confirm_password: ""}
     })
 
     return (
@@ -126,8 +127,9 @@ export default function Register() {
                     <div className={styles.iconInput}>
                         <label htmlFor="passwordTwo" className={styles.labelForm}>Confirmar senha *</label>
                         <input 
-                            id='passwordTwo' type="password"
+                            id='passwordTwo' type="password" name="confirm_password"
                             className={styles.inputForm} placeholder='Repita novamente a senha'
+                            onChange={useForm.handleChangeForm} value={useForm.values.confirm_password}
                         />
 
                         <span className={`material-symbols-outlined ${styles.icon}`}>

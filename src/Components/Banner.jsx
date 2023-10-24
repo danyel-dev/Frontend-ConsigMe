@@ -3,7 +3,7 @@ import Header from "./Header";
 export default function Banner() {
     return (
         <div id="banner">
-            <Header color="blue" />
+            <Header color="rgba(0, 0, 0, 0.5)" />
 
             <div id='banner-card'>
                 <h2>ConsigMe</h2>

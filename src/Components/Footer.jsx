@@ -5,15 +5,15 @@ export default function Footer () {
     return (
         <div className='footer'>
             <div className='privacy-accessibility'>
-                <a href="#" className='back-top'>
+                <a href="google.com" className='back-top'>
                     voltar ao topo
                     <i class="fa-solid fa-angles-up"></i>
                 </a>
 
                 <div className='links-privacy'>
-                    <a href="#">Accessibilidade</a>
-                    <a href="#">Politica de privacidade</a>
-                    <a href="#">Sobre</a>
+                    <a href="google.com">Accessibilidade</a>
+                    <a href="google.com">Politica de privacidade</a>
+                    <a href="google.com">Sobre</a>
                 </div>
             </div>
             
@@ -22,10 +22,10 @@ export default function Footer () {
                     <h3>Redes Sociais</h3>
                    
                     <div className='icons'>
-                        <i class="fa-brands fa-twitter"></i>
-                        <i class="fa-brands fa-instagram"></i>
-                        <i class="fa-brands fa-facebook"></i>
-                        <i class="fa-brands fa-github"></i>
+                        <i className="fa-brands fa-twitter"></i>
+                        <i className="fa-brands fa-instagram"></i>
+                        <i className="fa-brands fa-facebook"></i>
+                        <i className="fa-brands fa-github"></i>
                     </div>
                 </div>
 
@@ -40,15 +40,15 @@ export default function Footer () {
 
                     <ul>
                         <li>
-                            <i class="fa-solid fa-location-dot"></i> Santo Inácio do Piauí - PI CEP. 64560-0000
+                            <i className="fa-solid fa-location-dot"></i> Santo Inácio do Piauí - PI CEP. 64560-0000
                         </li>
                         
                         <li>
-                            <i class="fa-solid fa-location-crosshairs"></i> Av. Getúlio Vargas, Centro
+                            <i className="fa-solid fa-location-crosshairs"></i> Av. Getúlio Vargas, Centro
                         </li>
                         
                         <li>
-                            <i class="fa-regular fa-envelope"></i> Danyelpinheiro154@hotmail.com
+                            <i className="fa-regular fa-envelope"></i> Danyelpinheiro154@hotmail.com
                         </li>
                     </ul>
                 </div>

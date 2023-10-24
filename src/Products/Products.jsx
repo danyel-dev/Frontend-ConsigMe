@@ -6,13 +6,13 @@ import Footer from '../Components/Footer';
 export default function Products() {
     return (
         <>
-            <Header />
+            <Header color={"rgb(63, 43, 83)"} />
 
             <div className='products'>
 
                 <form className='formSearchProduct'>
                     <input type="text" placeholder='Pesquise por um produto aqui' />
-                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <i className="fa-solid fa-magnifying-glass"></i>
                 </form>
 
                 <select name="" id="category-products">
@@ -32,7 +32,7 @@ export default function Products() {
                             <div className='description-cart'>
                                 <button>Ver descrição</button>
 
-                                <i class="fa-solid fa-cart-shopping"></i>
+                                <i className="fa-solid fa-cart-shopping"></i>
                             </div>
                         </div>
                     </div>
@@ -46,7 +46,7 @@ export default function Products() {
                             <div className='description-cart'>
                                 <button>Ver descrição</button>
 
-                                <i class="fa-solid fa-cart-shopping"></i>
+                                <i className="fa-solid fa-cart-shopping"></i>
                             </div>
                         </div>
                     </div>
@@ -60,7 +60,7 @@ export default function Products() {
                             <div className='description-cart'>
                                 <button>Ver descrição</button>
 
-                                <i class="fa-solid fa-cart-shopping"></i>
+                                <i className="fa-solid fa-cart-shopping"></i>
                             </div>
                         </div>
                     </div>
@@ -74,7 +74,7 @@ export default function Products() {
                             <div className='description-cart'>
                                 <button>Ver descrição</button>
 
-                                <i class="fa-solid fa-cart-shopping"></i>
+                                <i className="fa-solid fa-cart-shopping"></i>
                             </div>
                         </div>
                     </div>
@@ -88,7 +88,7 @@ export default function Products() {
                             <div className='description-cart'>
                                 <button>Ver descrição</button>
 
-                                <i class="fa-solid fa-cart-shopping"></i>
+                                <i className="fa-solid fa-cart-shopping"></i>
                             </div>
                         </div>
                     </div>
@@ -102,7 +102,7 @@ export default function Products() {
                             <div className='description-cart'>
                                 <button>Ver descrição</button>
 
-                                <i class="fa-solid fa-cart-shopping"></i>
+                                <i className="fa-solid fa-cart-shopping"></i>
                             </div>
                         </div>
                     </div>
@@ -116,7 +116,7 @@ export default function Products() {
                             <div className='description-cart'>
                                 <button>Ver descrição</button>
 
-                                <i class="fa-solid fa-cart-shopping"></i>
+                                <i className="fa-solid fa-cart-shopping"></i>
                             </div>
                         </div>
                     </div>

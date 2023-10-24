@@ -26,7 +26,7 @@ export default function Header({color}) {
             <nav id='nav' className='nav'>
                 <span className='btnButton' onClick={handleToggleMenu}></span>
 
-                <ul className={`menu${toggleMenu? 'Open': ''}`} id='menu'>
+                <ul className={`menu${toggleMenu? 'Open': ''}`} id='menu' style={{backgroundColor: color}}>
                     <li><a className='linkMenu' href="google.com">Sobre</a></li>
                     <li><a className='linkMenu' href="google.com">Contato</a></li>
                     
