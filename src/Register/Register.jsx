@@ -6,38 +6,61 @@ import styles from './register.module.css'
 
 export default function Register() {
     return(
-        <div className={styles.pageRegister}>
+        <div className={styles.register}>
             <form className={styles.formRegister}>
                 <h2>Crie sua conta aqui</h2>
-
+                
                 <div className={styles.fullname}>
-                    <div className={styles.iconInput}><input type="text" placeholder="Nome" /></div>
-                    <div className={styles.iconInput}><input type="text" placeholder="Sobrenome" /></div>
+                    <div className={styles.iconInput}>
+                        <input type="text" placeholder="Nome" />
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    
+                    <div className={styles.iconInput}>
+                        <input type="text" placeholder="Sobrenome" />
+                        <i class="fa-solid fa-user"></i>
+                    </div>
                 </div>
 
-                <div className={styles.iconInput}><input type="email" placeholder="E-mail *" /></div>
-                <div className={styles.iconInput}><input type="text" placeholder="Nome de usuário *" /></div>
-                <div className={styles.iconInput}><input type="password" placeholder="Senha *" /></div>
-                <div className={styles.iconInput}><input type="password" placeholder="Confirmar Senha *" /></div>
+                <div className={styles.iconInput}>
+                    <input type="email" placeholder="E-mail *" />
+                    <i class="fa-solid fa-envelope"></i>
+                </div>
+
+                <div className={styles.iconInput}>
+                    <input type="text" placeholder="Nome de usuário *" />
+                    <i class="fa-regular fa-user"></i>
+                </div>
+                
+                <div className={styles.iconInput}>
+                    <input type="password" placeholder="Senha *" />
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                
+                <div className={styles.iconInput}>
+                    <input type="password" placeholder="Confirmar Senha *" />
+                    <i class="fa-solid fa-lock"></i>
+                </div>
             
                 <button>Criar Conta</button>
                 <span>Já tem uma conta? <a href='/login'>Então clique aqui para acessa-la.</a></span>
             </form>
         </div>
     );
+
     
     // function useFormRegister(props) {
-    //     const [values, setValues] = useState(props.initialValues)
+        //     const [values, setValues] = useState(props.initialValues)
         
-    //     return {
-    //         values,
-    //         setValues,
-    //         handleChangeForm: (e) => {
-    //             const value = e.target.value
-    //             const name = e.target.name
-
-    //             setValues({
-    //                 ...values,
+        //     return {
+            //         values,
+            //         setValues,
+            //         handleChangeForm: (e) => {
+                //             const value = e.target.value
+                //             const name = e.target.name
+                
+                //             setValues({
+                    //                 ...values,
     //                 [name]: value
     //             })
     //         },
