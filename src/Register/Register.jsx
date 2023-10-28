@@ -1,44 +1,139 @@
-// import axios from "axios";
-// import { useState } from 'react';
+import axios from "axios";
+import { useState } from 'react';
 import styles from './register.module.css'
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function Register() {
+    function useFormRegister(props) {
+        const [values, setValues] = useState(props.initialValues)
+        
+        return {
+            values,
+            setValues,
+            handleChangeForm: (e) => {
+                const value = e.target.value
+                const name = e.target.name
+            
+                setValues({
+                    ...values,
+                    [name]: value
+                })
+            },
+            clearForm() {
+                setValues({})
+            }
+        }
+    }
+
+    const useForm = useFormRegister({
+        initialValues: {
+            firstname: "",
+            lastname: "",
+            email: undefined,
+            username: "",
+            password: "",
+            confirm_password: ""
+        }
+    })
+
+
+    function handleSubmitForm(e) {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        }
+        
+        axios.post("http://127.0.0.1:8000/users/", 
+        {
+            first_name: useForm.values.firstname,
+            last_name: useForm.values.lastname,
+            email: useForm.values.email,
+            username: useForm.values.username,
+            password: useForm.values.password,
+            confirm_password: useForm.values.confirm_password
+        }, config).catch(response => console.log(response.response.data))
+        
+        e.preventDefault()
+    }
+
     return(
         <div className={styles.register}>
-            <form className={styles.formRegister}>
+            <form onSubmit={handleSubmitForm} className={styles.formRegister}>
                 <h2>Crie sua conta aqui</h2>
                 
                 <div className={styles.fullname}>
                     <div className={styles.iconInput}>
-                        <input type="text" placeholder="Nome" />
+                        <input 
+                            type="text"
+                            placeholder="Nome"
+                            onChange={useForm.handleChangeForm}
+                            value={useForm.values.first_name}
+                            name="firstname"
+                        />
+
                         <i class="fa-solid fa-user"></i>
                     </div>
                     
                     <div className={styles.iconInput}>
-                        <input type="text" placeholder="Sobrenome" />
+                        <input 
+                            type="text"
+                            placeholder="Sobrenome"
+                            onChange={useForm.handleChangeForm}
+                            value={useForm.values.last_name}
+                            name="lastname"
+                        />
+
                         <i class="fa-solid fa-user"></i>
                     </div>
                 </div>
 
                 <div className={styles.iconInput}>
-                    <input type="email" placeholder="E-mail *" />
+                    <input
+                        type="email"
+                        placeholder="E-mail *" 
+                        onChange={useForm.handleChangeForm}
+                        value={useForm.values.email}
+                        name="email"
+                    />
+
                     <i class="fa-solid fa-envelope"></i>
                 </div>
 
                 <div className={styles.iconInput}>
-                    <input type="text" placeholder="Nome de usuário *" />
+                    <input
+                        type="text"
+                        placeholder="Nome de usuário *" 
+                        onChange={useForm.handleChangeForm}
+                        value={useForm.values.username}
+                        name="username"
+                    />
+                    
                     <i class="fa-regular fa-user"></i>
                 </div>
                 
                 <div className={styles.iconInput}>
-                    <input type="password" placeholder="Senha *" />
+                    <input
+                        type="password"
+                        placeholder="Senha *"
+                        onChange={useForm.handleChangeForm}
+                        value={useForm.values.password}
+                        name="password"
+                    />
+
                     <i class="fa-solid fa-lock"></i>
                 </div>
                 
                 <div className={styles.iconInput}>
-                    <input type="password" placeholder="Confirmar Senha *" />
+                    <input 
+                        type="password" 
+                        placeholder="Confirmar Senha *" 
+                        onChange={useForm.handleChangeForm}
+                        value={useForm.values.confirm_password}
+                        name="confirm_password"
+                    />
+
                     <i class="fa-solid fa-lock"></i>
                 </div>
             
@@ -48,59 +143,6 @@ export default function Register() {
         </div>
     );
 
-    
-    // function useFormRegister(props) {
-        //     const [values, setValues] = useState(props.initialValues)
-        
-        //     return {
-            //         values,
-            //         setValues,
-            //         handleChangeForm: (e) => {
-                //             const value = e.target.value
-                //             const name = e.target.name
-                
-                //             setValues({
-                    //                 ...values,
-    //                 [name]: value
-    //             })
-    //         },
-    //         clearForm() {
-    //             setValues({})
-    //         }
-    //     }
-    // }
-    // const navigate = useNavigate();
-    
-    // function handleSubmitForm(e) {
-    //     const config = {
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //         }
-    //     }
-
-    //     axios.post("http://127.0.0.1:8000/users/", 
-    //     {
-    //         first_name: useForm.values.firstname,
-    //         last_name: useForm.values.lastname,
-    //         email: useForm.values.email,
-    //         username: useForm.values.username,
-    //         password: useForm.values.password,
-    //         confirm_password: useForm.values.confirm_password
-    //     }, config).then(navigate('/login')).catch(response => console.log(response.response.data))
-        
-    //     e.preventDefault()
-    // }
-
-    // const useForm = useFormRegister({
-    //     initialValues: {
-    //         firstname: "",
-    //         lastname: "",
-    //         email: undefined,
-    //         username: "",
-    //         password: "",
-    //         confirm_password: ""
-    //     }
-    // })
 
     // return (
     //     <>
