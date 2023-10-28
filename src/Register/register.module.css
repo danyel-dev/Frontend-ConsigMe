@@ -1,4 +1,80 @@
-.mainRegister {
+.pageRegister {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.formRegister {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2em;
+    width: max-content;
+    padding: 20px 10px;
+    border-radius: 3px;
+    background-color: whitesmoke;
+    margin: 0 10px;
+}
+
+.formRegister h2 {
+    color: rgb(67, 161, 199);
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+.formRegister div.fullname {
+    display: flex;
+    gap: .5em;
+}
+
+.formRegister input {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 10px; 
+    border-radius: 2px;
+    width: 100%;
+    background-color: white;
+    transition: .3s all ease;
+}
+
+.formRegister input:hover {
+    box-shadow: 0px 0px 2px 1px rgba(88, 88, 180, 0.623);
+}
+
+.formRegister button {
+    background-color: green;
+    color: white;
+    padding: 10px 20px;
+    font-weight: bold;
+    width: max-content;
+    margin: 0 auto;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: .3s all ease;
+}
+
+.formRegister button:hover {
+    background-color: rgba(0, 128, 0, 0.85);
+}
+
+.formRegister span {
+    margin: 0 auto;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.8);
+    text-align: center;
+}
+
+.formRegister a {
+    color: rgb(77, 77, 209);
+    cursor: pointer;
+    transition: .2s all ease;
+}
+
+.formRegister a:hover {
+    color: rgb(115, 115, 233);
+    text-decoration: underline;
+}
+
+/* .mainRegister {
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -77,4 +153,4 @@
         flex-direction: column;
         gap: 1em;
     }
-}
+} */
