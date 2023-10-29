@@ -81,8 +81,8 @@ export default function Register() {
                                 value={useForm.values.first_name}
                                 name="firstname"
                             />
-    
-                            <i className="fa-solid fa-user"></i>
+
+                            <i className="fa-solid fa-user iconColor"></i>
                         </div>
                         
                         <div className="iconInput">
@@ -95,7 +95,7 @@ export default function Register() {
                                 name="lastname"
                             />
     
-                            <i className="fa-solid fa-user"></i>
+                            <i className="fa-solid fa-user iconColor"></i>
                         </div>
                     </div>
     
@@ -108,8 +108,11 @@ export default function Register() {
                             value={useForm.values.email}
                             name="email"
                         />
-    
-                        <i className="fa-solid fa-envelope"></i>
+                        {'email' in formErrors? 
+                            <i className="fa-solid fa-envelope iconError"></i>
+                            :
+                            <i className="fa-solid fa-envelope iconColor"></i>
+                        }    
                     </div>
     
                     <div className="iconInput">
@@ -122,7 +125,11 @@ export default function Register() {
                             name="username"
                         />
                         
-                        <i className="fa-regular fa-user"></i>
+                        {'username' in formErrors? 
+                            <i className="fa-regular fa-user iconError"></i>
+                            :
+                            <i className="fa-regular fa-user iconColor"></i>
+                        }
                     </div>
                     
                     <div className="iconInput">
@@ -134,9 +141,13 @@ export default function Register() {
                             value={useForm.values.password}
                             name="password"
                         />
-    
-                        <i className="fa-solid fa-lock"></i>
-                    </div>
+
+                        {'password' in formErrors? 
+                            <i className="fa-solid fa-lock iconError"></i>
+                            :
+                            <i className="fa-solid fa-lock iconColor"></i>
+                        }
+                        </div>
                     
                     <div className="iconInput">
                         <input 
@@ -147,8 +158,12 @@ export default function Register() {
                             value={useForm.values.confirm_password}
                             name="confirm_password"
                         />
-    
-                        <i className="fa-solid fa-lock"></i>
+
+                        {'confirm_password' in formErrors? 
+                            <i className="fa-solid fa-lock iconError"></i>
+                            :
+                            <i className="fa-solid fa-lock iconColor"></i>
+                        }
                     </div>
                 
                     <button>Entrar</button>

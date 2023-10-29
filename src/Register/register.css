@@ -31,12 +31,23 @@
     position: relative;
 }
 
+.iconError {
+    color: rgba(255, 0, 0, 0.699);
+}
+
+.iconColor {
+    color: rgba(0, 0, 0, 0.7);
+}
+
 div.iconInput i {
     position: absolute;
     top: 12px;
     left: 10px;
-    color: rgba(0, 0, 0, 0.7);
     font-size: 14px;
+}
+
+div.iconInput:hover i.iconColor {
+    color: rgba(0, 47, 255, 0.712) !important;
 }
 
 .inputForm, .inputFormError {
@@ -56,7 +67,7 @@ div.iconInput i {
 }
 
 .inputFormError {
-    box-shadow: 0px 0px 0px 1px rgba(255, 0, 0, 0.6);
+    box-shadow: 0px 0px 0px 1px rgba(255, 0, 0, 0.4);
 }
 
 .inputFormError:hover {
