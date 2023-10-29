@@ -21,6 +21,21 @@
     gap: 1.3em;   
 }
 
+.registerSuccess {
+    width: 250px;
+    height: 40px;
+    color: white;
+    background-color: rgba(0, 128, 0, 0.7);
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 14px;
+}
+
 .messageError {
     display: flex;
     justify-content: center;
@@ -86,4 +101,12 @@
     border: 1px solid var(--border-small-black);
     border-radius: 3px;
     text-align: center;
+}
+
+
+@media(max-width: 350px) {
+    .formLogin {
+        width: 100%;
+        padding: 10px;
+    }
 }

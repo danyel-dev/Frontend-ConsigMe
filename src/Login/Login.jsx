@@ -35,7 +35,8 @@ export default function Login({register}) {
     if(!token)
         return(
             <main className={styles.mainComponent}>
-                {register? <h1>oi</h1>: <h2>ola</h2> }
+                <div className={styles.registerSuccess}>Conta criada com sucesso!!</div>
+                    
                 <h1>ConsigMe</h1>
                 
                 {messageError? 
