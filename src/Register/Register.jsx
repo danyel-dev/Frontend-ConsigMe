@@ -1,16 +1,17 @@
 import axios from "axios";
 import { useState } from 'react';
-import styles from './register.module.css'
 import Login from "../Login/Login";
+import './register.css'
 
 
 export default function Register() {
     const [login, setLogin] = useState(false)
-
+    
+    const [formErrors, setFormErrors] = useState({})
 
     function useFormRegister(props) {
         const [values, setValues] = useState(props.initialValues)
-        
+
         return {
             values,
             setValues,
@@ -58,18 +59,22 @@ export default function Register() {
             username: useForm.values.username,
             password: useForm.values.password,
             confirm_password: useForm.values.confirm_password
-        }, config).then(Response => setLogin(true)).catch(Response => console.log(Response))
+        }, config).then(Response => setLogin(true)).catch(Response => {
+            setFormErrors(Response.response.data)
+            console.log(Response.response)
+        })
     }
 
     if(!login)
         return(
-            <div className={styles.register}>
-                <form onSubmit={handleSubmitForm} className={styles.formRegister}>
+            <div className="register">
+                <form onSubmit={handleSubmitForm} className="formRegister">
                     <h2>Crie sua conta aqui</h2>
                     
-                    <div className={styles.fullname}>
-                        <div className={styles.iconInput}>
-                            <input 
+                    <div className="fullname">
+                        <div className="iconInput">
+                            <input
+                                className="inputForm"
                                 type="text"
                                 placeholder="Nome"
                                 onChange={useForm.handleChangeForm}
@@ -80,8 +85,9 @@ export default function Register() {
                             <i className="fa-solid fa-user"></i>
                         </div>
                         
-                        <div className={styles.iconInput}>
+                        <div className="iconInput">
                             <input 
+                                className='inputForm'
                                 type="text"
                                 placeholder="Sobrenome"
                                 onChange={useForm.handleChangeForm}
@@ -93,8 +99,9 @@ export default function Register() {
                         </div>
                     </div>
     
-                    <div className={styles.iconInput}>
+                    <div className="iconInput">
                         <input
+                            className={'email' in formErrors? 'inputFormError': 'inputForm'}
                             type="email"
                             placeholder="E-mail *" 
                             onChange={useForm.handleChangeForm}
@@ -105,8 +112,9 @@ export default function Register() {
                         <i className="fa-solid fa-envelope"></i>
                     </div>
     
-                    <div className={styles.iconInput}>
+                    <div className="iconInput">
                         <input
+                            className={'username' in formErrors? 'inputFormError': 'inputForm'}
                             type="text"
                             placeholder="Nome de usuário *" 
                             onChange={useForm.handleChangeForm}
@@ -117,8 +125,9 @@ export default function Register() {
                         <i className="fa-regular fa-user"></i>
                     </div>
                     
-                    <div className={styles.iconInput}>
+                    <div className="iconInput">
                         <input
+                            className={'password' in formErrors? 'inputFormError': 'inputForm'}
                             type="password"
                             placeholder="Senha *"
                             onChange={useForm.handleChangeForm}
@@ -129,8 +138,9 @@ export default function Register() {
                         <i className="fa-solid fa-lock"></i>
                     </div>
                     
-                    <div className={styles.iconInput}>
+                    <div className="iconInput">
                         <input 
+                            className={'confirm_password' in formErrors? 'inputFormError': 'inputForm'}
                             type="password" 
                             placeholder="Confirmar Senha *" 
                             onChange={useForm.handleChangeForm}
@@ -146,5 +156,5 @@ export default function Register() {
                 </form>
             </div>
         );
-    return <Login />
+    return <Login register={true} />
 }

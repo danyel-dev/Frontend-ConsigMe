@@ -4,7 +4,7 @@ import Home from '../Home/Home'
 import axios from 'axios';
 
 
-export default function Login() {
+export default function Login({register}) {
     const [token, setToken] = useState("")
 
     const [username, setUsername] = useState("")
@@ -35,6 +35,7 @@ export default function Login() {
     if(!token)
         return(
             <main className={styles.mainComponent}>
+                {register? <h1>oi</h1>: <h2>ola</h2> }
                 <h1>ConsigMe</h1>
                 
                 {messageError? 
