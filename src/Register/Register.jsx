@@ -108,11 +108,12 @@ export default function Register() {
                             value={useForm.values.email}
                             name="email"
                         />
+
                         {'email' in formErrors? 
                             <i className="fa-solid fa-envelope iconError"></i>
                             :
                             <i className="fa-solid fa-envelope iconColor"></i>
-                        }    
+                        }
                     </div>
     
                     <div className="iconInput">
@@ -147,8 +148,8 @@ export default function Register() {
                             :
                             <i className="fa-solid fa-lock iconColor"></i>
                         }
-                        </div>
-                    
+                    </div>
+                        
                     <div className="iconInput">
                         <input 
                             className={'confirm_password' in formErrors? 'inputFormError': 'inputForm'}
