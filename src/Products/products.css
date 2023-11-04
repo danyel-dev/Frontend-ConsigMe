@@ -130,12 +130,15 @@
     color: white;
     padding: 5px 10px;
     font-weight: bold;
+    cursor: pointer;
+    border-radius: 3px;
 }
 
 .description-cart i {
     color: #267ad4;
     font-size: 18px;
     cursor: pointer;
+    padding: 2px;
 }
 
 @media(max-width: 900px) {
