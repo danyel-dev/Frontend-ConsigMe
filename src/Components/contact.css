@@ -1,28 +1,44 @@
 .support {
-    margin-bottom: 200px;
+    margin-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
 }
 
 .support h2 {
-    margin-bottom: 2em;
     color: #285a8f;
     text-align: center;
     padding: 0 20px;
 }
 
+.error-message, .success-message {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.error-message {
+    color: rgb(250, 30, 30);
+}
+
+.success-message {
+    color: green;
+}
+
 .support-form {
-    display: flex;
-    margin: 0 auto;
     width: 60%;
-    gap: 1em;
+    margin: 0 auto;
+    display: flex;
     flex-direction: column;
-    justify-content: center;
+    gap: 1em;
 }
 
 .support-form input, .support-form textarea {
     border: 1px solid rgba(0, 0, 0, 0.1);
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
-    padding: 8px;
+    padding: 10px 12px;
     border-radius: 3px;
+    color: rgba(0, 0, 0, 0.63);
     background-color: white;
 }
 
@@ -36,14 +52,14 @@
     cursor: pointer;
 }
 
-@media(max-width: 350px) {
-    .support h2 {
-        font-size: 1em;
-    }
-}
-
 @media(max-width: 600px) {
     .support-form {
         width: 90%;
+    }
+}
+
+@media(max-width: 350px) {
+    .support h2 {
+        font-size: 1em;
     }
 }
