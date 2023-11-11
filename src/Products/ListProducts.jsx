@@ -4,16 +4,24 @@ import Header from '../Components/Header';
 import Footer from '../Components/Footer';
 import Product from './Product';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 
 export default function ListProducts() {
     const [products, setProducts] = useState([])
     
-    const url = "http://127.0.0.1:8000/products/"
-
-    axios.get(url).then(response => setProducts(response.data))
+    useEffect(() => {
+        const config = {
+            headers: {
+                "Content-Type": "application/json"
+            }  
+        }
+    
+        axios.get("http://127.0.0.1:8000/products/", config).then(
+            Response => setProducts(Response.data)
+        )
+    }, [])
     
     return (
         <>
