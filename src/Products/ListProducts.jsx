@@ -12,14 +12,8 @@ export default function ListProducts() {
     const [products, setProducts] = useState([])
     
     const url = "http://127.0.0.1:8000/products/"
-    
-    const config = {
-        heades: {
-            "Content-Type": "application/json"
-        }
-    }
 
-    axios.get(url, config).then(response => setProducts(response.data))
+    axios.get(url).then(response => setProducts(response.data))
     
     return (
         <>
