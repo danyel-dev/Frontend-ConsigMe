@@ -1,11 +1,23 @@
 import axios from 'axios';
 import './product.css'
+import { useState } from 'react';
 
 
 export default function Product({product}) {
+    const [user, setUser] = useState();
+
+    const config = {
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "token " + localStorage.getItem("token")
+        },
+    }
+    
+    axios.get("http://127.0.0.1:8000/userLogado/", config).then(
+        response => setUser(response.data[0])
+    )
+
     function handleAdditionProduct() {
-        // alert("oi")
-        
         const url = "http://127.0.0.1:8000/bag/"
         
         const config = {
@@ -13,18 +25,11 @@ export default function Product({product}) {
                 "Content-Type": "application/json",
                 "Authorization": "token " + localStorage.getItem("token")
             },
-
         }
         
-        const body = {user: product.user, product: product.url}
+        const body = {user: user.url, product: product.url}
 
-        axios.post(url, body, config).then(response => {
-            
-            setTimeout(function() {
-                alert("alerta")
-                window.close()
-            }, 3000)
-        })
+        axios.post(url, body, config)
     }
 
     return(
