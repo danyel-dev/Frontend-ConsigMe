@@ -1,7 +1,8 @@
 import Header from '../Components/Header'
 import Footer from '../Components/Footer'
+import Product from './Product';
 
-import './bag.css'
+import './bagProducts.css'
 
 import axios from 'axios';
 import { useEffect, useState } from 'react';
@@ -20,7 +21,7 @@ export default function Bag() {
             }
         }
         
-        axios.get(url, config).then(response => console.log(response.data[0].product.name))
+        axios.get(url, config).then(response => setBagProducts(response.data[0].products))
     }, [])
 
     return(
@@ -28,7 +29,9 @@ export default function Bag() {
             <Header color={"rgb(63, 43, 83)"} />
             
             <div className='bag'>
-                              
+                {bagProducts.map(product => 
+                    <Product key={product.id} product={product} />  
+                )}
             </div>
 
             <Footer />            

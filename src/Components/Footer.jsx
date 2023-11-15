@@ -7,7 +7,7 @@ export default function Footer () {
             <div className='privacy-accessibility'>
                 <a href="google.com" className='back-top'>
                     voltar ao topo
-                    <i class="fa-solid fa-angles-up"></i>
+                    <i className="fa-solid fa-angles-up"></i>
                 </a>
 
                 <div className='links-privacy'>
@@ -28,7 +28,7 @@ export default function Footer () {
                         <i className="fa-brands fa-github"></i>
                     </div>
                 </div>
-
+class
                 <div className='detail-about'>
                     <h3>Sobre</h3>
 
