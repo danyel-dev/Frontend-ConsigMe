@@ -1,3 +1,27 @@
-.bagProduct {
-    background-color: blue;
+.product {
+    background-color: whitesmoke;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 800px;
+    border-radius: 5px;
+    padding: 10px 15px;
+}
+
+.product img {
+    width: 50px;
+}
+
+.leftInfos {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.sizeProduct {
+    text-transform: uppercase;
+}
+
+.valueProduct {
+    font-size: 15px;
 }

@@ -28,7 +28,7 @@ export default function Footer () {
                         <i className="fa-brands fa-github"></i>
                     </div>
                 </div>
-class
+
                 <div className='detail-about'>
                     <h3>Sobre</h3>
 

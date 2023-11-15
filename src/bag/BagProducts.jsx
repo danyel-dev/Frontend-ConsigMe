@@ -28,11 +28,13 @@ export default function Bag() {
         <>
             <Header color={"rgb(63, 43, 83)"} />
             
-            <div className='bag'>
+            <main className='BagProducts'>
+                <p>Quantidade de Items: {bagProducts.length}</p>
+
                 {bagProducts.map(product => 
                     <Product key={product.id} product={product} />  
                 )}
-            </div>
+            </main>
 
             <Footer />            
         </>
