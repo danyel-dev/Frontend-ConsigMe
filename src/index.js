@@ -9,6 +9,7 @@ import Login from './Login/Login'
 import Register from './Register/Register'
 import ListProducts from './Products/ListProducts';
 import BagProducts from './bag/BagProducts';
+import Sacoleiras from './Sacoleiras/Sacoleiras'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -21,6 +22,7 @@ root.render(
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/bag" element={<BagProducts />} />
+        <Route path="/sacoleiras" element={<Sacoleiras />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
