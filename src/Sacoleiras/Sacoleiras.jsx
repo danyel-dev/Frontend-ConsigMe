@@ -23,16 +23,16 @@ const SacoleirasStyle = styled.div`
     margin-top: 100px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 20px 50px;
+    gap: 100px 50px;
 
     @media(max-width: 900px) {
         grid-template-columns: 1fr 1fr;
-        gap: 20px 70px;
+        gap: 100px 70px;
     }
 
     @media(max-width: 600px) {
         grid-template-columns: 1fr;
-        gap: 20px 70px;
+        gap: 100px 70px;
         padding: 0px 100px;
     }
 
