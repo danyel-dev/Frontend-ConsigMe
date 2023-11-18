@@ -20,16 +20,31 @@ const InputSearchSacoleiras = styled.input`
     border-radius: 5px;
     font-size: 15px;
     border: 1px solid rgba(0, 0, 0, 0.08);
+    transition: .3s all;
 
     &:hover {
         border: 1px solid rgba(0, 0, 0, 0.3);
     }
 `;
 
+const iconInput = {
+    position: 'relative'
+}
+
+const icon = {
+    position: 'absolute',
+    top: '12px',
+    right: '12px',
+    color: 'rgba(0, 0, 0, .7)'
+}
+
 export default function FormSearchSacoleiras() {
     return (
         <SearchSacoleiras>
-            <InputSearchSacoleiras type="text" placeholder="Faça sua pesquisa aqui" />
+            <div style={iconInput}>
+                <i style={icon} className="fa-solid fa-magnifying-glass"></i>
+                <InputSearchSacoleiras type="text" placeholder="Faça sua pesquisa aqui" />
+            </div>
         </SearchSacoleiras>
     );
 }
