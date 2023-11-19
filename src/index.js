@@ -17,12 +17,13 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/products" element={<ListProducts />} />
+        {/* <Route path="/products" element={<ListProducts />} /> */}
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/bag" element={<BagProducts />} />
         <Route path="/sacoleiras" element={<Sacoleiras />} />
+        <Route path="/sacoleiras/:id/products/" element={<ListProducts />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

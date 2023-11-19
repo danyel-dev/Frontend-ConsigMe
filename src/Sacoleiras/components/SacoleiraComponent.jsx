@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { styled } from "styled-components";
 
 
@@ -54,7 +55,11 @@ export default function SacoleiraComponent({user}) {
             <ImageSacoleira src="https://img.cancaonova.com/cnimages/canais/uploads/sites/6/2018/03/formacao_1600x1200-como-a-presenca-da-mulher-pode-ser-harmonia-no-mundo.jpg" />
             
             <SacoleiraInfo>
-                <NameSacoleira>{user.username}</NameSacoleira>
+                <NameSacoleira>
+                    <Link to={`/sacoleiras/${user.id}/products/`} valor={"dois"}>
+                        {user.username}
+                    </Link>
+                </NameSacoleira>
                 
                 <DescriptionSacoleira>
                     Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est, dolorem veritatis. Omnis nam veniam aliquid non autem sint dolore impedit? Animi voluptatibus temporibus quae odit corporis explicabo accusamus enim ut!</DescriptionSacoleira>

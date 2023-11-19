@@ -6,10 +6,12 @@ import Product from './Product';
 
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 
 export default function ListProducts() {
     const [products, setProducts] = useState([])
+    const { id } = useParams()
     
     useEffect(() => {
         const config = {
@@ -18,10 +20,10 @@ export default function ListProducts() {
             }  
         }
     
-        axios.get("http://127.0.0.1:8000/products/", config).then(
+        axios.get(`http://127.0.0.1:8000/sacoleiras/${id}/products`, config).then(
             Response => setProducts(Response.data)
         )
-    }, [])
+    }, [id])
     
     return (
         <>
@@ -32,7 +34,7 @@ export default function ListProducts() {
                     <input type="text" placeholder='Pesquise por um produto aqui' />
                     <i className="fa-solid fa-magnifying-glass"></i>
                 </form>
-
+                
                 <select name="" id="category-products">
                     <option value="">Camisetas</option>
                     <option value="">Calças</option>
