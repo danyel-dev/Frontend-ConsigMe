@@ -1,9 +1,10 @@
 import { styled } from "styled-components"
+import { Link } from 'react-router-dom';
 
 
 const SearchSacoleiras = styled.form`
     width: 500px;
-
+    
     @media(max-width: 600px) {
         width: 80%;
     };
@@ -42,7 +43,10 @@ export default function FormSearchSacoleiras() {
     return (
         <SearchSacoleiras>
             <div style={iconInput}>
-                <i style={icon} className="fa-solid fa-magnifying-glass"></i>
+                <Link to='/products'>
+                    <i style={icon} className="fa-solid fa-magnifying-glass"></i>
+                </Link>
+
                 <InputSearchSacoleiras type="text" placeholder="Faça sua pesquisa aqui" />
             </div>
         </SearchSacoleiras>

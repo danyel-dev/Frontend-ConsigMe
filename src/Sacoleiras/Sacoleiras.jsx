@@ -20,7 +20,7 @@ const MainSacoleiras = styled.main`
 
 const SacoleirasStyle = styled.div`
     width: 90%;
-    margin-top: 100px;
+    margin-top: 150px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 100px 50px;

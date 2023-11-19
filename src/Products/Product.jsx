@@ -2,7 +2,6 @@ import axios from 'axios';
 import './product.css'
 import { useEffect, useState } from 'react';
 
-
 export default function Product({product}) {
     const [user, setUser] = useState();
 
