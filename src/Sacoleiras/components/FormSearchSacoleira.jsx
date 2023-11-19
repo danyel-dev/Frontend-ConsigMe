@@ -1,5 +1,5 @@
 import { styled } from "styled-components"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import SacoleiraComponent from './SacoleiraComponent';
 
@@ -73,6 +73,19 @@ export default function FormSearchSacoleiras() {
     const [valueSacoleira, setValueSacoleira] = useState("")
     const [sacoleiras, setSacoleiras] = useState([])
 
+    useEffect(() => {
+        const config = {
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }
+    
+        axios.get(`http://127.0.0.1:8000/users/`, config).then(
+            response => setSacoleiras(response.data)
+        )
+    }, [])
+
+
     function handleSubmitSearchSacoleiras(e) {
         e.preventDefault()
 
@@ -82,8 +95,8 @@ export default function FormSearchSacoleiras() {
             }
         }
     
-        axios.get(`http://127.0.0.1:8000/sacoleira/${valueSacoleira}/products/`, config).then(
-            response => console.log(response.data)
+        axios.get(`http://127.0.0.1:8000/users/?search=${valueSacoleira}`, config).then(
+            response => setSacoleiras(response.data)
         )
     }
 
@@ -92,16 +105,19 @@ export default function FormSearchSacoleiras() {
     }
 
     return (
-        <SearchSacoleiras onSubmit={handleSubmitSearchSacoleiras}>
-            <div style={iconInput}>
-                <i style={icon} className="fa-solid fa-magnifying-glass"></i>
-                
-                <InputSearchSacoleiras value={valueSacoleira} onChange={handleChangeSearchInput} type="text" placeholder="Faça sua pesquisa aqui" />
-            </div>
+        <>
+            <SearchSacoleiras onSubmit={handleSubmitSearchSacoleiras}>
+                <div style={iconInput}>
+                    <i style={icon} className="fa-solid fa-magnifying-glass"></i>
+                    
+                    <InputSearchSacoleiras value={valueSacoleira} onChange={handleChangeSearchInput} type="text" placeholder="Faça sua pesquisa aqui" />
+                </div>
+
+            </SearchSacoleiras>
 
             <SacoleirasStyle>
                 {sacoleiras.map(sacoleira => <SacoleiraComponent key={sacoleira.id} user={sacoleira} />)}
             </SacoleirasStyle>
-        </SearchSacoleiras>
+        </>
     );
 }
