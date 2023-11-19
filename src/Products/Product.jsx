@@ -1,21 +1,23 @@
 import axios from 'axios';
 import './product.css'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 
 export default function Product({product}) {
     const [user, setUser] = useState();
 
-    const config = {
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": "token " + localStorage.getItem("token")
-        },
-    }
-    
-    axios.get("http://127.0.0.1:8000/userLogado/", config).then(
-        response => setUser(response.data[0])
-    )
+    useEffect(() => {
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "token " + localStorage.getItem("token")
+            },
+        }
+        
+        axios.get("http://127.0.0.1:8000/userLogado/", config).then(
+            response => setUser(response.data[0])
+        )
+    }, [])
 
     function handleAdditionProduct() {
         const url = "http://127.0.0.1:8000/bag/"
@@ -35,7 +37,7 @@ export default function Product({product}) {
     return(
         <div className='item'>
             <div className='item-body'>
-                <div className='item-image'></div>
+                <img className='item-image' src={product.image} alt={product.name} />
                 
                 <h3>{product.name}</h3>
 
