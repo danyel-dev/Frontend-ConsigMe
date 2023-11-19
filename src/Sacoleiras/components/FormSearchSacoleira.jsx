@@ -1,5 +1,7 @@
 import { styled } from "styled-components"
-import { Link } from 'react-router-dom';
+import { useState } from "react";
+import axios from "axios";
+import SacoleiraComponent from './SacoleiraComponent';
 
 
 const SearchSacoleiras = styled.form`
@@ -39,16 +41,67 @@ const icon = {
     color: 'rgba(0, 0, 0, .7)'
 }
 
-export default function FormSearchSacoleiras() {
-    return (
-        <SearchSacoleiras>
-            <div style={iconInput}>
-                <Link to='/products'>
-                    <i style={icon} className="fa-solid fa-magnifying-glass"></i>
-                </Link>
+const SacoleirasStyle = styled.div`
+    width: 90%;
+    margin-top: 150px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 100px 50px;
 
-                <InputSearchSacoleiras type="text" placeholder="Faça sua pesquisa aqui" />
+    @media(max-width: 900px) {
+        grid-template-columns: 1fr 1fr;
+        gap: 100px 70px;
+    }
+
+    @media(max-width: 600px) {
+        grid-template-columns: 1fr;
+        gap: 100px 70px;
+        padding: 0px 100px;
+    }
+
+    @media(max-width: 500px) {
+        padding: 0px 50px;
+    }
+
+    @media(max-width: 400px) {
+        padding: 0;
+    }
+`
+
+
+export default function FormSearchSacoleiras() {
+    const [valueSacoleira, setValueSacoleira] = useState("")
+    const [sacoleiras, setSacoleiras] = useState([])
+
+    function handleSubmitSearchSacoleiras(e) {
+        e.preventDefault()
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }
+    
+        axios.get(`http://127.0.0.1:8000/sacoleira/${valueSacoleira}/products/`, config).then(
+            response => console.log(response.data)
+        )
+    }
+
+    function handleChangeSearchInput(e) {
+        setValueSacoleira(e.target.value)
+    }
+
+    return (
+        <SearchSacoleiras onSubmit={handleSubmitSearchSacoleiras}>
+            <div style={iconInput}>
+                <i style={icon} className="fa-solid fa-magnifying-glass"></i>
+                
+                <InputSearchSacoleiras value={valueSacoleira} onChange={handleChangeSearchInput} type="text" placeholder="Faça sua pesquisa aqui" />
             </div>
+
+            <SacoleirasStyle>
+                {sacoleiras.map(sacoleira => <SacoleiraComponent key={sacoleira.id} user={sacoleira} />)}
+            </SacoleirasStyle>
         </SearchSacoleiras>
     );
 }

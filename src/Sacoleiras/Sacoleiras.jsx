@@ -4,9 +4,6 @@ import TitleComponent from './components/TitleComponent';
 import FormSearchSacoleiras from './components/FormSearchSacoleira';
 
 import { styled } from 'styled-components';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import SacoleiraComponent from './components/SacoleiraComponent';
 
 
 const MainSacoleiras = styled.main`
@@ -18,46 +15,8 @@ const MainSacoleiras = styled.main`
     padding: 10px;
 `;
 
-const SacoleirasStyle = styled.div`
-    width: 90%;
-    margin-top: 150px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 100px 50px;
-
-    @media(max-width: 900px) {
-        grid-template-columns: 1fr 1fr;
-        gap: 100px 70px;
-    }
-
-    @media(max-width: 600px) {
-        grid-template-columns: 1fr;
-        gap: 100px 70px;
-        padding: 0px 100px;
-    }
-
-    @media(max-width: 500px) {
-        padding: 0px 50px;
-    }
-
-    @media(max-width: 400px) {
-        padding: 0;
-    }
-`
 
 export default function Sacoleiras() {
-    const [users, setUsers] = useState([])
-
-    useEffect(() => {
-        const config = {
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }
-    
-        axios.get('http://127.0.0.1:8000/users/', config).then(response => setUsers(response.data))
-    }, [])
-
     return (
         <>
             <Header color={"rgb(63, 43, 83)"} />
@@ -65,10 +24,6 @@ export default function Sacoleiras() {
             <MainSacoleiras>
                 <TitleComponent />
                 <FormSearchSacoleiras />
-
-                <SacoleirasStyle>
-                    {users.map(user => <SacoleiraComponent key={user.id} user={user} />)}
-                </SacoleirasStyle>
             </MainSacoleiras>
 
             <Footer />
