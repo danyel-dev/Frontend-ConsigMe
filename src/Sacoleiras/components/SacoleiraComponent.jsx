@@ -56,7 +56,7 @@ export default function SacoleiraComponent({user}) {
             
             <SacoleiraInfo>
                 <NameSacoleira>
-                    <Link to={`/sacoleiras/${user.id}/products/`} valor={"dois"}>
+                    <Link to={`/sacoleiras/${user.id}/products/`}>
                         {user.username}
                     </Link>
                 </NameSacoleira>

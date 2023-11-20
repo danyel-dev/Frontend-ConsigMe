@@ -21,7 +21,7 @@ export default function ListProducts() {
         }
     
         axios.get(`http://127.0.0.1:8000/sacoleiras/${id}/products`, config).then(
-            Response => setProducts(Response.data)
+            Response => console.log(Response.data)
         )
     }, [id])
     
