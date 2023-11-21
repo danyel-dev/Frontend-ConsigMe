@@ -7,6 +7,13 @@
     margin: 0 auto 100px auto;
 }
 
+@media(max-width: 450px) {
+    .products {
+        width: 95%;
+        margin: 0 auto 100px auto;
+    }
+}
+
 .formSearchProduct {
     margin-bottom: 50px;
     position: relative;
@@ -40,6 +47,7 @@
     padding: 6px 10px;
     border-radius: 3px;
     margin-bottom: 30px;
+    width: max-content;
 }
 
 .container {
