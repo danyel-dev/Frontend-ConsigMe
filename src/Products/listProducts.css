@@ -20,8 +20,8 @@
 }
 
 .formSearchProduct input {
-    padding: 10px;
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px 10px 10px 15px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.05);
     width: 500px;
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 3px;
@@ -30,7 +30,7 @@
 }
 
 .formSearchProduct input:hover {
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
 }
 
 .formSearchProduct i {

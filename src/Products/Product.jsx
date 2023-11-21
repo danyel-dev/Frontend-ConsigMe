@@ -1,6 +1,8 @@
 import axios from 'axios';
 import './product.css'
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+
 
 export default function Product({product}) {
     const [user, setUser] = useState();
@@ -36,14 +38,16 @@ export default function Product({product}) {
     return(
         <div className='item'>
             <img className='item-image' src={product.image} alt={product.name} />
-            <div className='item-body'>
-                
+
+            <div className='item-body'>     
                 <h3>{product.name}</h3>
 
                 <p className='item-description'>{product.description}</p>
-
+                
+                <small className="item-comments-number"><i className="fa-solid fa-comment"></i> 4 comentários</small>
+ 
                 <div className='description-cart'>
-                    <button>Ver produto</button>
+                    <Link to={`/products/${product.id}`} className='description-cart-button'>Ver produto</Link>
 
                     <i className="fa-solid fa-cart-shopping" onClick={handleAdditionProduct}></i>
                 </div>

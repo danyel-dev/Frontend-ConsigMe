@@ -60,6 +60,11 @@ const SacoleiraInfoBio = styled.p`
 `;
 
 
+const SacoleiraInfoEmail = styled.small`
+    font-weight: bold;
+    color: rgba(0, 0, 0, .7);
+`;
+
 export default function ListProducts() {
     const [products, setProducts] = useState([])
     const { id } = useParams()
@@ -95,7 +100,7 @@ export default function ListProducts() {
                             </SacoleiraInfoBio>
                         </div>
 
-                        <small>e-mail: mariasilva87@gmail.com</small>
+                        <SacoleiraInfoEmail>e-mail: mariasilva87@gmail.com</SacoleiraInfoEmail>
                     </SacoleiraInfos>
                 </SacoleiraPerfil>
 

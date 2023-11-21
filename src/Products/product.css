@@ -31,16 +31,23 @@
     color: rgba(0, 0, 0, .8);
 }
 
+small.item-comments-number {
+    margin-top: 10px;
+    color: rgba(0, 0, 0, 0.65);
+    font-size: 14px;;
+}
+
 .description-cart {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
-.description-cart button {
+.description-cart-button {
     background-color: #267ad4;
     color: white;
+    font-size: 13px;
     padding: 5px 10px;
     font-weight: bold;
     cursor: pointer;
