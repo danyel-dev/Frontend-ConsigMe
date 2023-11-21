@@ -35,8 +35,8 @@ export default function Product({product}) {
 
     return(
         <div className='item'>
+            <img className='item-image' src={product.image} alt={product.name} />
             <div className='item-body'>
-                <img className='item-image' src={product.image} alt={product.name} />
                 
                 <h3>{product.name}</h3>
 

@@ -12,9 +12,9 @@ import { styled } from 'styled-components';
 
 const SacoleiraPerfil = styled.div`
     display: flex;
+    align-items:center;
     gap: 1.5em;
     margin-bottom: 50px; 
-    align-items:center;
 
     @media(max-width: 370px) {
         flex-direction: column;
@@ -27,7 +27,6 @@ const ImageSacoleiraInfo = styled.img`
     border-radius: 50%;
     box-shadow: 2px 2px 7px rgba(0, 0, 0, .4);
 `;
-
 
 const SacoleiraInfos = styled.div`
     width: 450px;
@@ -52,16 +51,12 @@ const SacoleiraInfoTitle = styled.h4`
 
 const SacoleiraInfoBio = styled.p`
     font-size: 15px;
-    color: rgba(0, 0, 0, .9);
+    color: rgba(0, 0, 0, .85);
     
     @media(max-width: 370px) {
         text-align: center;
         word-break: break-all;
     }
-`;
-
-const SacoleiraInfoSmall = styled.small`
-    text-align: center;
 `;
 
 
@@ -100,7 +95,7 @@ export default function ListProducts() {
                             </SacoleiraInfoBio>
                         </div>
 
-                        <SacoleiraInfoSmall>E-mail: mariasilva87@gmail.com</SacoleiraInfoSmall>
+                        <small>e-mail: mariasilva87@gmail.com</small>
                     </SacoleiraInfos>
                 </SacoleiraPerfil>
 
