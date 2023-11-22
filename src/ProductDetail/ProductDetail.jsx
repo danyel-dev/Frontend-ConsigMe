@@ -4,7 +4,34 @@ import { useParams } from 'react-router-dom';
 
 import Header from '../Components/Header';
 import Footer from '../Components/Footer';
+import { styled } from "styled-components";
 
+
+
+const MainProduct = styled.main`
+    width: 80%;
+    margin: 0 auto 100px auto;
+`;
+
+const ProductStyle = styled.div`
+    display: flex;
+    gap: 2em;
+`;
+
+const ImageProduct = styled.img`
+    width: 300px;
+    height: 400px;
+`;
+
+const ProductInfoBody = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+`;
+
+const ProductDescription = styled.p`
+    width: 500px;
+`;
 
 export default function ProductDetail() {
     const { id } = useParams()
@@ -19,18 +46,21 @@ export default function ProductDetail() {
         <>
             <Header color={"rgb(63, 43, 83)"} />
             
-            <main>
-                <div className="product">
-                    <img src={product.image} alt={product.name} />
-                    <h3>product.name</h3>
-                    <p>{product.description}</p>
-                    <p>{product.size}</p>
-                </div>
+            <MainProduct>
+                <ProductStyle>
+                    <ImageProduct src={product.image} alt={product.name} />
+                    
+                    <ProductInfoBody>
+                        <h2>{product.name}</h2>
+                        <ProductDescription>{product.description}</ProductDescription>
+                        <p>{product.size}</p>
+                    </ProductInfoBody>
+                </ProductStyle>
 
-                <div className="comments">
+                {/* <div className="comments">
                     <p>{product.comment_set[0].message}</p>
-                </div>
-            </main>
+                </div> */}
+            </MainProduct>
 
             <Footer></Footer>
         </> 
