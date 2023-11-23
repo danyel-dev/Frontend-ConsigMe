@@ -44,7 +44,7 @@ export default function Product({product}) {
 
                 <p className='item-description'>{product.description}</p>
                 
-                <small className="item-comments-number"><i className="fa-solid fa-comment"></i> 4 comentários</small>
+                <small className="item-comments-number"><i className="fa-solid fa-comment"></i>4 comentários</small>
  
                 <div className='description-cart'>
                     <Link to={`/products/${product.id}`} className='description-cart-button'>Ver produto</Link>

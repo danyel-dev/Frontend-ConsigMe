@@ -27,8 +27,8 @@ const ImageProduct = styled.img`
 const ProductInfo = styled.div`
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     padding: 20px;
-    gap: 9em;
 `;
 
 const ProductInfoTop = styled.div`
@@ -51,6 +51,7 @@ const ProductNameDescription = styled.div`
 
 const ProductSizeBagAddition = styled.div`
     display: flex;
+    align-items: center;
     justify-content: space-between;
 `;
 
@@ -58,6 +59,36 @@ const ProductDescription = styled.p`
     width: 500px;
 `;
 
+const ButtonBagAddition = styled.button`
+    display: flex;
+    align-items: center;
+    gap: .5em;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 5px;
+    color: rgb(23, 96, 165);
+    font-weight: bold;
+
+    &:hover {
+        text-decoration: underline;
+    }
+`;
+
+const ButtonBuyProduct = styled.button`
+    background-color: blueviolet;
+    padding: 8px 0px;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 14px;
+    width: 160px;
+    cursor: pointer;
+`;
+
+const NumberComments = styled.small`
+    color: rgba(0, 0, 0, .6);
+    font-weight: bold;
+`;
 
 export default function ProductDetail() {
     const { id } = useParams()
@@ -67,7 +98,6 @@ export default function ProductDetail() {
         axios.get(`http://127.0.0.1:8000/products/${id}/`).then(response => setProduct(response.data))
     }, [id]) 
 
-    
     return (
         <>
             <Header color={"rgb(63, 43, 83)"} />
@@ -85,12 +115,17 @@ export default function ProductDetail() {
 
                             <ProductSizeBagAddition>
                                 <p>Tamanho: {product.size}</p>
-                                <button>Adicionar ao carrinho</button>
+                                <ButtonBagAddition>
+                                    <i className="fa-solid fa-cart-shopping"></i>
+                                    <p>Adicionar ao Carrinho</p>
+                                </ButtonBagAddition>
                             </ProductSizeBagAddition>
                         </ProductInfoTop>
+                            <h3>Valor: R$ {product.value}</h3>
                         
                         <ProductInfoBottom>
-                            <h3>Valor: R$ {product.value}</h3>
+                            <ButtonBuyProduct>Comprar Produto</ButtonBuyProduct>
+                            <NumberComments>45 Comentários</NumberComments>
                         </ProductInfoBottom>
                     </ProductInfo>
                 </ProductStyle>
