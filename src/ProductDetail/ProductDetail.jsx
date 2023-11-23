@@ -21,17 +21,43 @@ const ProductStyle = styled.div`
 const ImageProduct = styled.img`
     width: 300px;
     height: 400px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, .5);
 `;
 
-const ProductInfoBody = styled.div`
+const ProductInfo = styled.div`
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 9em;
+`;
+
+const ProductInfoTop = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+`;
+
+const ProductInfoBottom = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1em;
 `;
 
+const ProductNameDescription = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+`;
+
+const ProductSizeBagAddition = styled.div`
+    display: flex;
+    justify-content: space-between;
+`;
+
 const ProductDescription = styled.p`
     width: 500px;
 `;
+
 
 export default function ProductDetail() {
     const { id } = useParams()
@@ -50,11 +76,23 @@ export default function ProductDetail() {
                 <ProductStyle>
                     <ImageProduct src={product.image} alt={product.name} />
                     
-                    <ProductInfoBody>
-                        <h2>{product.name}</h2>
-                        <ProductDescription>{product.description}</ProductDescription>
-                        <p>{product.size}</p>
-                    </ProductInfoBody>
+                    <ProductInfo>
+                        <ProductInfoTop>
+                            <ProductNameDescription>
+                                <h2>{product.name}</h2>
+                                <ProductDescription>{product.description}</ProductDescription>
+                            </ProductNameDescription>
+
+                            <ProductSizeBagAddition>
+                                <p>Tamanho: {product.size}</p>
+                                <button>Adicionar ao carrinho</button>
+                            </ProductSizeBagAddition>
+                        </ProductInfoTop>
+                        
+                        <ProductInfoBottom>
+                            <h3>Valor: R$ {product.value}</h3>
+                        </ProductInfoBottom>
+                    </ProductInfo>
                 </ProductStyle>
 
                 {/* <div className="comments">
