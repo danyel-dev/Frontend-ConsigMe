@@ -5,13 +5,14 @@ import { useParams } from 'react-router-dom';
 import Header from '../Components/Header';
 import Footer from '../Components/Footer';
 import { styled } from "styled-components";
+import Comment from "./Comment";
 
 
 const MainProduct = styled.main`
     width: 80%;
     display: flex;
     flex-direction: column;
-    gap: 10em;
+    gap: 8em;
     margin: 0 auto 100px auto;
 `;
 
@@ -114,50 +115,17 @@ const SubmitFormComment = styled.button`
     border-radius: 3px;
 `;
 
-const CommentStyle = styled.div`
-    display: flex;
-    align-items: center;
-    gap: 1em;
-`;
-
-const Comments = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 5em;
-`;
-
-const CommentIcon = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    padding: 20px;
-    background-color: blueviolet;
-    color: white;
-`;
-
-const CommentBody = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: .5em;
-`;
-
-const CommentMessage = styled.div`
-    width: 700px;
-    text-align: justify;
-    font-weight: bold;
-    color: rgba(0, 0, 0, .5);
-    font-size: 14px;
-`;
 
 export default function ProductDetail() {
     const { id } = useParams()
     const [product, setProduct] = useState([])
-    
+    const [comments, setComments] = useState([])
+
     useEffect(() => {
-        axios.get(`http://127.0.0.1:8000/products/${id}/`).then(response => setProduct(response.data))
+        axios.get(`http://127.0.0.1:8000/products/${id}/`).then(response => {
+            setProduct(response.data)
+            setComments(response.data.comment_set)
+        })
     }, [id]) 
 
     return (
@@ -201,52 +169,9 @@ export default function ProductDetail() {
                     </form>
                 </div>
 
-                <Comments>
-                    <CommentStyle>
-                        <CommentIcon>DP</CommentIcon>
-
-                        <CommentBody>
-                            <div>
-                                <h4>Carlos Daniel Sousa Pinheiro</h4>
-                                <small>13/05/13 ás 21:00 horas</small>
-                            </div>
-                            
-                            <CommentMessage>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse earum consequuntur explicabo alias suscipit quidem nulla est, aspernatur nam quod laborum in, quos ratione rem? Natus quas enim asperiores blanditiis!
-                            </CommentMessage>
-                        </CommentBody>
-                    </CommentStyle>
-
-                    <CommentStyle>
-                        <CommentIcon>DP</CommentIcon>
-
-                        <CommentBody>
-                            <div>
-                                <h4>Carlos Daniel Sousa Pinheiro</h4>
-                                <small>13/05/13 ás 21:00 horas</small>
-                            </div>
-                            
-                            <CommentMessage>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse earum consequuntur explicabo alias suscipit quidem nulla est, aspernatur nam quod laborum in, quos ratione rem? Natus quas enim asperiores blanditiis!
-                            </CommentMessage>
-                        </CommentBody>
-                    </CommentStyle>
-
-                    <CommentStyle>
-                        <CommentIcon>DP</CommentIcon>
-
-                        <CommentBody>
-                            <div>
-                                <h4>Carlos Daniel Sousa Pinheiro</h4>
-                                <small>13/05/13 ás 21:00 horas</small>
-                            </div>
-                            
-                            <CommentMessage>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse earum consequuntur explicabo alias suscipit quidem nulla est, aspernatur nam quod laborum in, quos ratione rem? Natus quas enim asperiores blanditiis!
-                            </CommentMessage>
-                        </CommentBody>
-                    </CommentStyle>
-                </Comments>
+                {comments.map(comment => (
+                    <Comment comment={comment} key={comment.id} />
+                ))}
             </MainProduct>
 
             <Footer></Footer>
