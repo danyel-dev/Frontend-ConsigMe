@@ -49,7 +49,7 @@ export default function Product({product}) {
                 <div className='description-cart'>
                     <Link to={`/products/${product.id}`} className='description-cart-button'>Ver produto</Link>
 
-                    <i className="fa-solid fa-cart-shopping" onClick={handleAdditionProduct}></i>
+                    <small className='productValue'>R$ {product.value}</small>
                 </div>
             </div>
         </div> 

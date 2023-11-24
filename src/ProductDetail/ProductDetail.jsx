@@ -10,6 +10,9 @@ import { styled } from "styled-components";
 
 const MainProduct = styled.main`
     width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 10em;
     margin: 0 auto 100px auto;
 `;
 
@@ -130,9 +133,9 @@ export default function ProductDetail() {
                     </ProductInfo>
                 </ProductStyle>
 
-                {/* <div className="comments">
-                    <p>{product.comment_set[0].message}</p>
-                </div> */}
+                <div className="comments">
+                    <h1>oifccccccccccccccccccccc</h1>
+                </div>
             </MainProduct>
 
             <Footer></Footer>

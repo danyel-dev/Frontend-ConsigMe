@@ -54,9 +54,6 @@ small.item-comments-number {
     border-radius: 3px;
 }
 
-.description-cart i {
-    color: #267ad4;
-    font-size: 18px;
-    cursor: pointer;
-    padding: 2px;
+.productValue {
+    font-weight: bold;
 }
