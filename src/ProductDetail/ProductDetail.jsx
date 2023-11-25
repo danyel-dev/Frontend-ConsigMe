@@ -113,6 +113,7 @@ const SubmitFormComment = styled.button`
     padding: 8px 15px;
     font-weight: bold;
     border-radius: 3px;
+    cursor: pointer;
 `;
 
 
@@ -120,6 +121,34 @@ export default function ProductDetail() {
     const { id } = useParams()
     const [product, setProduct] = useState([])
     const [comments, setComments] = useState([])
+
+    const [commentInput, setCommentInput] = useState("")
+
+    function handleChangeCommentInput(e) {
+        setCommentInput(e.target.value)
+    }
+
+    function handleSubmitCommentForm(e) {
+        e.preventDefault()
+
+        const url = 'http://127.0.0.1:8000/comments/';
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authentication': 'token ' + localStorage.getItem('token')
+            }
+        }
+
+        axios.post(
+            url, 
+            {
+                user: 41,
+                product: 1,
+                message: commentInput
+            }, 
+            config).then(response => console.log(response))
+    }
 
     useEffect(() => {
         axios.get(`http://127.0.0.1:8000/products/${id}/`).then(response => {
@@ -163,8 +192,14 @@ export default function ProductDetail() {
                 <div className="comment-form">
                     <CommentTitle>Adicionar um comentário</CommentTitle>
 
-                    <form>
-                        <CommentTextArea cols="80" rows="15"></CommentTextArea>
+                    <form onSubmit={handleSubmitCommentForm}> 
+                        <CommentTextArea 
+                            value={commentInput} 
+                            onChange={handleChangeCommentInput} 
+                            cols="80" 
+                            rows="15">
+                        </CommentTextArea>
+                        
                         <SubmitFormComment>Comentar</SubmitFormComment>
                     </form>
                 </div>
