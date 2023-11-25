@@ -49,7 +49,7 @@ export default function Comment({comment}) {
 
                 <CommentBody>
                     <div>
-                        <h4>{comment.user}</h4>
+                        <h4>{comment.user_name}</h4>
                         <small>{comment.created_at}</small>
                     </div>
                     

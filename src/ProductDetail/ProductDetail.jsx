@@ -136,18 +136,18 @@ export default function ProductDetail() {
         const config = {
             headers: {
                 'Content-Type': 'application/json',
-                'Authentication': 'token ' + localStorage.getItem('token')
+                'Authorization': 'token ' + localStorage.getItem('token'),
             }
         }
 
         axios.post(
             url, 
             {
-                user: 41,
-                product: 1,
+                user: "http://127.0.0.1:8000/users/1/",
+                product: "http://127.0.0.1:8000/products/1/",
                 message: commentInput
             }, 
-            config).then(response => console.log(response))
+            config).then(response => setComments([...comments, response.data]))
     }
 
     useEffect(() => {
@@ -155,7 +155,7 @@ export default function ProductDetail() {
             setProduct(response.data)
             setComments(response.data.comment_set)
         })
-    }, [id]) 
+    }, [id, comments]) 
 
     return (
         <>
