@@ -116,6 +116,11 @@ const SubmitFormComment = styled.button`
     cursor: pointer;
 `;
 
+const Comments = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 4em;
+`;
 
 export default function ProductDetail() {
     const { id } = useParams()
@@ -143,17 +148,17 @@ export default function ProductDetail() {
         axios.post(
             url, 
             {
-                user: "http://127.0.0.1:8000/users/1/",
+                user: "http://127.0.0.1:8000/users/43/",
                 product: "http://127.0.0.1:8000/products/1/",
                 message: commentInput
             }, 
-            config).then(response => setComments([...comments, response.data]))
+            config).then(response => setComments([response.data, ...comments]))
     }
 
     useEffect(() => {
         axios.get(`http://127.0.0.1:8000/products/${id}/`).then(response => {
             setProduct(response.data)
-            setComments(response.data.comment_set)
+            setComments(response.data.comment_set.reverse())
         })
     }, [id, comments]) 
 
@@ -204,9 +209,11 @@ export default function ProductDetail() {
                     </form>
                 </div>
 
-                {comments.map(comment => (
-                    <Comment comment={comment} key={comment.id} />
-                ))}
+                <Comments>
+                    {comments.map(comment => (
+                        <Comment comment={comment} key={comment.id} />
+                    ))}
+                </Comments>
             </MainProduct>
 
             <Footer></Footer>

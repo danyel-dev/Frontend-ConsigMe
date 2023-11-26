@@ -8,12 +8,6 @@ const CommentStyle = styled.div`
     width: 700px;
 `;
 
-const Comments = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 5em;
-`;
-
 const CommentIcon = styled.div`
     display: flex;
     align-items: center;
@@ -43,21 +37,19 @@ const CommentMessage = styled.div`
 
 export default function Comment({comment}) {
     return (
-        <Comments>
-            <CommentStyle>
-                <CommentIcon>CP</CommentIcon>
+        <CommentStyle>
+            <CommentIcon>{comment.initial_letters}</CommentIcon>
 
-                <CommentBody>
-                    <div>
-                        <h4>{comment.user_name}</h4>
-                        <small>{comment.created_at}</small>
-                    </div>
-                    
-                    <CommentMessage>
-                        {comment.message}
-                    </CommentMessage>
-                </CommentBody>
-            </CommentStyle>
-        </Comments>
+            <CommentBody>
+                <div>
+                    <h4>{comment.full_name}</h4>
+                    <small>{comment.created_at}</small>
+                </div>
+                
+                <CommentMessage>
+                    {comment.message}
+                </CommentMessage>
+            </CommentBody>
+        </CommentStyle>
     );
 }
