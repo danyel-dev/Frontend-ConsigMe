@@ -5,7 +5,7 @@ const CommentStyle = styled.div`
     display: flex;
     align-items: center;
     gap: 1.5em;
-    width: 700px;
+    width: 600px;
 `;
 
 const CommentIcon = styled.div`
@@ -30,7 +30,7 @@ const CommentBody = styled.div`
 const CommentMessage = styled.div`
     text-align: justify;
     font-weight: bold;
-    color: rgba(0, 0, 0, .8);
+    color: rgba(0, 0, 0, .65);
     font-size: 14px;
 `;
 

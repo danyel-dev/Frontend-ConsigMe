@@ -59,7 +59,8 @@ const ProductSizeBagAddition = styled.div`
 `;
 
 const ProductDescription = styled.p`
-    width: 500px;
+    width: 600px;
+    text-align: justify;
 `;
 
 const ButtonBagAddition = styled.button`
@@ -152,7 +153,10 @@ export default function ProductDetail() {
                 product: "http://127.0.0.1:8000/products/1/",
                 message: commentInput
             }, 
-            config).then(response => setComments([response.data, ...comments]))
+            config).then(response => {
+                setComments([response.data, ...comments])
+                setCommentInput("")
+            })
     }
 
     useEffect(() => {
