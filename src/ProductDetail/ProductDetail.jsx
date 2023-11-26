@@ -9,7 +9,7 @@ import Comment from "./Comment";
 
 
 const MainProduct = styled.main`
-    width: 80%;
+    width: 90%;
     display: flex;
     flex-direction: column;
     gap: 8em;
@@ -19,17 +19,31 @@ const MainProduct = styled.main`
 const ProductStyle = styled.div`
     display: flex;
     gap: 2em;
+    justify-content: center;
+
+    @media(max-width: 800px) {
+        flex-direction: column;
+    }
 `;
 
 const ImageProduct = styled.img`
     width: 300px;
     height: 400px;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, .5);
+    
+    @media(max-width: 800px) {
+        margin: 0 auto;
+    }
+
+    @media(max-width: 360px) {
+        width: 100%;
+    }
 `;
 
 const ProductInfo = styled.div`
     display: flex;
     flex-direction: column;
+    gap: 2em;
     justify-content: space-between;
     padding: 20px;
 `;
@@ -55,12 +69,23 @@ const ProductNameDescription = styled.div`
 const ProductSizeBagAddition = styled.div`
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
+    gap: .5em;
     justify-content: space-between;
 `;
 
+const ProductTitle = styled.h2`
+    @media(max-width: 800px) {
+        text-align: center;
+    }
+`;
+
 const ProductDescription = styled.p`
-    width: 600px;
     text-align: justify;
+
+    @media(max-width: 800px) {
+        text-align: center;
+    }
 `;
 
 const ButtonBagAddition = styled.button`
@@ -177,19 +202,21 @@ export default function ProductDetail() {
                     <ProductInfo>
                         <ProductInfoTop>
                             <ProductNameDescription>
-                                <h2>{product.name}</h2>
+                                <ProductTitle>{product.name}</ProductTitle>
                                 <ProductDescription>{product.description}</ProductDescription>
                             </ProductNameDescription>
 
                             <ProductSizeBagAddition>
                                 <p>Tamanho: {product.size}</p>
+
                                 <ButtonBagAddition>
                                     <i className="fa-solid fa-cart-shopping"></i>
                                     <p>Adicionar ao Carrinho</p>
                                 </ButtonBagAddition>
                             </ProductSizeBagAddition>
                         </ProductInfoTop>
-                            <h3>Valor: R$ {product.value}</h3>
+
+                        <h3>Valor: R$ {product.value}</h3>
                         
                         <ProductInfoBottom>
                             <ButtonBuyProduct>Comprar Produto</ButtonBuyProduct>
@@ -198,6 +225,7 @@ export default function ProductDetail() {
                     </ProductInfo>
                 </ProductStyle>
 
+                {/* {
                 <div className="comment-form">
                     <CommentTitle>Adicionar um comentário</CommentTitle>
 
@@ -212,12 +240,14 @@ export default function ProductDetail() {
                         <SubmitFormComment>Comentar</SubmitFormComment>
                     </form>
                 </div>
+                } 
 
                 <Comments>
                     {comments.map(comment => (
                         <Comment comment={comment} key={comment.id} />
                     ))}
                 </Comments>
+                */}
             </MainProduct>
 
             <Footer></Footer>
