@@ -129,6 +129,10 @@ const CommentTextArea = styled.textarea`
     border-radius: 5px;
     padding: 10px;
     background-color: rgba(0, 0, 0, .1);
+    
+    @media(max-width: 800px) {
+        width: 100%;
+    }
 `;
 
 const SubmitFormComment = styled.button`
@@ -225,7 +229,7 @@ export default function ProductDetail() {
                     </ProductInfo>
                 </ProductStyle>
 
-                {/* {
+                
                 <div className="comment-form">
                     <CommentTitle>Adicionar um comentário</CommentTitle>
 
@@ -240,14 +244,13 @@ export default function ProductDetail() {
                         <SubmitFormComment>Comentar</SubmitFormComment>
                     </form>
                 </div>
-                } 
-
+             
+                
                 <Comments>
                     {comments.map(comment => (
                         <Comment comment={comment} key={comment.id} />
                     ))}
-                </Comments>
-                */}
+                </Comments>  
             </MainProduct>
 
             <Footer></Footer>
