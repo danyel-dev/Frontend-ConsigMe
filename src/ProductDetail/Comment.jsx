@@ -6,6 +6,10 @@ const CommentStyle = styled.div`
     align-items: center;
     gap: 1.5em;
     width: 600px;
+
+    @media(max-width: 670px) {
+        width: 100%;
+    }
 `;
 
 const CommentIcon = styled.div`
