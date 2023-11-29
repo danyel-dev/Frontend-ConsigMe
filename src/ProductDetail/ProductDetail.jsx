@@ -114,9 +114,10 @@ const ButtonBuyProduct = styled.button`
     cursor: pointer;
 `;
 
-const NumberComments = styled.small`
+const NumberComments = styled.p`
     color: rgba(0, 0, 0, .6);
     font-weight: bold;
+    font-size: 14px;
 `;
 
 const CommentTitle = styled.h1`
@@ -152,11 +153,12 @@ const Comments = styled.div`
     gap: 4em;
 `;
 
+
 export default function ProductDetail() {
     const { id } = useParams()
     const [product, setProduct] = useState([])
     const [comments, setComments] = useState([])
-
+    const [user, setUser] = useState();
     const [commentInput, setCommentInput] = useState("")
 
     function handleChangeCommentInput(e) {
@@ -193,7 +195,34 @@ export default function ProductDetail() {
             setProduct(response.data)
             setComments(response.data.comment_set.reverse())
         })
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "token " + localStorage.getItem("token")
+            },
+        }
+        
+        axios.get("http://127.0.0.1:8000/userLogado/", config).then(
+            response => setUser(response.data[0])
+        )
     }, [id, comments]) 
+
+    function handleAdditionProduct() {
+        const url = "http://127.0.0.1:8000/bag/"
+        // console.log(product)
+        const body = {user: user.url, products: [product]}
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "token " + localStorage.getItem("token")
+            },
+        }
+
+        axios.post(url, body, config)
+    }
+
 
     return (
         <>
@@ -215,7 +244,7 @@ export default function ProductDetail() {
 
                                 <ButtonBagAddition>
                                     <i className="fa-solid fa-cart-shopping"></i>
-                                    <p>Adicionar ao Carrinho</p>
+                                    <p onClick={handleAdditionProduct}>Adicionar ao Carrinho</p>
                                 </ButtonBagAddition>
                             </ProductSizeBagAddition>
                         </ProductInfoTop>
@@ -224,7 +253,7 @@ export default function ProductDetail() {
                         
                         <ProductInfoBottom>
                             <ButtonBuyProduct>Comprar Produto</ButtonBuyProduct>
-                            <NumberComments>45 Comentários</NumberComments>
+                            <NumberComments>{comments.length} Comentários</NumberComments>
                         </ProductInfoBottom>
                     </ProductInfo>
                 </ProductStyle>
@@ -247,6 +276,8 @@ export default function ProductDetail() {
              
                 
                 <Comments>
+                    <NumberComments>{comments.length} comentários neste produto</NumberComments>
+
                     {comments.map(comment => (
                         <Comment comment={comment} key={comment.id} />
                     ))}
