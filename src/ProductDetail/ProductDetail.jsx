@@ -160,7 +160,8 @@ export default function ProductDetail() {
     const [comments, setComments] = useState([])
     const [user, setUser] = useState();
     const [commentInput, setCommentInput] = useState("")
-
+    const [bagId, setbagId] = useState('')
+    
     function handleChangeCommentInput(e) {
         setCommentInput(e.target.value)
     }
@@ -176,12 +177,12 @@ export default function ProductDetail() {
                 'Authorization': 'token ' + localStorage.getItem('token'),
             }
         }
-
+    
         axios.post(
             url, 
             {
-                user: "http://127.0.0.1:8000/users/43/",
-                product: "http://127.0.0.1:8000/products/1/",
+                user: user.url,
+                product: `http://127.0.0.1:8000/products/${id}/`,
                 message: commentInput
             }, 
             config).then(response => {
@@ -191,27 +192,30 @@ export default function ProductDetail() {
     }
 
     useEffect(() => {
+        const url = "http://127.0.0.1:8000/bag/"
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "token " + localStorage.getItem("token")
+            },
+        }
+
+        axios.get(url, config).then(response => setbagId(response.data[0].id))
+
         axios.get(`http://127.0.0.1:8000/products/${id}/`).then(response => {
             setProduct(response.data)
             setComments(response.data.comment_set.reverse())
         })
-
-        const config = {
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": "token " + localStorage.getItem("token")
-            },
-        }
         
         axios.get("http://127.0.0.1:8000/userLogado/", config).then(
             response => setUser(response.data[0])
         )
-    }, [id, comments]) 
+    }, [id, comments, bagId]) 
+    
 
     function handleAdditionProduct() {
-        const url = "http://127.0.0.1:8000/bag/"
-        // console.log(product)
-        const body = {user: user.url, products: [product]}
+        // const url = "http://127.0.0.1:8000/bag/"
 
         const config = {
             headers: {
@@ -220,9 +224,13 @@ export default function ProductDetail() {
             },
         }
 
-        axios.post(url, body, config)
-    }
+        // axios.get(url, config).then(response => setbagId(response.data[0].id))
+        
+        const urlPatchBag = `http://127.0.0.1:8000/products/${product.id}/`
 
+        axios.patch(`http://127.0.0.1:8000/bag/${bagId}/`, {products: [urlPatchBag]}, config)
+        console.log(product.id)
+    }
 
     return (
         <>
