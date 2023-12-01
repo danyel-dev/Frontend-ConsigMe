@@ -2,7 +2,6 @@ import './product.css'
 import camisa from '../img/produtos/camisa1.webp'
 
 export default function Product({product}) {
-    console.log(product)
     return (
         <div className='product'>
             <div className='leftInfos'>
