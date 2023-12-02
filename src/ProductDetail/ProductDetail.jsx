@@ -211,21 +211,29 @@ export default function ProductDetail() {
         axios.get("http://127.0.0.1:8000/userLogado/", config).then(
             response => setUser(response.data[0])
         )
-    }, [id, comments, bag]) 
+    }, []) 
     
 
     function handleAdditionProduct() {
         const config = {
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": "token " + localStorage.getItem("token")
+                "Authorization": "token " + localStorage.getItem("token"),
+
             },
         }
         
-        const urlPatchBag = `http://127.0.0.1:8000/products/${product.id}/`
+        const new_products = [...bag.products, {
+            user: user.fullname,
+            image: product.image,
+            name: product.name,
+            value: product.value,
+            size: product.size,
+            quantity: product.quantity,
+        }]
+        console.log(new_products)
+        axios.patch(`http://127.0.0.1:8000/bag/${bag.id}/`, {products: new_products}, config)
 
-        axios.patch(`http://127.0.0.1:8000/bag/${bag.id}/`, {products: [...bag.products, urlPatchBag]}, config)
-        console.log(product.id)
     }
 
     return (
