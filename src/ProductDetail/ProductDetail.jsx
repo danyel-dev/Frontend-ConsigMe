@@ -214,26 +214,36 @@ export default function ProductDetail() {
     }, []) 
     
 
-    function handleAdditionProduct() {
+    function handleAdditionProduct(e) {
+        // console.log(user)
         const config = {
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": "token " + localStorage.getItem("token"),
-
-            },
+            }
         }
         
-        const new_products = [...bag.products, {
-            user: user.fullname,
-            image: product.image,
-            name: product.name,
-            value: product.value,
-            size: product.size,
-            quantity: product.quantity,
-        }]
-        console.log(new_products)
-        axios.patch(`http://127.0.0.1:8000/bag/${bag.id}/`, {products: new_products}, config)
+        const formData = {
+            user: user.url,
+            fullname: user.fullname,
+            image: "camisa_regata_zP8vgkW.webp",
+            value: "34.50",
+            size: "M",
+            name: "camisa regata masculina",
+            quantity: 3
+        }
 
+        axios.post('http://127.0.0.1:8000/bagProdut/', formData, config)
+
+            // const new_products = [...bag.products, {
+            //     user: user.fullname,
+            //     image: product.image,
+            //     name: product.name,
+            //     value: product.value,
+            //     size: product.size,
+            //     quantity: product.quantity,
+            // }]
+            // console.log(new_products)
+            // axios.patch(`http://127.0.0.1:8000/bag/${bag.id}/`, {products: new_products}, config)
     }
 
     return (
@@ -263,6 +273,11 @@ export default function ProductDetail() {
 
                         <h3>Valor: R$ {product.value}</h3>
                         
+                        <form onSubmit={handleAdditionProduct}>
+                            <input type="file" name="image" accept={product.image} />
+                            <button>enviar</button>
+                        </form>
+
                         <ProductInfoBottom>
                             <ButtonBuyProduct>Comprar Produto</ButtonBuyProduct>
                             <NumberComments>{comments.length} Comentários</NumberComments>
