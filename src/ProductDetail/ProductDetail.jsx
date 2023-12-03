@@ -216,23 +216,28 @@ export default function ProductDetail() {
 
     function handleAdditionProduct(e) {
         // console.log(user)
-        const config = {
-            headers: {
-                "Content-Type": "application/json",
-            }
-        }
+        // const config = {
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //         "Authorization": "token " + localStorage.getItem("token")
+        //     }
+        // }
         
-        const formData = {
-            user: user.url,
-            fullname: user.fullname,
-            image: "camisa_regata_zP8vgkW.webp",
-            value: "34.50",
-            size: "M",
-            name: "camisa regata masculina",
-            quantity: 3
-        }
-
-        axios.post('http://127.0.0.1:8000/bagProdut/', formData, config)
+        // const formData = {
+        //     products: [
+        //         {
+        //             image: product.image,
+        //             user: product.user.url,
+        //             fullname: user.fullname,
+        //             value: product.value,
+        //             size: product.size,
+        //             name: product.name,
+        //             quantity: product.quantity
+        //         }
+        //     ]
+        // }
+        console.log(product.user.url)
+        // axios.patch('http://127.0.0.1:8000/bag/22/', formData, config)
 
             // const new_products = [...bag.products, {
             //     user: user.fullname,
