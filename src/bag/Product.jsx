@@ -1,4 +1,4 @@
-import './product.css'
+// import './product.css'
 
 
 export default function Product({product}) {
@@ -12,6 +12,8 @@ export default function Product({product}) {
             </div>
 
             <p className='valueProduct'>Preço: R$ {product.value}</p>
+
+        <div className="bg-blue-500 text-white">enviar</div>
         </div>
     )    
 }
