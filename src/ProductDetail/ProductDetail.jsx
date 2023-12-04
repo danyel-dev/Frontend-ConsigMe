@@ -216,28 +216,28 @@ export default function ProductDetail() {
 
     function handleAdditionProduct(e) {
         // console.log(user)
-        // const config = {
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //         "Authorization": "token " + localStorage.getItem("token")
-        //     }
-        // }
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "token " + localStorage.getItem("token")
+            }
+        }
         
-        // const formData = {
-        //     products: [
-        //         {
-        //             image: product.image,
-        //             user: product.user.url,
-        //             fullname: user.fullname,
-        //             value: product.value,
-        //             size: product.size,
-        //             name: product.name,
-        //             quantity: product.quantity
-        //         }
-        //     ]
-        // }
-        console.log(product.user.url)
-        // axios.patch('http://127.0.0.1:8000/bag/22/', formData, config)
+        const formData = {
+            products: [
+                {
+                    image: product.image,
+                    user: product.user.url,
+                    fullname: user.fullname,
+                    value: product.value,
+                    size: product.size,
+                    name: product.name,
+                    quantity: product.quantity
+                }
+            ]
+        }
+        // console.log(product.user.url)
+        axios.patch('http://127.0.0.1:8000/bag/22/', formData, config)
 
             // const new_products = [...bag.products, {
             //     user: user.fullname,
