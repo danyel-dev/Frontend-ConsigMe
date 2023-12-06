@@ -1,19 +1,18 @@
-// import './product.css'
-
-
 export default function Product({product}) {
     return (
-        <div className='product'>
-            <div className='leftInfos'>
-                <img src={product.image} alt='imagem camisa' />
-                
-                <h4 className='nameProduct'>{product.name}</h4>  
-                <span className='sizeProduct'>{product.size}</span>
+        <div className="flex">
+            <img src={product.image} alt={product.name} className="w-32 h-32" />
+
+            <div>
+                <h1 className="text-lg">{product.name}</h1>
+                <p className="text-sm">Tam: <span>{product.size}</span></p>
+                <p className="text-sm">Quant: <span>3</span></p>
+
+                <div>
+                    <h1 className="font-bold">R$ {product.value}</h1>
+
+                </div>
             </div>
-
-            <p className='valueProduct'>Preço: R$ {product.value}</p>
-
-        <div className="bg-blue-500 text-white">enviar</div>
         </div>
     )    
 }

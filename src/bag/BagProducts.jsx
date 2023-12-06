@@ -1,9 +1,6 @@
 import Header from '../Components/Header'
 import Footer from '../Components/Footer'
 import Product from './Product';
-
-import './bagProducts.css'
-
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
@@ -23,12 +20,13 @@ export default function Bag() {
         
         axios.get(url, config).then(response => setBagProducts(response.data[0].products))
     }, [])
+    console.log(bagProducts)
 
     return(
         <>
             <Header color={"rgb(63, 43, 83)"} />
             
-            <main className='BagProducts'>
+            <main className='w-full flex flex-col items-center gap-16 mb-20'>
                 <p>Quantidade de Items: {bagProducts.length}</p>
 
                 {bagProducts.map(product => 
