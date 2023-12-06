@@ -16,8 +16,8 @@ export default function Product({productURL}) {
     }, [])
 
     return (
-        <div className="flex items-center gap-2 w-300">
-            <img src={product.image} alt={product.name} className="w-40 h-40" />
+        <div className="flex items-center gap-2">
+            <img src={product.image} alt={product.name} className="w-20 h-20" />
 
             <div className="flex flex-col justify-between gap-2">
                 <div> 
