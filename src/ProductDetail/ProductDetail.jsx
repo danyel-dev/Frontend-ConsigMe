@@ -225,15 +225,7 @@ export default function ProductDetail() {
         const formData = {
             products: [
                 ...bag.products,
-                {
-                    image: product.image,
-                    user: product.user.url,
-                    fullname: user.fullname,
-                    value: product.value,
-                    size: product.size,
-                    name: product.name,
-                    quantity: product.quantity
-                }
+                product.url
             ]
         }
 

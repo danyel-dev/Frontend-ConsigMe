@@ -3,6 +3,7 @@ import Footer from '../Components/Footer'
 import Product from './Product';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 
 export default function Bag() {
@@ -20,17 +21,16 @@ export default function Bag() {
         
         axios.get(url, config).then(response => setBagProducts(response.data[0].products))
     }, [])
-    console.log(bagProducts)
 
     return(
         <>
             <Header color={"rgb(63, 43, 83)"} />
             
-            <main className='w-full flex flex-col items-center gap-16 mb-20'>
+            <main className='grid gap-16 mb-20'>
                 <p>Quantidade de Items: {bagProducts.length}</p>
-
+            
                 {bagProducts.map(product => 
-                    <Product key={product.id} product={product} />  
+                    <Product key={uuidv4()} productURL={product} />  
                 )}
             </main>
 

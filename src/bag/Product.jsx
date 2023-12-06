@@ -1,4 +1,20 @@
-export default function Product({product}) {
+import axios from "axios"
+import { useEffect, useState } from "react"
+
+export default function Product({productURL}) {
+    const [product, setProduct] = useState({})
+
+    useEffect(() => {
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "token " + localStorage.getItem("token")
+            }
+        }
+
+        axios.get(productURL, config).then(response => setProduct(response.data))
+    }, [])
+
     return (
         <div className="flex gap-2">
             <img src={product.image} alt={product.name} className="w-40 h-40" />
