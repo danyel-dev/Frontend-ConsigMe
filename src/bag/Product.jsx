@@ -16,12 +16,12 @@ export default function Product({productURL}) {
     }, [])
 
     return (
-        <div className="flex gap-2">
+        <div className="flex items-center gap-2 w-300">
             <img src={product.image} alt={product.name} className="w-40 h-40" />
 
-            <div className="flex flex-col justify-between gap-2 w-300">
-                <div>
-                    <h1 className="text-lg leading-tight">{product.name}</h1>
+            <div className="flex flex-col justify-between gap-2">
+                <div> 
+                    <h1 className="text-sm leading-tight">{product.name}</h1>
                 </div>
 
                 <div>
@@ -33,7 +33,7 @@ export default function Product({productURL}) {
                 <div className="flex justify-between">
                     <h1 className="font-bold">R$ {product.value}</h1>
                    
-                    <small className="cursor-pointer bg-red-600 rounded-sm text-white pt-1 pb-1 pl-4 pr-4 font-bold">Deletar</small>
+                    <small className="text-xs cursor-pointer bg-red-600 rounded-xl text-white pt-1 pb-1 pl-2 pr-2 font-bold">Deletar</small>
                 </div>
             </div>
         </div>

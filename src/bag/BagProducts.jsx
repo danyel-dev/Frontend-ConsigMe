@@ -26,8 +26,8 @@ export default function Bag() {
         <>
             <Header color={"rgb(63, 43, 83)"} />
             
-            <main className='grid gap-16 mb-20'>
-                <p>Quantidade de Items: {bagProducts.length}</p>
+            <main className='grid-bag mb-20'>
+                {/* <p>Quantidade de Items: {bagProducts.length}</p> */}
             
                 {bagProducts.map(product => 
                     <Product key={uuidv4()} productURL={product} />  
