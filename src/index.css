@@ -16,3 +16,8 @@ a {
     text-decoration: none;
 }
 
+@layer utilities {
+    .w-300 {
+      width: 300px;
+    }
+}
