@@ -11,6 +11,7 @@ import ListProducts from './Products/ListProducts';
 import BagProducts from './bag/BagProducts';
 import Sacoleiras from './Sacoleiras/Sacoleiras'
 import ProductDetail from './ProductDetail/ProductDetail';
+import CreateProfile from './CreateProfile/CreateProfile';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -23,10 +24,10 @@ root.render(
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/bag/" element={<BagProducts />} />
-
         <Route path="/sacoleiras" element={<Sacoleiras />} />
         <Route path="/sacoleiras/:id/products/" element={<ListProducts />} />
         <Route path="/products/:id" element={<ProductDetail />} />
+        <Route path="/createprofile" element={<CreateProfile />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
