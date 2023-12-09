@@ -27,7 +27,7 @@ root.render(
         <Route path="/sacoleiras" element={<Sacoleiras />} />
         <Route path="/sacoleiras/:id/products/" element={<ListProducts />} />
         <Route path="/products/:id" element={<ProductDetail />} />
-        <Route path="/createprofile" element={<CreateProfile />} />
+        <Route path="/createProfile" element={<CreateProfile />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
