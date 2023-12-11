@@ -1,8 +1,25 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './createProfile.scss'
+import axios from 'axios'
 
 
 export default function CreateProfile() {
+    const [userURL, setUserURL] = useState("")
+
+    useEffect(() => {
+        const URL = 'http://127.0.0.1:8000/userLogado/'
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "token " + localStorage.getItem("token")
+            }
+        }
+
+        axios.get(URL, config).then(response => setUserURL(response.data[0].url))
+    }, [])
+
+
     function useFormRegister(props) {
         const [values, setValues] = useState(props.initialValues)
 
@@ -26,23 +43,27 @@ export default function CreateProfile() {
 
     const useForm = useFormRegister({
         initialValues: {
-            store_name: "",
-            professional_email: "",
-            phone_number: "",
-            cpf: "",
-            cep: "",
-            state: "",
-            city: "",
-            district: "",
-            street: "",
-            house_number: "",
-            complement: "",
+            store_name: "", professional_email: "", phone_number: "",
+            cpf: "", cep: "", state: "", city: "", district: "",
+            street: "", house_number: "", complement: "", user: ""
         }
     })
 
     function handleSubmitForm(e) {
-        console.log(useForm.values)
         e.preventDefault()
+
+        const URL = 'http://127.0.0.1:8000/profile/'
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "token " + localStorage.getItem("token")
+            }
+        }
+        
+        useForm.values["user"] = userURL
+        
+        axios.post(URL, useForm.values, config)
     }
 
     return(
@@ -78,7 +99,7 @@ export default function CreateProfile() {
                 <div>
                     <input
                         type="text" placeholder='CEP' 
-                        name='CEP' value={useForm.values.cep}
+                        name='cep' value={useForm.values.cep}
                         onChange={useForm.handleChangeForm} 
                     />
 
