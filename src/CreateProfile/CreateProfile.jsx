@@ -30,7 +30,6 @@ export default function CreateProfile() {
             professional_email: "",
             phone_number: "",
             cpf: "",
-            birth_date: "",
             cep: "",
             state: "",
             city: "",
@@ -43,7 +42,6 @@ export default function CreateProfile() {
 
     function handleSubmitForm(e) {
         console.log(useForm.values)
-        
         e.preventDefault()
     }
 
@@ -80,13 +78,13 @@ export default function CreateProfile() {
                 <div>
                     <input
                         type="text" placeholder='CEP' 
-                        name='birth_date' value={useForm.values.birth_date}
+                        name='CEP' value={useForm.values.cep}
                         onChange={useForm.handleChangeForm} 
                     />
 
                     <input
                         type="text" placeholder='Estado'
-                        name='cep' value={useForm.values.cep}
+                        name='state' value={useForm.values.state}
                         onChange={useForm.handleChangeForm}
                     />
                 </div>
@@ -94,20 +92,20 @@ export default function CreateProfile() {
                 <div>
                     <input 
                         type="text" placeholder='Cidade'
-                        name='state' value={useForm.values.state}
+                        name='city' value={useForm.values.city}
                         onChange={useForm.handleChangeForm}
                     />
 
                     <input
                         type="text" placeholder='Bairro' 
-                        name='city' value={useForm.values.city} onChange={useForm.handleChangeForm}    
+                        name='district' value={useForm.values.district} onChange={useForm.handleChangeForm}    
                     />
                 </div>
                 
                 <div>
                     <input 
                         type="text" placeholder='Rua' 
-                        name='district' value={useForm.values.district}
+                        name='street' value={useForm.values.street}
                         onChange={useForm.handleChangeForm}
                     />
 
