@@ -15,7 +15,9 @@ export default function Profile() {
                     <div className='profile-infos'>
                         <div className='title'>
                             <h1>Maria Joaquina da Silva</h1>
-                            <small>Email: MariaJo182@gmail.com</small>
+                            <small>
+                                <i>e-mail: MariaJo182@gmail.com</i>
+                            </small>
                         </div>
                         
                         <div className='ranking-infos'>

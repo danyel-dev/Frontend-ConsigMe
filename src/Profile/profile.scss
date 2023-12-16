@@ -18,13 +18,21 @@ main.profile {
 
         .profile-infos {
             text-align: center;
-            
-            h1 {
-                font-weight: bold;
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+
+            .title {
+                h1 {
+                    font-weight: bold;
+                    line-height: 15px;
+                }
             }
 
-            p {
-                font-size: 14px;
+            .ranking-infos {
+                p {
+                    font-size: 14px;
+                }
             }
         }
     }
