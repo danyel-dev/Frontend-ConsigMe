@@ -1,0 +1,31 @@
+main.profile {
+    width: 90%;
+    margin: 0 auto 300px auto;
+
+    .aside-profile {
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1em;
+        
+        img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+        }
+
+        .profile-infos {
+            text-align: center;
+            
+            h1 {
+                font-weight: bold;
+            }
+
+            p {
+                font-size: 14px;
+            }
+        }
+    }
+}
