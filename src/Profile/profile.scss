@@ -1,7 +1,9 @@
-main.profile {
+div.profile {
     width: 90%;
     margin: 0 auto 60px auto;
-    
+    display: flex;
+    gap: 5em;
+
     .aside-profile {
         border-right: 1px solid rgba(0, 0, 0, .3);
         width: 300px;
@@ -57,5 +59,9 @@ main.profile {
                 }
             }
         }
+    }
+
+    main {
+        width: 700px;
     }
 }

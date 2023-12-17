@@ -1,11 +1,13 @@
 import './profile.scss'
 import Header from '../Components/Header'
 import Footer from '../Components/Footer'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 
 export default function Profile() {
+    const [profile, setProfile] = useState("")
+
     useEffect(() => {
         const config = {
             headers: {
@@ -14,14 +16,17 @@ export default function Profile() {
             }
         }
 
-        axios.get("http://127.0.0.1:8000/profile/", config).then(response => console.log(response))
+        axios.get("http://127.0.0.1:8000/profile/", config).then(response => {
+            setProfile(response.data[0])
+            console.log(profile.url)
+        })
     }, [])
 
     return(
         <div>
             <Header color={"rgb(63, 43, 83)"} />
            
-            <main className='profile'>
+            <div className='profile'>
                 <aside className='aside-profile'>
                     <img src="https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w1200/2023/10/free-images.jpg" alt="mulher tirando foto" />
                     
@@ -50,7 +55,26 @@ export default function Profile() {
                         </div>
                     </div>  
                 </aside>
-            </main>
+
+                <main>
+                    <form>
+                        <div>
+                            <label htmlFor="bio">Bio</label>
+                            <p>{profile.bio}</p>
+                        </div>
+
+                        <div>
+                            <label htmlFor="bio">Data de nascimento</label>
+                            <p>{profile.birth_date}</p>
+                        </div>
+
+                        <div>
+                            <label htmlFor="bio"></label>
+                            <p>{profile.birth_date}</p>
+                        </div>
+                    </form>
+                </main>
+            </div>
 
             <Footer/>
         </div>
