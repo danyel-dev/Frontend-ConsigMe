@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
 import './createProfile.scss'
 import axios from 'axios'
-import Profile from '../Profile/Profile'
+import { useNavigate } from 'react-router-dom';
 
 
 export default function CreateProfile() {
     const [userURL, setUserURL] = useState("")
+    const navigate = useNavigate();
 
     useEffect(() => {
         const URL = 'http://127.0.0.1:8000/userLogado/'
@@ -65,9 +66,9 @@ export default function CreateProfile() {
         useForm.values["user"] = userURL
         useForm.values["is_reseller"] = true
         
-        axios.post(URL, useForm.values, config)
+        axios.post(URL, useForm.values, config).finally(navigate('/Profile'))
     }
-    
+
     return(
         <div className='create-profile'>
             <h1>O primeiro passo para se tornar um(a) revendedor(a) na nossa plataforma é criar um perfil de revendedor(a), preencha os campos abaixo e comece seu trabalho ;/</h1>

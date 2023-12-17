@@ -1,8 +1,9 @@
 main.profile {
     width: 90%;
-    margin: 0 auto 300px auto;
-
+    margin: 0 auto 60px auto;
+    
     .aside-profile {
+        border-right: 1px solid rgba(0, 0, 0, .3);
         width: 300px;
         display: flex;
         flex-direction: column;
@@ -22,11 +23,9 @@ main.profile {
             flex-direction: column;
             gap: 2em;
 
-            .title {
-                h1 {
-                    font-weight: bold;
-                    line-height: 15px;
-                }
+            .title h1 {
+                font-weight: bold;
+                line-height: 15px;
             }
 
             .ranking-infos {
@@ -44,7 +43,7 @@ main.profile {
                 i {
                     cursor: pointer;
                 }
-
+   
                 .fa-instagram {
                     color: #e43daf;
                 }

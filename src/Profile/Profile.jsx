@@ -1,9 +1,22 @@
 import './profile.scss'
 import Header from '../Components/Header'
 import Footer from '../Components/Footer'
+import { useEffect } from 'react';
+import axios from 'axios';
 
 
 export default function Profile() {
+    useEffect(() => {
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Token " + localStorage.getItem('token')
+            }
+        }
+
+        axios.get("http://127.0.0.1:8000/profile/", config).then(response => console.log(response))
+    }, [])
+
     return(
         <div>
             <Header color={"rgb(63, 43, 83)"} />
@@ -15,6 +28,7 @@ export default function Profile() {
                     <div className='profile-infos'>
                         <div className='title'>
                             <h1>Maria Joaquina da Silva</h1>
+                        
                             <small>
                                 <i>MariaJo182@gmail.com</i>
                             </small>
@@ -29,10 +43,10 @@ export default function Profile() {
                         </div>
 
                         <div className='social-medias'>
-                            <i class="fa-brands fa-instagram"></i>
-                            <i class="fa-brands fa-x-twitter"></i>
-                            <i class="fa-brands fa-github"></i>
-                            <i class="fa-brands fa-facebook"></i>
+                            <i className="fa-brands fa-instagram"></i>
+                            <i className="fa-brands fa-x-twitter"></i>
+                            <i className="fa-brands fa-github"></i>
+                            <i className="fa-brands fa-facebook"></i>
                         </div>
                     </div>  
                 </aside>
