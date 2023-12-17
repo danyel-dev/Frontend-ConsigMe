@@ -20,7 +20,7 @@ main.profile {
             text-align: center;
             display: flex;
             flex-direction: column;
-            gap: 1em;
+            gap: 2em;
 
             .title {
                 h1 {
@@ -32,6 +32,29 @@ main.profile {
             .ranking-infos {
                 p {
                     font-size: 14px;
+                }
+            }
+
+            .social-medias {
+                display: flex;
+                justify-content: center;
+                gap: 1em;
+                font-size: 1.5em;
+                
+                i {
+                    cursor: pointer;
+                }
+
+                .fa-instagram {
+                    color: #e43daf;
+                }
+                
+                .fa-github {
+                    color: rgba(0, 0, 0, 0.85);
+                }
+
+                .fa-facebook {
+                    color: #3b5998;
                 }
             }
         }

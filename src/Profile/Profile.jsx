@@ -16,7 +16,7 @@ export default function Profile() {
                         <div className='title'>
                             <h1>Maria Joaquina da Silva</h1>
                             <small>
-                                <i>e-mail: MariaJo182@gmail.com</i>
+                                <i>MariaJo182@gmail.com</i>
                             </small>
                         </div>
                         
@@ -29,7 +29,10 @@ export default function Profile() {
                         </div>
 
                         <div className='social-medias'>
-
+                            <i class="fa-brands fa-instagram"></i>
+                            <i class="fa-brands fa-x-twitter"></i>
+                            <i class="fa-brands fa-github"></i>
+                            <i class="fa-brands fa-facebook"></i>
                         </div>
                     </div>  
                 </aside>
