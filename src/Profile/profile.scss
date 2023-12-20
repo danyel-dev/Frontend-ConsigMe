@@ -11,6 +11,10 @@ div.profile {
         gap: 1em;
     }
 
+    @media(max-width: 500px) {
+        flex-direction: column;
+    }
+
     .aside-profile {
         width: 300px;
         display: flex;
@@ -21,6 +25,10 @@ div.profile {
         
         @media(max-width: 900px) {
             padding: 10px;
+        }
+
+        @media(max-width: 500px) {
+            width: 100%;
         }
 
         img {
@@ -102,6 +110,10 @@ div.profile {
 
         @media(max-width: 900px) {
             padding: 10px;
+        }
+        
+        @media(max-width: 500px) {
+            width: 100%;
         }
 
         label {

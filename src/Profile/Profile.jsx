@@ -44,7 +44,7 @@ export default function Profile() {
                             <h1>Maria Joaquina da Silva</h1>
                         
                             <small>
-                                <i>MariaJo182@gmail.com</i>
+                                <i>{profile.professional_email}</i>
                             </small>
 
                             <small className='store-name'>Proprietária da<a href="#"> {profile.store_name}</a></small>
