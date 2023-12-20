@@ -22,6 +22,15 @@ export default function Profile() {
         })
     }, [])
 
+    function age(birth_date) {
+        var moment = require('moment')
+        var dataDeNascimento = moment(birth_date, "YYYY-MM-DD");
+        var hoje = moment();
+
+        var idadeEmAnos = hoje.diff(dataDeNascimento, 'years');
+        return idadeEmAnos
+    }
+
     return(
         <div>
             <Header color={"rgb(63, 43, 83)"} />
@@ -31,12 +40,14 @@ export default function Profile() {
                     <img src="https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w1200/2023/10/free-images.jpg" alt="mulher tirando foto" />
                     
                     <div className='profile-infos'>
-                        <div className='title'>
+                        <div className='top-infos'>
                             <h1>Maria Joaquina da Silva</h1>
                         
                             <small>
                                 <i>MariaJo182@gmail.com</i>
                             </small>
+
+                            <small className='store-name'>Proprietária da<a href="#"> {profile.store_name}</a></small>
                         </div>
                         
                         <div className='ranking-infos'>
@@ -56,23 +67,31 @@ export default function Profile() {
                     </div>  
                 </aside>
 
-                <main>
-                    <form>
-                        <div>
-                            <label htmlFor="bio">Bio</label>
-                            <p>{profile.bio}</p>
-                        </div>
+                <main className='main-profile'>
+                    <div>
+                        <label htmlFor="bio">Bio</label>
+                        <p>{profile.bio}</p>
+                    </div>
 
-                        <div>
-                            <label htmlFor="bio">Data de nascimento</label>
-                            <p>{profile.birth_date}</p>
-                        </div>
+                    <div>
+                        <label htmlFor="bio">Idade</label>
+                        <p>{age(profile.birth_date)} Anos</p>
+                    </div>
 
-                        <div>
-                            <label htmlFor="bio"></label>
-                            <p>{profile.birth_date}</p>
-                        </div>
-                    </form>
+                    <div>
+                        <label htmlFor="bio">Celular</label>
+                        <p>{profile.phone_number}</p>
+                    </div>
+
+                    <div>
+                        <label htmlFor="bio">CPF</label>
+                        <p>{profile.cpf}</p>
+                    </div>
+
+                    <div>
+                        <label htmlFor="bio">Endereço</label>
+                        <p>{profile.city} - {profile.state}, {profile.street}, {profile.house_number} - {profile.district}. {profile.complement}</p>
+                    </div>
                 </main>
             </div>
 
