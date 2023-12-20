@@ -61,7 +61,7 @@ export default function Profile() {
                         <div className='social-medias'>
                             <i className="fa-brands fa-instagram"></i>
                             <i className="fa-brands fa-x-twitter"></i>
-                            <i className="fa-brands fa-github"></i>
+                            <i class="fa-brands fa-whatsapp"></i>
                             <i className="fa-brands fa-facebook"></i>
                         </div>
                     </div>  
