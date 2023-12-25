@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 
-import Header from '../Components/Header';
+import Header from '../Components/Header/Header';
 import Footer from '../Components/Footer';
 import { styled } from "styled-components";
 import Comment from "./Comment";

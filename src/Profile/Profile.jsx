@@ -1,5 +1,5 @@
 import './profile.scss'
-import Header from '../Components/Header'
+import Header from '../Components/Header/Header'
 import Footer from '../Components/Footer'
 import { useEffect, useState } from 'react';
 import axios from 'axios';

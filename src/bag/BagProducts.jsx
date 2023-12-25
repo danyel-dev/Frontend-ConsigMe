@@ -1,4 +1,4 @@
-import Header from '../Components/Header'
+import Header from '../Components/Header/Header'
 import Footer from '../Components/Footer'
 import Product from './Product';
 import axios from 'axios';

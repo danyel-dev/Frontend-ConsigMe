@@ -1,15 +1,16 @@
 import Services from '../Components/Services'
 import Informations from '../Components/Informations';
-import styles from './home.module.css'
 import Footer from '../Components/Footer';
 import Contact from '../Components/Contact';
-import Banner from '../Components/Banner';
+import Header from '../Components/Header/Header'
+
+import styles from './home.module.css'
 
 
 export default function Home() {
     return(
-        <>
-            <Banner />
+        <div className={styles.home}>
+            <Header />
 
             <main className={styles.main}>
                 <Services />
@@ -18,6 +19,6 @@ export default function Home() {
             </main>
   
             <Footer />
-        </>
+        </div>
     );
 }

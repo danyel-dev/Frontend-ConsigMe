@@ -1,4 +1,4 @@
-import Header from '../Components/Header';
+import Header from '../Components/Header/Header';
 import Footer from '../Components/Footer';
 import TitleComponent from './components/TitleComponent';
 import FormSearchSacoleiras from './components/FormSearchSacoleira';
