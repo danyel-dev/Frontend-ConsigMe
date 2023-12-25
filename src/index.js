@@ -13,6 +13,7 @@ import Sacoleiras from './Sacoleiras/Sacoleiras'
 import ProductDetail from './ProductDetail/ProductDetail';
 import CreateProfile from './CreateProfile/CreateProfile';
 import Profile from './Profile/Profile';
+import AddProduct from './AddProduct/AddProduct';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -30,6 +31,7 @@ root.render(
         <Route path="/products/:id" element={<ProductDetail />} />
         <Route path="/createProfile" element={<CreateProfile />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/addProduct" element={<AddProduct />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

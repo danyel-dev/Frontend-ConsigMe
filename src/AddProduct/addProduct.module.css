@@ -1,0 +1,64 @@
+.addProduct {
+    display: flex;
+    flex-direction: column;
+    gap: 3em;
+}
+
+.mainAddProduct {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+.mainAddProduct h1 {
+    font-size: 1.2em;
+    color: rgb(63, 43, 83);
+    font-weight: bold;
+}
+
+.formAddProduct {
+    padding: 20px;
+    width: 400px;
+    display: flex;
+    gap: 1em;
+    flex-direction: column;
+}
+
+.inputAddProduct {    
+    box-shadow: 0 0 1px rgba(0, 0, 0, .8);
+    padding: 5px 10px;
+    font-size: 13px;
+    transition: .2s all ease-in;
+}
+
+.inputAddProduct:hover {    
+    box-shadow: 0 0 5px #1465bb;
+}
+
+.inputAddProduct::placeholder {    
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.inputAddProduct, textarea {
+    background-color: #1465bb0c;
+    color: black;
+}
+
+.formAddProduct button {
+    background-color: #1465bb;
+    padding: 5px;
+    border-radius: 2px;
+    font-size: 14px;
+    color: white;
+    transition: .1s all ease-in;
+}
+
+.formAddProduct button:hover {
+    background-color: #1465bbd2;
+}
+
+input[type='file'] {
+    font-size: 12px;
+}
