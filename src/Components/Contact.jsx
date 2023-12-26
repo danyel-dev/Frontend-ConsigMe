@@ -48,7 +48,7 @@ export default function Contact() {
     }
 
     return (
-        <div className='support'>
+        <div id='contact'>
             <h2>Tem Alguma dúvida? Mande uma mensagem para o nosso Suporte.</h2>
 
             {formError === true? 
@@ -56,7 +56,7 @@ export default function Contact() {
                 <p className='success-message'>{formError}</p> 
             }        
 
-            <form onSubmit={handleSupportFormSubmit} className='support-form'>
+            <form onSubmit={handleSupportFormSubmit} id='contact-form'>
                 <input 
                     type="text"
                     placeholder='Título'
