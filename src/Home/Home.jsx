@@ -19,14 +19,14 @@ export default function Home() {
                     <button>Saiba mais</button>
                 </div>           
 
-                <img className={styles.bannerImage} src="https://i.pinimg.com/736x/f8/b1/2b/f8b12bb1094ff13f3d2cca533cf3dc56.jpg" />
+                <img className={styles.bannerImage} src="https://img.freepik.com/vetores-gratis/ilustracao-de-revendedor-de-design-plano_23-2149484586.jpg?w=2000" />
             </div>
-            
+
             <main className={styles.main}>
 
                 <Services />
                 <Informations />
-                <Contact />
+                {/* <Contact /> */}
             </main>
   
             <Footer />

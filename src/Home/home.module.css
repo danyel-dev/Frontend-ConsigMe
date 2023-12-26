@@ -8,13 +8,13 @@
 }
 
 .banner {
-    padding: 20px;
+    padding: 40px 20px;
     width: 100%;
-    margin-top: 80px;
     display: flex;
     align-items: center;
     gap: 3em;
     justify-content: space-evenly;
+    background-color: rgba(63, 43, 83, .1);
 }
 
 .bannerText {
@@ -40,7 +40,7 @@
     font-size: 14px;
     color: white;
     font-weight: bold;
-    transition: .3 all ease-in;
+    transition: .2s all ease-in;
 }
 
 .bannerText button:hover {
@@ -48,6 +48,21 @@
 }
 
 .bannerImage {
-    width: 250px;
+    width: 300px;
     height: 400px;
+}
+
+
+@media(max-width: 700px) {
+    .banner {
+        flex-direction: column;
+    }
+
+    .bannerText {
+        width: 100%;
+    }
+
+    .bannerText h1 {
+        font-size: 1.2em;
+    }
 }

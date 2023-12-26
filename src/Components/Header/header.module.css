@@ -54,7 +54,11 @@
     display: none;
 } 
  
-@media(max-width: 500px) {
+@media(max-width: 530px) {
+    .header {
+        padding: 10px 30px;
+    }
+
     .menu {
         display: none;
     }
