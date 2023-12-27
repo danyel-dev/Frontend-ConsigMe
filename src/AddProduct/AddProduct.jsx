@@ -1,10 +1,24 @@
 import Header from '../Components/Header/Header'
 import Footer from '../Components/Footer'
 import styles from './addProduct.module.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 
 
 export default function AddProduct() {
+    const [userURL, setUserURL] = useState('')
+
+    useEffect(() => {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Token ' + localStorage.getItem('token')
+            }
+        }
+
+        axios.get('http://127.0.0.1:8000/userLogado/', config).then(response => setUserURL(response.data[0].url))
+    }, [])
+
     function useFormRegister(props) {
         const [values, setValues] = useState(props.initialValues)
 
@@ -28,6 +42,7 @@ export default function AddProduct() {
 
     const useForm = useFormRegister({
         initialValues: {
+            comment_set: [],
             user: "",
             name: "",
             image: "",
@@ -37,31 +52,47 @@ export default function AddProduct() {
             description: "",
         }
     })
+      
 
     function handleSubmitForm(e) {
         e.preventDefault()
-        console.log(useForm.values)
+        
+        var input = document.getElementById('image');
+    
+        var reader = new FileReader();
+        
+        const config = {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'Authorization': 'Token ' + localStorage.getItem('token')
+            }
+        }
+        
+        const newForm = {...useForm.values, user: userURL}
+        
+        reader.onload = function (e) {
+            var base64Image = e.target.result;
+            axios.post('http://127.0.0.1:8000/products/', {...newForm, image: base64Image}, config)
+        };
+        
+        reader.readAsDataURL(input.files[0]);
     }
 
     return(
         <div className={styles.addProduct}>
             <Header />
-            
+
             <main className={styles.mainAddProduct}>
                 <h1>Adicionar um novo produto</h1>
                 
-                <form className={styles.formAddProduct} onSubmit={handleSubmitForm}>
+                <form className={styles.formAddProduct} onSubmit={handleSubmitForm} encType="multipart/form-data">
                     <input
                         className={styles.inputAddProduct} type="text"
                         placeholder="Título" name='name'
                         value={useForm.values.name} onChange={useForm.handleChangeForm}
                     />
                     
-                    <input
-                        type="file" placeholder="Imagem"
-                        value={useForm.values.image} name='image'
-                        onChange={useForm.handleChangeForm}
-                    />
+                    <input type="file" placeholder="Imagem" id='image' />
                     
                     <input
                         className={styles.inputAddProduct} type="text"
