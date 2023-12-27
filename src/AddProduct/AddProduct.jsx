@@ -17,7 +17,14 @@ export default function AddProduct() {
             }
         }
 
-        axios.get('http://127.0.0.1:8000/userLogado/', config).then(response => setUserURL(response.data[0].url)).catch(error => console.log(""))
+        axios.get('http://127.0.0.1:8000/userLogado/', config).then(response => {
+            setUserURL(response.data[0].url)
+            
+            if(response.data[0].profile == null)
+                setAccessAllowed(false)
+            else 
+                setAccessAllowed(true)
+        }).catch(error => setAccessAllowed(false))
     }, [])
 
     function useFormRegister(props) {
@@ -72,12 +79,24 @@ export default function AddProduct() {
         
         reader.onload = function (e) {
             var base64Image = e.target.result;
-            axios.post('http://127.0.0.1:8000/products/', {...newForm, image: base64Image}, config)
+            axios.post('http://127.0.0.1:8000/products/', {...newForm, image: base64Image}, config).then(response => {
+                alert("Produto adicionado com sucesso!!")
+                useForm.setValues({
+                    comment_set: [],
+                    user: "",
+                    name: "",
+                    image: "",
+                    size: "",
+                    value: "",
+                    quantity: "",
+                    description: "",
+                })
+            })
         };
         
         reader.readAsDataURL(input.files[0]);
     }
-
+    
     return(
         <div className={styles.addProduct}>
             <Header />
