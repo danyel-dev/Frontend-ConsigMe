@@ -64,9 +64,38 @@ input[type='file'] {
     font-size: 12px;
 }
 
-
 @media(max-width: 400px) {
     .formAddProduct {
         width: 100%;
     }
+}
+
+.bodyNotAllowed {
+    margin: 150px auto 100px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.bodyNotAllowed h1 {
+    color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 30px;
+    font-weight: bold;
+    font-size: 1.6em;
+    line-height: 30px;
+}
+
+.bodyNotAllowed p {
+    line-height: 20px;
+}
+
+.p_first {
+margin-bottom: 10px;
+}
+
+.bodyNotAllowed a {
+    color: blue;
+}
+
+.bodyNotAllowed a:hover {
+    text-decoration: underline;
 }

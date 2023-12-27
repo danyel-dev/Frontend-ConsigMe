@@ -7,6 +7,7 @@ import axios from 'axios'
 
 export default function AddProduct() {
     const [userURL, setUserURL] = useState('')
+    const [accessAllowed, setAccessAllowed] = useState(false)
 
     useEffect(() => {
         const config = {
@@ -16,7 +17,7 @@ export default function AddProduct() {
             }
         }
 
-        axios.get('http://127.0.0.1:8000/userLogado/', config).then(response => setUserURL(response.data[0].url))
+        axios.get('http://127.0.0.1:8000/userLogado/', config).then(response => setUserURL(response.data[0].url)).catch(error => console.log(""))
     }, [])
 
     function useFormRegister(props) {
@@ -53,7 +54,6 @@ export default function AddProduct() {
         }
     })
       
-
     function handleSubmitForm(e) {
         e.preventDefault()
         
@@ -82,45 +82,53 @@ export default function AddProduct() {
         <div className={styles.addProduct}>
             <Header />
 
-            <main className={styles.mainAddProduct}>
-                <h1>Adicionar um novo produto</h1>
-                
-                <form className={styles.formAddProduct} onSubmit={handleSubmitForm} encType="multipart/form-data">
-                    <input
-                        className={styles.inputAddProduct} type="text"
-                        placeholder="Título" name='name'
-                        value={useForm.values.name} onChange={useForm.handleChangeForm}
-                    />
+            {accessAllowed?
+                <main className={styles.mainAddProduct}>
+                    <h1>Adicionar um novo produto</h1>
                     
-                    <input type="file" placeholder="Imagem" id='image' />
-                    
-                    <input
-                        className={styles.inputAddProduct} type="text"
-                        placeholder="Tamanho" value={useForm.values.size}
-                        onChange={useForm.handleChangeForm} name='size'
-                    />
-                    
-                    <input 
-                        className={styles.inputAddProduct} type="text"
-                        placeholder="Valor" value={useForm.values.value}
-                        onChange={useForm.handleChangeForm} name='value'
-                    />
+                    <form className={styles.formAddProduct} onSubmit={handleSubmitForm} encType="multipart/form-data">
+                        <input
+                            className={styles.inputAddProduct} type="text"
+                            placeholder="Título" name='name'
+                            value={useForm.values.name} onChange={useForm.handleChangeForm}
+                        />
+                        
+                        <input type="file" placeholder="Imagem" id='image' />
+                        
+                        <input
+                            className={styles.inputAddProduct} type="text"
+                            placeholder="Tamanho" value={useForm.values.size}
+                            onChange={useForm.handleChangeForm} name='size'
+                        />
+                        
+                        <input 
+                            className={styles.inputAddProduct} type="text"
+                            placeholder="Valor" value={useForm.values.value}
+                            onChange={useForm.handleChangeForm} name='value'
+                        />
 
-                    <input
-                        className={styles.inputAddProduct} type="number"
-                        placeholder="Quantidade" value={useForm.values.quantity}
-                        onChange={useForm.handleChangeForm} name='quantity'
-                    />
+                        <input
+                            className={styles.inputAddProduct} type="number"
+                            placeholder="Quantidade" value={useForm.values.quantity}
+                            onChange={useForm.handleChangeForm} name='quantity'
+                        />
+                        
+                        <textarea
+                            className={styles.inputAddProduct} rows="5"
+                            placeholder="Descrição" value={useForm.values.description} onChange={useForm.handleChangeForm}
+                            name='description'>
+                        </textarea>
                     
-                    <textarea
-                        className={styles.inputAddProduct} rows="5"
-                        placeholder="Descrição" value={useForm.values.description} onChange={useForm.handleChangeForm}
-                        name='description'>
-                    </textarea>
-                
-                    <button>Adicionar Produto</button>
-                </form>
-            </main>
+                        <button>Adicionar Produto</button>
+                    </form>
+                </main>
+            :   
+                <div className={styles.bodyNotAllowed}>
+                    <h1 className={styles.titleNotAllowed}>Para acessar está página você deve ser um sacoleiro(a) registrado no nosso site.</h1>
+                    <p className={styles.p_first}>Já possui uma conta como sacoleira no nosso site? <a href="/login">então acesse ela</a></p>
+                    <p>Ainda não possui uma conta? <a href="/register">então crie uma</a></p>
+                </div>
+            }
 
             <Footer />
         </div>

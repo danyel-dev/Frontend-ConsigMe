@@ -43,8 +43,9 @@ export default function Header() {
                         <li className={styles.menuItem}><a className={styles.linkMenu} href="/#contact">Contato</a></li>
                         
                         {token ? 
-                            <li className={styles.menuItem}><button className={styles.linkMenu} onClick={handleLogout}>Sair</button></li>:
-                            <li className={styles.menuItem}><a className={styles.linkMenu} href='/login'>Entrar</a></li>
+                            <li className={styles.menuItem}><a onClick={handleLogout}>Sair</a></li>:
+
+                            <li className={styles.menuItem}><a href='/login'>Entrar</a></li>
                         }
                     </ul>
                 }
