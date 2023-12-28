@@ -1,4 +1,4 @@
-import Services from '../Components/Services'
+import Services from './Components/Services'
 import Informations from '../Components/Informations';
 import Footer from '../Components/Footer';
 import Contact from '../Components/Contact';
