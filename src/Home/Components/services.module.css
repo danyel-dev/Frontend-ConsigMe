@@ -2,49 +2,62 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 100px;
     gap: 4em;
-    /* background-color: aqua; */
 }
 
-.services h1 {
-    font-size: 1.5em;
+h1.servicesTitle {
+    font-size: 1.2em;
     font-weight: bold;
-    color: rgba(0, 0, 0, .85);
-    border-bottom: 3px solid rgb(102, 60, 145);
+    padding-bottom: 5px;
+    color: rgba(0, 0, 0, .8);
+    border-bottom: 1px solid rgb(102, 60, 145);
 }
 
 .card_services {
     display: grid;
-    gap: 8em 4em;
+    gap: 3em 5em;
     grid-template-areas: 
     'one two three'
     'four five six';
-    
 }
 
 .card {
+    border-radius: 10px;
+    background-color: rgba(137, 43, 226, .03);
     display: flex;
     flex-direction: column;
-    gap: 1em;
+    width: 300px;
+    height: max-content;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
 }
 
-/* .card p {
-    width: max-content;
-} */
+.card p {
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+}
 
 .cardImage {
-    width: 250px;
     height: 150px;
-    background-color: black;
-    border-radius: 10px;
-    cursor: pointer;
+    /* border-radius: 10px; */
+}
+
+.cardImage h1 {
+    width: max-content;
+    height: max-content;
+    margin: 10px 0 0 10px;
+    background-color: rgba(0, 0, 0, 0.7);    
+    padding: 1px 10px;
+    border-radius: 2px;
+    font-weight: bold;
+    font-size: 14px;
+    color: white;
 }
 
 #one {
-    width: 100%;
+    /* width: 100%; */
     grid-area: one;
-    background-image: url('../../img/62e99d272c0edad15ccf84195f7664a4.jpg');
+    background-image: url('../../img/modelo-de-planejamento-de-vendas.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;

@@ -4,20 +4,20 @@ import styles from './services.module.css'
 export default function Services() {
     return (
         <div className={styles.services}>
-            <h1>ConsigMe: Serviços</h1>
+            <h1 className={styles.servicesTitle}>ConsigMe: Serviços</h1>
 
             <div className={styles.card_services}>
                 <div className={styles.card}>
                     <div id={styles.one} className={styles.cardImage}>
-                        <h4>Histórico de revendas</h4>
+                        <h1>Histórico de revendas</h1>
                     </div>
 
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad consectetur</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad consectetur deserunt labore beatae?</p>
                 </div>
                 
                 <div className={styles.card}>
                     <div id={styles.two} className={styles.cardImage}>
-                        <h4>Ranqueamento de sacoleiros(as)</h4>
+                        <h1>Ranqueamento de sacoleiros(as)</h1>
                     </div>
 
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad consectetur deserunt labore beatae? </p>
@@ -25,7 +25,7 @@ export default function Services() {
                 
                 <div className={styles.card}>
                     <div id={styles.three} className={styles.cardImage}>
-                        <h4>Catálogo de produtos</h4>
+                        <h1>Catálogo de produtos</h1>
                     </div>
 
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad consectetur deserunt labore beatae? </p>
@@ -33,7 +33,7 @@ export default function Services() {
                 
                 <div className={styles.card}>
                     <div id={styles.four} className={styles.cardImage}>
-                        <h4>Sacola fácil</h4>
+                        <h1>Sacola fácil</h1>
                     </div>
 
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad consectetur deserunt labore beatae? </p>
@@ -41,7 +41,7 @@ export default function Services() {
                 
                 <div className={styles.card}>
                     <div id={styles.five} className={styles.cardImage}>
-                        <h4>Sistema Intuitivo</h4>
+                        <h1>Sistema Intuitivo</h1>
                     </div>
 
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad consectetur deserunt labore beatae? </p>
@@ -49,7 +49,7 @@ export default function Services() {
                 
                 <div className={styles.card}>
                     <div id={styles.six} className={styles.cardImage}>
-                        <h4>Estoque Consignado</h4>
+                        <h1>Estoque Consignado</h1>
                     </div>
 
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad consectetur deserunt labore beatae? </p>
