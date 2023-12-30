@@ -1,11 +1,12 @@
 import { styled } from "styled-components";
 
 const TitleStyle = styled.h1`
-    font-size: 1.5em;
+    font-size: 1.3em;
     color: rgb(67, 67, 116);
     margin-bottom: 20px;
     text-align: center;
     width: 600px;
+    font-weight: bold;
 
     @media(max-width: 700px) {
         width: 80%
@@ -19,6 +20,6 @@ const TitleStyle = styled.h1`
 
 export default function TitleComponent() {
     return (
-        <TitleStyle>Pesquise por sacoleiras e veja seus produtos, faça suas compras^^</TitleStyle>
+        <TitleStyle>Encontre sacoleiras perto de você e veja os seus produtos</TitleStyle>
     );
 }

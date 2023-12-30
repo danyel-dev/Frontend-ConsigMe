@@ -17,16 +17,16 @@ const SearchSacoleiras = styled.form`
 `;
 
 const InputSearchSacoleiras = styled.input`
-    padding: 10px 10px 10px 15px;
+    padding: 7px 12px;
     width: 100%;
     background-color: whitesmoke;
     border-radius: 5px;
-    font-size: 15px;
+    font-size: 14px;
     border: 1px solid rgba(0, 0, 0, 0.08);
     transition: .3s all;
 
     &:hover {
-        border: 1px solid rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(0, 0, 0, 0.2);
     }
 `;
 
@@ -36,9 +36,9 @@ const iconInput = {
 
 const icon = {
     position: 'absolute',
-    top: '12px',
+    top: '11px',
     right: '12px',
-    color: 'rgba(0, 0, 0, .7)'
+    color: 'rgba(63, 43, 83, 0.8)'
 }
 
 const SacoleirasStyle = styled.div`
@@ -80,23 +80,28 @@ export default function FormSearchSacoleiras() {
             }
         }
     
-        axios.get(`http://127.0.0.1:8000/users/`, config).then(
-            response => setSacoleiras(response.data)
+        axios.get(`http://127.0.0.1:8000/sacoleiras/`, config).then(
+            response => {
+                setSacoleiras(response.data)
+                console.log(response.data)   
+            }
         )
     }, [])
 
 
     function handleSubmitSearchSacoleiras(e) {
         e.preventDefault()
-
+    
         const config = {
             headers: {
                 "Content-Type": "application/json"
             }
         }
     
-        axios.get(`http://127.0.0.1:8000/users/?search=${valueSacoleira}`, config).then(
-            response => setSacoleiras(response.data)
+        axios.get(`http://127.0.0.1:8000/sacoleiras/?search=${valueSacoleira}`, config).then(
+            response => {
+                setSacoleiras(response.data)
+            }
         )
     }
 
@@ -109,14 +114,13 @@ export default function FormSearchSacoleiras() {
             <SearchSacoleiras onSubmit={handleSubmitSearchSacoleiras}>
                 <div style={iconInput}>
                     <i style={icon} className="fa-solid fa-magnifying-glass"></i>
-                    
-                    <InputSearchSacoleiras value={valueSacoleira} onChange={handleChangeSearchInput} type="text" placeholder="Faça sua pesquisa aqui" />
-                </div>
 
+                    <InputSearchSacoleiras autocomplete="off" value={valueSacoleira} onChange={handleChangeSearchInput} type="text" placeholder="Pesquise pelo nome ou endereço" />
+                </div>
             </SearchSacoleiras>
 
             <SacoleirasStyle>
-                {sacoleiras.map(sacoleira => <SacoleiraComponent key={sacoleira.id} user={sacoleira} />)}
+                {sacoleiras.map(sacoleira => <SacoleiraComponent key={sacoleira.id} sacoleira={sacoleira} />)}
             </SacoleirasStyle>
         </>
     );

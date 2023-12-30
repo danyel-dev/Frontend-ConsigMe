@@ -8,21 +8,23 @@ const SacoleiraComponentStyle = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 1em;
     position: relative;
-    padding: 20px;
+    padding: 20px 10px;
+    border-radius: 3px;
+    border: 2px solid rgba(137, 43, 226, .15);
 `;
 
 const ImageSacoleira = styled.img`
-    width: 150px;
-    height: 150px;
+    width: 130px;
+    height: 130px;
     border-radius: 50%;
-    background-color: red;
     position: absolute;
-    top: -60px;
+    top: -65px;
 `;
 
 const SacoleiraInfo = styled.div`
-    margin-top: 90px;
+    margin-top: 60px;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -31,6 +33,8 @@ const SacoleiraInfo = styled.div`
 
 const NameSacoleira = styled.h1`
     font-size: 1.2em;
+    display: flex;
+    flex-direction: column;
 `;
 
 const DescriptionSacoleira = styled.p`
@@ -39,33 +43,69 @@ const DescriptionSacoleira = styled.p`
 `;
 
 const ButtonSeeProducts = styled.button`
-    margin-top: 50px;
     color: white;
     font-weight: bold;
-    padding: 8px 12px;
+    padding: 4px 10px;
     border-radius: 3px; 
     background-color: blueviolet;
     font-size: 12px;
     cursor: pointer;
 `;
 
-export default function SacoleiraComponent({user}) {
+const PhoneNumberContainer = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+`
+
+const PhoneNumberIcon = styled.i`
+    color: green;
+    font-size: 16px;
+`
+
+const PhoneNumber = styled.small`
+    color: rgba(0, 0, 0, .7);
+    font-weight: bold;
+    font-size: 14px;
+`
+
+const AddressContainer = styled.div`
+    display: flex;
+    align-items: center;
+    gap: .5em;
+    font-size: 14px;
+    color: rgba(0, 0, 0, .8);
+`
+
+export default function SacoleiraComponent({ sacoleira }) {
     return (
         <SacoleiraComponentStyle>
-            <ImageSacoleira src="https://img.cancaonova.com/cnimages/canais/uploads/sites/6/2018/03/formacao_1600x1200-como-a-presenca-da-mulher-pode-ser-harmonia-no-mundo.jpg" />
+            <ImageSacoleira src={sacoleira.image} />
             
             <SacoleiraInfo>
                 <NameSacoleira>
-                    <Link to={`/sacoleiras/${user.id}/products/`}>
-                        {user.username}
+                    <Link to={`/sacoleiras/${sacoleira.id}/products/`}>
+                        {sacoleira.name}
                     </Link>
+
+                    <PhoneNumberContainer>
+                        <PhoneNumberIcon className="fa-brands fa-whatsapp"></PhoneNumberIcon>
+                        <PhoneNumber>{sacoleira.phone_number}</PhoneNumber>
+                    </PhoneNumberContainer>
                 </NameSacoleira>
                 
                 <DescriptionSacoleira>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est, dolorem veritatis. Omnis nam veniam aliquid non autem sint dolore impedit? Animi voluptatibus temporibus quae odit corporis explicabo accusamus enim ut!</DescriptionSacoleira>
-                </SacoleiraInfo>
+                    {sacoleira.bio.slice(0, 200)}...
+                </DescriptionSacoleira>
+            </SacoleiraInfo>
 
-                <ButtonSeeProducts>Ver Produtos</ButtonSeeProducts>
+            <AddressContainer>
+                <i class="fa-solid fa-location-dot"></i>
+                <p>{sacoleira.address}</p>
+            </AddressContainer>
+
+            <ButtonSeeProducts>Ver Produtos</ButtonSeeProducts>
         </SacoleiraComponentStyle>
     );
 }

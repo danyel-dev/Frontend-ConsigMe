@@ -11,7 +11,7 @@ const MainSacoleiras = styled.main`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 100px;
+    margin: 50px 0;
     padding: 10px;
 `;
 

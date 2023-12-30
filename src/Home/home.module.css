@@ -67,6 +67,8 @@
     color: rgba(0, 0, 0, .8);
     text-align: center;
     border-bottom: 1px solid rgb(102, 60, 145);
+
+    color: rgba(137, 43, 226, 0.473);
 }
 
 .about p {
@@ -92,6 +94,6 @@
 @media(max-width: 800px) {
     .about {
         padding: 0 20px;
-        width: 100%;
+        width: 100%; 
     }
 }
