@@ -8,6 +8,7 @@ import axios from 'axios'
 export default function AddProduct() {
     const [userURL, setUserURL] = useState('')
     const [accessAllowed, setAccessAllowed] = useState(false)
+    const [showErrorForm, setShowErrorForm] = useState(false)
 
     useEffect(() => {
         const config = {
@@ -65,7 +66,7 @@ export default function AddProduct() {
         e.preventDefault()
         
         var input = document.getElementById('image');
-    
+        
         var reader = new FileReader();
         
         const config = {
@@ -77,24 +78,29 @@ export default function AddProduct() {
         
         const newForm = {...useForm.values, user: userURL}
         
-        reader.onload = function (e) {
-            var base64Image = e.target.result;
-            axios.post('http://127.0.0.1:8000/products/', {...newForm, image: base64Image}, config).then(response => {
-                alert("Produto adicionado com sucesso!!")
-                useForm.setValues({
-                    comment_set: [],
-                    user: "",
-                    name: "",
-                    image: "",
-                    size: "",
-                    value: "",
-                    quantity: "",
-                    description: "",
-                })
-            })
-        };
-        
-        reader.readAsDataURL(input.files[0]);
+        if(input.files.length !== 0) {
+            reader.onload = function (e) {
+                var base64Image = e.target.result;
+                axios.post('http://127.0.0.1:8000/products/', {...newForm, image: base64Image}, config).then(response => {
+                    alert("Produto adicionado com sucesso!!")
+                    useForm.setValues({
+                        comment_set: [],
+                        user: "",
+                        name: "",
+                        image: "",
+                        size: "",
+                        value: "",
+                        quantity: "",
+                        description: "",
+                    })
+                    setShowErrorForm(false)
+                }).catch(response => setShowErrorForm(true))
+            };
+            
+            reader.readAsDataURL(input.files[0]);
+        } else {
+            setShowErrorForm(true)
+        }
     }
     
     return(
@@ -103,6 +109,14 @@ export default function AddProduct() {
 
             {accessAllowed?
                 <main className={styles.mainAddProduct}>
+                    {showErrorForm? 
+                        <div className={styles.errorMessage}>
+                            Erro ao adicionar produto, todos os campos devem estar preenchidos.
+                        </div>
+                    :
+                        ""
+                    }
+
                     <h1>Adicionar um novo produto</h1>
                     
                     <form className={styles.formAddProduct} onSubmit={handleSubmitForm} encType="multipart/form-data">
