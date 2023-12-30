@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 
 import Header from '../Components/Header/Header';
-import Footer from '../Components/Footer';
+import Footer from '../Components/Footer/Footer';
 import { styled } from "styled-components";
 import Comment from "./Comment";
 

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './contact.css'
+import styles from './contact.module.css'
 import axios from 'axios';
 
 
@@ -48,15 +48,15 @@ export default function Contact() {
     }
 
     return (
-        <div id='contact'>
-            <h2>Tem Alguma dúvida? Mande uma mensagem para o nosso Suporte.</h2>
+        <div id={styles.contact}>
+            <h1>Tem Alguma dúvida? Mande uma mensagem para o nosso Suporte.</h1>
 
             {formError === true? 
-                <p className='error-message'>Falha no envio, todos os campos devem ser preenchidos!</p> : 
-                <p className='success-message'>{formError}</p> 
+                <p className={styles.errorMessage}>Falha no envio, todos os campos devem ser preenchidos!</p> : 
+                <p className={styles.successMessage}>{formError}</p> 
             }        
 
-            <form onSubmit={handleSupportFormSubmit} id='contact-form'>
+            <form onSubmit={handleSupportFormSubmit} id={styles.contactForm}>
                 <input 
                     type="text"
                     placeholder='Título'
@@ -73,7 +73,7 @@ export default function Contact() {
                 
                 <textarea 
                     cols="30"
-                    rows="15"
+                    rows="8"
                     placeholder='Mensagem'
                     value={Message}
                     onChange={handleMessageChange}

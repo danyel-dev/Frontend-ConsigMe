@@ -1,4 +1,4 @@
-import './informations.css'
+import styles from './informations.module.css'
 import distribuidor from '../img/distribuidor.png'
 import revendedor from '../img/revendedor.png'
 import consumidorFinal from '../img/consumidor_final.png'
@@ -6,13 +6,13 @@ import consumidorFinal from '../img/consumidor_final.png'
 
 export default function Informations() {
     return(
-        <div className='informations'>
-            <h1 className='title-informations'>Quem são as três partes envolvidas no sistema de consignação?</h1>
+        <div className={styles.informations}>
+            <h1 className={styles.titleInformations}>Quem são as três partes envolvidas no sistema de consignação?</h1>
 
-            <div className='informations-parts'>
+            <div className={styles.informationsParts}>
                 <div>
                     <img src={distribuidor} alt="distribuidor" />
-                    
+
                     <h3>Distribuidor</h3>
 
                     <p>O distribuidor é a fábrica ou depósito que usa a venda consignada como um canal de distribuição de suas mercadorias. Ele deixa estoque consignado com vendedores representantes e revendedoras sacoleiras.</p>
@@ -27,7 +27,7 @@ export default function Informations() {
                 </div>
 
                 <div>
-                    <img src={consumidorFinal} alt="consumidor" />
+                    <img className={styles.finnalyConsumer} src={consumidorFinal} alt="consumidor" />
 
                     <h3>Consumidor Final</h3>
 

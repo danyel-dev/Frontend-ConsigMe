@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4em;
+    gap: 3em;
 }
 
 h1.servicesTitle {
@@ -23,12 +23,12 @@ h1.servicesTitle {
 
 .card {
     border-radius: 10px;
-    background-color: rgba(137, 43, 226, .03);
+    /* background-color: rgba(137, 43, 226, .03); */
     display: flex;
     flex-direction: column;
     width: 300px;
     height: max-content;
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 15px 0px rgba(103, 60, 145, 0.452);
 }
 
 .card p {
@@ -106,6 +106,7 @@ h1.servicesTitle {
 
 @media(max-width: 1150px) {
     .card_services {
+        padding: 0 100px;
         display: grid;
         grid-column-gap: 3em;
         grid-template-areas: 
@@ -113,10 +114,15 @@ h1.servicesTitle {
         'three four'
         'five six';
     }
+
+    .card {
+        width: 100%;
+    }
 }
 
 @media(max-width: 800px) {
     .card_services {
+        padding: 0 10px;
         display: grid;
         grid-column-gap: 3em;
         grid-template-areas: 
@@ -126,11 +132,5 @@ h1.servicesTitle {
         'four'
         'five'
         'six';
-    }
-}
-
-@media(max-width: 400px) {
-    .card {
-        width: 100%;
     }
 }
