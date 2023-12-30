@@ -17,6 +17,7 @@ const MainProduct = styled.main`
 `;
 
 const ProductStyle = styled.div`
+    margin-top: 50px;
     display: flex;
     gap: 2em;
     justify-content: center;
@@ -203,7 +204,7 @@ export default function ProductDetail() {
 
         axios.get(url, config).then(response => setBag(response.data[0]))
 
-        axios.get(`http://127.0.0.1:8000/products/${id}/`).then(response => {
+        axios.get(`http://127.0.0.1:8000/products/${id}/`, config).then(response => {
             setProduct(response.data)
             setComments(response.data.comment_set.reverse())
         })
@@ -258,11 +259,6 @@ export default function ProductDetail() {
                         </ProductInfoTop>
 
                         <h3>Valor: R$ {product.value}</h3>
-                        
-                        <form onSubmit={handleAdditionProduct}>
-                            <input type="file" name="image" accept={product.image} />
-                            <button>enviar</button>
-                        </form>
 
                         <ProductInfoBottom>
                             <ButtonBuyProduct>Comprar Produto</ButtonBuyProduct>

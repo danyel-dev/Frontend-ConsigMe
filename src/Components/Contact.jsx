@@ -48,7 +48,7 @@ export default function Contact() {
     }
 
     return (
-        <div id={styles.contact}>
+        <div id="contact" className={styles.contact}>
             <h1>Tem Alguma dúvida? Mande uma mensagem para o nosso Suporte.</h1>
 
             {formError === true? 
