@@ -2,6 +2,7 @@ import { styled } from "styled-components"
 import { useEffect, useState } from "react";
 import axios from "axios";
 import SacoleiraComponent from './SacoleiraComponent';
+import { useLocation } from "react-router-dom";
 
 
 const SearchSacoleiras = styled.form`
@@ -43,7 +44,7 @@ const icon = {
 
 const SacoleirasStyle = styled.div`
     width: 90%;
-    margin-top: 150px;
+    margin-top: 100px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 100px 50px;
@@ -68,10 +69,20 @@ const SacoleirasStyle = styled.div`
     }
 `
 
+const QuantitySacoleirasMessage = styled.h1`
+    margin-top: 15px;
+    font-size: 14px;
+    font-weight: bold;
+    color: rgba(0, 0, 0, .8);
+`
 
 export default function FormSearchSacoleiras() {
     const [valueSacoleira, setValueSacoleira] = useState("")
     const [sacoleiras, setSacoleiras] = useState([])
+    const [qtdSacoleiras, setQtdSacoleiras] = useState()
+    const [pagination, setPagination] = useState({})
+
+    const location = useLocation();
 
     useEffect(() => {
         const config = {
@@ -79,13 +90,35 @@ export default function FormSearchSacoleiras() {
                 "Content-Type": "application/json"
             }
         }
-    
-        axios.get(`http://127.0.0.1:8000/sacoleiras/`, config).then(
+
+        axios.get('http://127.0.0.1:8000/sacoleiras', config).then(response => {
+            let pages
+
+            if(response.data.count <= 1)
+                pages = 1
+            else 
+                pages = Math.round(response.data.count / 1)
+            
+            setPagination({
+                count: response.data.count,
+                pages: pages
+            })
+        })
+
+        const page = new URLSearchParams(location.search).get('page');
+
+        let url;
+
+        if(page) 
+            url = `http://127.0.0.1:8000/sacoleiras/?page=${page}`;
+        else 
+            url = `http://127.0.0.1:8000/sacoleiras/`;
+
+        axios.get(url, config).then(
             response => {
-                setSacoleiras(response.data)
-                console.log(response.data)   
+                setSacoleiras(response.data.results)  
             }
-        )
+        ).catch(response => console.log(response))
     }, [])
 
 
@@ -100,7 +133,13 @@ export default function FormSearchSacoleiras() {
     
         axios.get(`http://127.0.0.1:8000/sacoleiras/?search=${valueSacoleira}`, config).then(
             response => {
-                setSacoleiras(response.data)
+                setSacoleiras(response.data.results)
+
+                if(response.data.results < 1) {
+                    setQtdSacoleiras(`Nenhum resultado encontrado para "${valueSacoleira}"`)
+                } else {
+                    setQtdSacoleiras(`${response.data.results.length} resultado(s) encontrado(s) para "${valueSacoleira}"`)
+                }
             }
         )
     }
@@ -115,9 +154,13 @@ export default function FormSearchSacoleiras() {
                 <div style={iconInput}>
                     <i style={icon} className="fa-solid fa-magnifying-glass"></i>
 
-                    <InputSearchSacoleiras autocomplete="off" value={valueSacoleira} onChange={handleChangeSearchInput} type="text" placeholder="Pesquise pelo nome ou endereço" />
+                    <InputSearchSacoleiras value={valueSacoleira} onChange={handleChangeSearchInput} type="text" placeholder="Pesquise pelo nome ou endereço" />
                 </div>
             </SearchSacoleiras>
+
+            <QuantitySacoleirasMessage>
+                {qtdSacoleiras}
+            </QuantitySacoleirasMessage>
 
             <SacoleirasStyle>
                 {sacoleiras.map(sacoleira => <SacoleiraComponent key={sacoleira.id} sacoleira={sacoleira} />)}

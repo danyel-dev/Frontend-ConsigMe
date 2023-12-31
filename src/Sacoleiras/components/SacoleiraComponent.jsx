@@ -12,7 +12,7 @@ const SacoleiraComponentStyle = styled.div`
     position: relative;
     padding: 20px 10px;
     border-radius: 3px;
-    border: 2px solid rgba(137, 43, 226, .15);
+    border: 2px solid rgba(137, 43, 226, .2);
 `;
 
 const ImageSacoleira = styled.img`
@@ -101,7 +101,7 @@ export default function SacoleiraComponent({ sacoleira }) {
             </SacoleiraInfo>
 
             <AddressContainer>
-                <i class="fa-solid fa-location-dot"></i>
+                <i className="fa-solid fa-location-dot"></i>
                 <p>{sacoleira.address}</p>
             </AddressContainer>
 
