@@ -11,8 +11,8 @@ const SacoleiraComponentStyle = styled.div`
     gap: 1em;
     position: relative;
     padding: 20px 10px;
-    border-radius: 3px;
-    border: 2px solid rgba(137, 43, 226, .2);
+    border-radius: 50px;
+    border: 1px solid rgba(137, 43, 226, .6);
 `;
 
 const ImageSacoleira = styled.img`
@@ -61,13 +61,13 @@ const PhoneNumberContainer = styled.div`
 
 const PhoneNumberIcon = styled.i`
     color: green;
-    font-size: 16px;
+    font-size: 14px;
 `
 
 const PhoneNumber = styled.small`
     color: rgba(0, 0, 0, .7);
     font-weight: bold;
-    font-size: 14px;
+    font-size: 12px;
 `
 
 const AddressContainer = styled.div`
@@ -76,6 +76,13 @@ const AddressContainer = styled.div`
     gap: .5em;
     font-size: 14px;
     color: rgba(0, 0, 0, .8);
+    padding: 2px 10px;
+    border-radius: 3px;
+    border: 1px solid rgba(137, 43, 226, .4);
+`
+
+const AddressContainerIcon = styled.i`
+    color: blueviolet;
 `
 
 export default function SacoleiraComponent({ sacoleira }) {
@@ -101,7 +108,7 @@ export default function SacoleiraComponent({ sacoleira }) {
             </SacoleiraInfo>
 
             <AddressContainer>
-                <i className="fa-solid fa-location-dot"></i>
+                <AddressContainerIcon className="fa-solid fa-location-dot"></AddressContainerIcon>
                 <p>{sacoleira.address}</p>
             </AddressContainer>
 

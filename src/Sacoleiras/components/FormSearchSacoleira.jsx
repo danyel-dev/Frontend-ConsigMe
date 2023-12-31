@@ -2,7 +2,7 @@ import { styled } from "styled-components"
 import { useEffect, useState } from "react";
 import axios from "axios";
 import SacoleiraComponent from './SacoleiraComponent';
-import { useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 
 const SearchSacoleiras = styled.form`
@@ -76,13 +76,20 @@ const QuantitySacoleirasMessage = styled.h1`
     color: rgba(0, 0, 0, .8);
 `
 
+const ListPagination = styled.ul`
+    display: flex;
+    gap: 1em;
+`
+
 export default function FormSearchSacoleiras() {
     const [valueSacoleira, setValueSacoleira] = useState("")
     const [sacoleiras, setSacoleiras] = useState([])
     const [qtdSacoleiras, setQtdSacoleiras] = useState()
-    const [pagination, setPagination] = useState({})
+    const [pagination, setPagination] = useState([])
 
     const location = useLocation();
+    
+    const navigate = useNavigate();
 
     useEffect(() => {
         const config = {
@@ -90,19 +97,21 @@ export default function FormSearchSacoleiras() {
                 "Content-Type": "application/json"
             }
         }
+        
+        let pages
 
         axios.get('http://127.0.0.1:8000/sacoleiras', config).then(response => {
-            let pages
-
             if(response.data.count <= 1)
                 pages = 1
             else 
-                pages = Math.round(response.data.count / 1)
+                pages = Math.round(response.data.count / 1)    
             
-            setPagination({
-                count: response.data.count,
-                pages: pages
-            })
+            let arr = []
+            for(let i = 1; i <= pages; i++) {
+                arr.push(i)
+            }   
+    
+            setPagination(arr)
         })
 
         const page = new URLSearchParams(location.search).get('page');
@@ -124,7 +133,7 @@ export default function FormSearchSacoleiras() {
 
     function handleSubmitSearchSacoleiras(e) {
         e.preventDefault()
-    
+        navigate(`?search=${valueSacoleira}`)
         const config = {
             headers: {
                 "Content-Type": "application/json"
@@ -148,6 +157,23 @@ export default function FormSearchSacoleiras() {
         setValueSacoleira(e.target.value)
     }
 
+    function handlePaginationPrevious(e) {
+        const page = new URLSearchParams(location.search).get('page');
+        const search = new URLSearchParams(location.search).get('search');
+
+        let url;
+
+        console.log(search)
+
+        url = `?search=matheus`
+        navigate(url)
+    
+
+        // if(page > 1 && page <= pagination.length) {
+        //     navigate(`/sacoleiras?page=${page-1}`)
+        // }
+    }
+
     return (
         <>
             <SearchSacoleiras onSubmit={handleSubmitSearchSacoleiras}>
@@ -165,6 +191,14 @@ export default function FormSearchSacoleiras() {
             <SacoleirasStyle>
                 {sacoleiras.map(sacoleira => <SacoleiraComponent key={sacoleira.id} sacoleira={sacoleira} />)}
             </SacoleirasStyle>
+
+            <div>
+                <ListPagination>
+                    <li onClick={handlePaginationPrevious}>previous</li>
+                    {pagination.map(number => <li>{number}</li>)}
+                    <li>next</li>
+                </ListPagination>
+            </div>
         </>
     );
 }
