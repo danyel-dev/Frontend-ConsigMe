@@ -2,7 +2,6 @@ import { styled } from "styled-components"
 import { useEffect, useState } from "react";
 import axios from "axios";
 import SacoleiraComponent from './SacoleiraComponent';
-import { useNavigate, useLocation } from "react-router-dom";
 
 
 const SearchSacoleiras = styled.form`
@@ -85,11 +84,6 @@ export default function FormSearchSacoleiras() {
     const [valueSacoleira, setValueSacoleira] = useState("")
     const [sacoleiras, setSacoleiras] = useState([])
     const [qtdSacoleiras, setQtdSacoleiras] = useState()
-    const [pagination, setPagination] = useState([])
-
-    const location = useLocation();
-    
-    const navigate = useNavigate();
 
     useEffect(() => {
         const config = {
@@ -97,35 +91,10 @@ export default function FormSearchSacoleiras() {
                 "Content-Type": "application/json"
             }
         }
-        
-        let pages
-
-        axios.get('http://127.0.0.1:8000/sacoleiras', config).then(response => {
-            if(response.data.count <= 1)
-                pages = 1
-            else 
-                pages = Math.round(response.data.count / 1)    
-            
-            let arr = []
-            for(let i = 1; i <= pages; i++) {
-                arr.push(i)
-            }   
     
-            setPagination(arr)
-        })
-
-        const page = new URLSearchParams(location.search).get('page');
-
-        let url;
-
-        if(page) 
-            url = `http://127.0.0.1:8000/sacoleiras/?page=${page}`;
-        else 
-            url = `http://127.0.0.1:8000/sacoleiras/`;
-
-        axios.get(url, config).then(
+        axios.get('http://127.0.0.1:8000/sacoleiras', config).then(
             response => {
-                setSacoleiras(response.data.results)  
+                setSacoleiras(response.data)  
             }
         ).catch(response => console.log(response))
     }, [])
@@ -133,7 +102,7 @@ export default function FormSearchSacoleiras() {
 
     function handleSubmitSearchSacoleiras(e) {
         e.preventDefault()
-        navigate(`?search=${valueSacoleira}`)
+
         const config = {
             headers: {
                 "Content-Type": "application/json"
@@ -142,12 +111,12 @@ export default function FormSearchSacoleiras() {
     
         axios.get(`http://127.0.0.1:8000/sacoleiras/?search=${valueSacoleira}`, config).then(
             response => {
-                setSacoleiras(response.data.results)
+                setSacoleiras(response.data)
 
-                if(response.data.results < 1) {
+                if(response.data.length < 1) {
                     setQtdSacoleiras(`Nenhum resultado encontrado para "${valueSacoleira}"`)
                 } else {
-                    setQtdSacoleiras(`${response.data.results.length} resultado(s) encontrado(s) para "${valueSacoleira}"`)
+                    setQtdSacoleiras(`${response.data.length} resultado(s) encontrado(s) para "${valueSacoleira}"`)
                 }
             }
         )
@@ -155,23 +124,6 @@ export default function FormSearchSacoleiras() {
 
     function handleChangeSearchInput(e) {
         setValueSacoleira(e.target.value)
-    }
-
-    function handlePaginationPrevious(e) {
-        const page = new URLSearchParams(location.search).get('page');
-        const search = new URLSearchParams(location.search).get('search');
-
-        let url;
-
-        console.log(search)
-
-        url = `?search=matheus`
-        navigate(url)
-    
-
-        // if(page > 1 && page <= pagination.length) {
-        //     navigate(`/sacoleiras?page=${page-1}`)
-        // }
     }
 
     return (
@@ -192,13 +144,6 @@ export default function FormSearchSacoleiras() {
                 {sacoleiras.map(sacoleira => <SacoleiraComponent key={sacoleira.id} sacoleira={sacoleira} />)}
             </SacoleirasStyle>
 
-            <div>
-                <ListPagination>
-                    <li onClick={handlePaginationPrevious}>previous</li>
-                    {pagination.map(number => <li>{number}</li>)}
-                    <li>next</li>
-                </ListPagination>
-            </div>
         </>
     );
 }
