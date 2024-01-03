@@ -73,11 +73,6 @@ const QuantitySacoleirasMessage = styled.h1`
     color: rgba(0, 0, 0, .8);
 `
 
-const ListPagination = styled.ul`
-    display: flex;
-    gap: 1em;
-`
-
 export default function FormSearchSacoleiras() {
     const [valueSacoleira, setValueSacoleira] = useState("")
     const [sacoleiras, setSacoleiras] = useState([])

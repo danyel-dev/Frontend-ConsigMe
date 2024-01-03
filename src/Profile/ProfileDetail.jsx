@@ -18,7 +18,7 @@ export default function Profile() {
         }
 
         axios.get(`http://127.0.0.1:8000/profileDetail/${id}`, config).then(response => {
-            setProfile(response.data[0])
+            setProfile(response.data)
         })
     }, [])
 
@@ -37,17 +37,17 @@ export default function Profile() {
            
             <div className='profile'>
                 <aside className='aside-profile'>
-                    <img src="https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w1200/2023/10/free-images.jpg" alt="mulher tirando foto" />
+                    <img src={profile.image} />
                     
                     <div className='profile-infos'>
                         <div className='top-infos'>
-                            <h1>Maria Joaquina da Silva</h1>
+                            <h1>{profile.name}</h1>
                         
                             <small>
                                 <i>{profile.professional_email}</i>
                             </small>
 
-                            <small className='store-name'>Proprietária da<a href="#"> {profile.store_name}</a></small>
+                            <small className='store-name'>Proprietária(o)da<a href="#"> {profile.store_name}</a></small>
                         </div>
                         
                         <div className='ranking-infos'>
@@ -61,7 +61,7 @@ export default function Profile() {
                         <div className='social-medias'>
                             <i className="fa-brands fa-instagram"></i>
                             <i className="fa-brands fa-x-twitter"></i>
-                            <i class="fa-brands fa-whatsapp"></i>
+                            <i className="fa-brands fa-whatsapp"></i>
                             <i className="fa-brands fa-facebook"></i>
                         </div>
                     </div>  
@@ -90,7 +90,7 @@ export default function Profile() {
 
                     <div>
                         <label htmlFor="bio">Endereço</label>
-                        <p>{profile.city} - {profile.state}, {profile.street}, {profile.house_number} - {profile.district}. {profile.complement}</p>
+                        <p>{profile.address}</p>
                     </div>
                 </main>
             </div>

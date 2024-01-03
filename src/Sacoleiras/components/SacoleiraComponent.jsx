@@ -19,8 +19,6 @@ const ImageSacoleira = styled.img`
     width: 130px;
     height: 130px;
     border-radius: 50%;
-    position: absolute;
-    top: -65px;
 `;
 
 const SacoleiraInfo = styled.div`
@@ -91,10 +89,18 @@ const SacoleiraName = styled.p`
     margin: 0 auto;
 `
 
+const LinkProfileImage = styled.a`
+    display: block;
+    position: absolute;
+    top: -65px;
+`
+
 export default function SacoleiraComponent({ sacoleira }) {
     return (
         <SacoleiraComponentStyle>
-            <ImageSacoleira src={sacoleira.image} />
+            <LinkProfileImage href={`/profileDetail/${sacoleira.id}`}>
+                <ImageSacoleira src={sacoleira.image} />
+            </LinkProfileImage>
             
             <SacoleiraInfo>
                 <NameSacoleira>
