@@ -19,8 +19,8 @@ export default function AddProduct() {
         }
 
         axios.get('http://127.0.0.1:8000/userLogado/', config).then(response => {
-            setUserURL(response.data[0].url)
-            
+            setUserURL(`http://127.0.0.1:8000/profile/${response.data[0].sacoleira}/`)
+
             if(response.data[0].profile == null)
                 setAccessAllowed(false)
             else 
@@ -52,7 +52,7 @@ export default function AddProduct() {
     const useForm = useFormRegister({
         initialValues: {
             comment_set: [],
-            user: "",
+            sacoleira: "",
             name: "",
             image: "",
             size: "",
@@ -64,7 +64,6 @@ export default function AddProduct() {
       
     function handleSubmitForm(e) {
         e.preventDefault()
-        
         var input = document.getElementById('image');
         
         var reader = new FileReader();
@@ -76,16 +75,17 @@ export default function AddProduct() {
             }
         }
         
-        const newForm = {...useForm.values, user: userURL}
+        const newForm = {...useForm.values, sacoleira: 'http://127.0.0.1:8000/profile/7/'}
         
         if(input.files.length !== 0) {
             reader.onload = function (e) {
                 var base64Image = e.target.result;
                 axios.post('http://127.0.0.1:8000/products/', {...newForm, image: base64Image}, config).then(response => {
                     alert("Produto adicionado com sucesso!!")
+                    
                     useForm.setValues({
                         comment_set: [],
-                        user: "",
+                        sacoleira: "",
                         name: "",
                         image: "",
                         size: "",

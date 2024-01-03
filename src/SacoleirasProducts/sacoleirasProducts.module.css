@@ -15,39 +15,30 @@
 }
 
 .formSearchProduct {
-    margin-bottom: 30px;
+    margin-bottom: 50px;
     position: relative;
 }
 
 .formSearchProduct input {
-    padding: 10px 10px 10px 15px;
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.05);
+    padding: 6px 12px;
+    color: rgba(0, 0, 0, .7);
     width: 500px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 3px;
     font-size: 14px;
-    transition: all .2s ease-in;
+    background-color: rgba(47, 118, 160, 0.05);
+    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
+    transition: .2s all ease-in;
 }
 
 .formSearchProduct input:hover {
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 3px 1px rgba(47, 118, 160, 0.6);
 }
 
 .formSearchProduct i {
     position: absolute;
-    left: 470px;
-    top: 11px;
+    left: 472px;
+    top: 9px;
     color: rgba(0, 0, 0, 0.438);
-}
-
-#category-products {
-    cursor: pointer;
-    margin-bottom: 20px;
-    background-color: rgba(0, 0, 0, 0.15);
-    padding: 6px 10px;
-    border-radius: 3px;
-    margin-bottom: 20px;
-    width: max-content;
 }
 
 .container {

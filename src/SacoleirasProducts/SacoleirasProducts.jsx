@@ -1,4 +1,4 @@
-import './listProducts.css';
+import styles from './sacoleirasProducts.module.css';
 
 import Header from '../Components/Header/Header';
 import Footer from '../Components/Footer/Footer';
@@ -14,7 +14,7 @@ const SacoleiraPerfil = styled.div`
     display: flex;
     align-items:center;
     gap: 1.5em;
-    margin-bottom: 50px; 
+    margin: 50px 0; 
 
     @media(max-width: 370px) {
         flex-direction: column;
@@ -25,7 +25,7 @@ const ImageSacoleiraInfo = styled.img`
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    box-shadow: 2px 2px 7px rgba(0, 0, 0, .4);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, .3);
 `;
 
 const SacoleiraInfos = styled.div`
@@ -51,6 +51,7 @@ const SacoleiraInfoTitle = styled.h4`
 
 const SacoleiraInfoBio = styled.p`
     font-size: 15px;
+    line-height: 20px;
     color: rgba(0, 0, 0, .85);
     
     @media(max-width: 370px) {
@@ -59,16 +60,26 @@ const SacoleiraInfoBio = styled.p`
     }
 `;
 
-
 const SacoleiraInfoEmail = styled.small`
     font-weight: bold;
     color: rgba(0, 0, 0, .7);
 `;
 
+const ProductsNumberMessage = styled.p`
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    font-weight: bold;
+    color: rgba(0, 0, 0, .8);
+`
+
 export default function ListProducts() {
     const [products, setProducts] = useState([])
     const { id } = useParams()
-    
+    const [productsNumberMessage, setProductsNumberMessage] = useState("")
+
     useEffect(() => {
         const config = {
             headers: {
@@ -77,7 +88,16 @@ export default function ListProducts() {
         }
     
         axios.get(`http://127.0.0.1:8000/sacoleiras/${id}/products`, config).then(
-            Response => setProducts(Response.data)
+            response => {
+                setProducts(response.data)
+                console.log(response.data)
+                if(response.data.length < 1)
+                    setProductsNumberMessage("Nenhum produto encontrado")
+                else if(response.data.length === 1)
+                    setProductsNumberMessage("1 produto encontrado")
+                else 
+                    setProductsNumberMessage(`${response.data.length} produtos encontrados`)
+            } 
         )
     }, [id])
     
@@ -85,7 +105,7 @@ export default function ListProducts() {
         <>
             <Header color={"rgb(63, 43, 83)"} />
 
-            <div className='products'>
+            <div className={styles.products}>
                 <SacoleiraPerfil>
                     <ImageSacoleiraInfo src="https://img.freepik.com/fotos-gratis/foto-da-cintura-para-cima-de-uma-mulher-tenra-feminina-e-gentil-com-penteado-encaracolado-penteado-para-o-lado-direito-inclinando-a-cabeca-e-sorrindo-sedutor-tornando-o-olhar-romantico-para-a-camera-se-abracando-sobre-o-fundo-amarelo_1258-81987.jpg" />
 
@@ -104,19 +124,14 @@ export default function ListProducts() {
                     </SacoleiraInfos>
                 </SacoleiraPerfil>
 
-                <form className='formSearchProduct'>
+                <form className={styles.formSearchProduct}>
                     <input type="text" placeholder='Pesquise por um produto aqui' />
                     <i className="fa-solid fa-magnifying-glass"></i>
                 </form>
                 
-                <select name="" id="category-products">
-                    <option value="">Camisetas</option>
-                    <option value="">Calças</option>
-                    <option value="">Sapatos</option>
-                    <option value="">Roupa intima</option>
-                </select>
-                
-                <div className='container'>
+                <ProductsNumberMessage>{productsNumberMessage}</ProductsNumberMessage>
+                <div className={styles.container}>  
+
                     {products.map(product => <Product key={product.id} product={product} />)}
                 </div>
             </div>

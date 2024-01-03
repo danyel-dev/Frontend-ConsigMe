@@ -105,9 +105,9 @@ export default function SacoleiraComponent({ sacoleira }) {
             <SacoleiraInfo>
                 <NameSacoleira>
                     <SacoleiraName>
-                        <a href={`/sacoleiras/${sacoleira.id}/products`}>{sacoleira.name}</a>
+                        <a href={`/profileDetail/${sacoleira.id}/`}>{sacoleira.name}</a>
                     </SacoleiraName>
-
+                    
                     <PhoneNumberContainer>
                         <PhoneNumberIcon className="fa-brands fa-whatsapp"></PhoneNumberIcon>
                         <PhoneNumber>{sacoleira.phone_number}</PhoneNumber>
