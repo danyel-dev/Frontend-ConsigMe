@@ -1,24 +1,24 @@
-import './profile.scss'
+import './profileDetail.scss'
 import Header from '../Components/Header/Header'
 import Footer from '../Components/Footer/Footer'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 
 export default function Profile() {
     const [profile, setProfile] = useState("")
+    const { id } = useParams()
 
     useEffect(() => {
         const config = {
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": "Token " + localStorage.getItem('token')
             }
         }
 
-        axios.get("http://127.0.0.1:8000/profile/", config).then(response => {
+        axios.get(`http://127.0.0.1:8000/profileDetail/${id}`, config).then(response => {
             setProfile(response.data[0])
-            console.log(profile.url)
         })
     }, [])
 

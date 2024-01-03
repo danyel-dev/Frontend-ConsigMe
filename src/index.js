@@ -12,7 +12,7 @@ import BagProducts from './bag/BagProducts';
 import Sacoleiras from './Sacoleiras/Sacoleiras'
 import ProductDetail from './ProductDetail/ProductDetail';
 import CreateProfile from './CreateProfile/CreateProfile';
-import Profile from './Profile/Profile';
+import ProfileDetail from './Profile/ProfileDetail';
 import AddProduct from './AddProduct/AddProduct';
 
 
@@ -30,7 +30,7 @@ root.render(
         <Route path="/sacoleiras/:id/products/" element={<ListProducts />} />
         <Route path="/products/:id" element={<ProductDetail />} />
         <Route path="/createProfile" element={<CreateProfile />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/profileDetail/:id" element={<ProfileDetail />} />
         <Route path="/addProduct" element={<AddProduct />} />
       </Routes>
     </BrowserRouter>

@@ -6,15 +6,17 @@ import SacoleiraComponent from './SacoleiraComponent';
 
 const SearchSacoleiras = styled.form`
     width: 500px;
-    
+    margin-top: 10px;
+
     @media(max-width: 600px) {
         width: 80%;
     };
     
     @media(max-width: 400px) {
-        width: 90%;
+        width: 100%;
     };
 `;
+
 
 const InputSearchSacoleiras = styled.input`
     padding: 7px 12px;
@@ -50,17 +52,13 @@ const SacoleirasStyle = styled.div`
 
     @media(max-width: 900px) {
         grid-template-columns: 1fr 1fr;
-        gap: 100px 70px;
+        gap: 100px 50px;
     }
 
     @media(max-width: 600px) {
         grid-template-columns: 1fr;
         gap: 100px 70px;
-        padding: 0px 100px;
-    }
-
-    @media(max-width: 500px) {
-        padding: 0px 50px;
+        padding: 0px 40px;
     }
 
     @media(max-width: 400px) {

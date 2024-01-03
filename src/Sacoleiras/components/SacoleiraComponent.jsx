@@ -11,7 +11,7 @@ const SacoleiraComponentStyle = styled.div`
     gap: 1em;
     position: relative;
     padding: 20px 10px;
-    border-radius: 50px;
+    border-radius: 20px;
     border: 1px solid rgba(137, 43, 226, .6);
 `;
 
@@ -85,6 +85,12 @@ const AddressContainerIcon = styled.i`
     color: blueviolet;
 `
 
+const SacoleiraName = styled.p`
+    font-size: 16px;
+    width: max-content;
+    margin: 0 auto;
+`
+
 export default function SacoleiraComponent({ sacoleira }) {
     return (
         <SacoleiraComponentStyle>
@@ -92,9 +98,9 @@ export default function SacoleiraComponent({ sacoleira }) {
             
             <SacoleiraInfo>
                 <NameSacoleira>
-                    <Link to={`/sacoleiras/${sacoleira.id}/products/`}>
-                        {sacoleira.name}
-                    </Link>
+                    <SacoleiraName>
+                        <a href={`/sacoleiras/${sacoleira.id}/products`}>{sacoleira.name}</a>
+                    </SacoleiraName>
 
                     <PhoneNumberContainer>
                         <PhoneNumberIcon className="fa-brands fa-whatsapp"></PhoneNumberIcon>
@@ -112,7 +118,11 @@ export default function SacoleiraComponent({ sacoleira }) {
                 <p>{sacoleira.address}</p>
             </AddressContainer>
 
-            <ButtonSeeProducts>Ver Produtos</ButtonSeeProducts>
+            <a href={`/sacoleiras/${sacoleira.id}/products`}>
+                <ButtonSeeProducts>
+                    Ver Produtos
+                </ButtonSeeProducts>
+            </a>
         </SacoleiraComponentStyle>
     );
 }
