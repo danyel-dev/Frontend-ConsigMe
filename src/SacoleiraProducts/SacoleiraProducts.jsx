@@ -1,4 +1,4 @@
-import styles from './sacoleirasProducts.module.css';
+import styles from './sacoleiraProducts.module.css';
 
 import Header from '../Components/Header/Header';
 import Footer from '../Components/Footer/Footer';
@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 
 const SacoleiraPerfil = styled.div`
@@ -32,6 +33,7 @@ const SacoleiraInfos = styled.div`
     width: 450px;
     display: flex;
     flex-direction: column;
+    import { useNavigate } from 'react-router-dom';
     align-items: flex-start;
     gap: 1em;
     
@@ -79,6 +81,8 @@ export default function ListProducts() {
     const [products, setProducts] = useState([])
     const { id } = useParams()
     const [productsNumberMessage, setProductsNumberMessage] = useState("")
+    const navigate = useNavigate();
+
 
     useEffect(() => {
         const config = {
@@ -90,7 +94,7 @@ export default function ListProducts() {
         axios.get(`http://127.0.0.1:8000/sacoleiras/${id}/products`, config).then(
             response => {
                 setProducts(response.data)
-                console.log(response.data)
+                
                 if(response.data.length < 1)
                     setProductsNumberMessage("Nenhum produto encontrado")
                 else if(response.data.length === 1)
@@ -100,7 +104,30 @@ export default function ListProducts() {
             } 
         )
     }, [id])
-    
+
+    function handleSubmitSearchProducts(e) {
+        e.preventDefault()
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }
+
+        axios.get(`http://127.0.0.1:8000/sacoleiras/${id}/products`, config).then(
+            response => {
+                setProducts(response.data)
+                
+                if(response.data.length < 1)
+                    setProductsNumberMessage("Nenhum produto encontrado")
+                else if(response.data.length === 1)
+                    setProductsNumberMessage("1 produto encontrado")
+                else 
+                    setProductsNumberMessage(`${response.data.length} produtos encontrados`)
+            } 
+        )
+    }
+
     return (
         <>
             <Header color={"rgb(63, 43, 83)"} />
@@ -130,8 +157,8 @@ export default function ListProducts() {
                 </form>
                 
                 <ProductsNumberMessage>{productsNumberMessage}</ProductsNumberMessage>
+                
                 <div className={styles.container}>  
-
                     {products.map(product => <Product key={product.id} product={product} />)}
                 </div>
             </div>

@@ -10,12 +10,12 @@ export default function Product({product}) {
             <div className='item-body'>     
                 <h3>{product.name}</h3>
 
-                <p className='item-description'>{product.description}</p>
+                <p className='item-description'>{product.description.slice(0, 100)}...</p>
                 
                 <small className="item-comments-number"><i className="fa-solid fa-comment"></i>4 comentários</small>
  
                 <div className='description-cart'>
-                    <Link to={`/products/${product.id}`} className='description-cart-button'>Ver produto</Link>
+                    <Link to={`/products/${product.id}`} className='description-cart-button'>Ver Produto</Link>
 
                     <small className='productValue'>R$ {product.value}</small>
                 </div>

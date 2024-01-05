@@ -1,11 +1,13 @@
 .item {
     height: max-content;
+    width: 300px;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(137, 43, 226, .3);
 }
 
 .item-image {
     width: 100%;
-    height: 300px;
+    height: 250px;
     background: url('../img/produtos/calca1.jpeg');
     background-repeat: no-repeat;
     background-position: center;
@@ -15,14 +17,16 @@
 .item-body {
     padding: 15px;
     display: flex;
-    gap: .5em;
+    gap: 12px;
     flex-direction: column;
     justify-content: space-between;
     height: 20%;
+    background-color: whitesmoke;
 }
 
 .item-body h3 {
-    color: rgba(0, 0, 0, 0.85);
+    font-weight: bold;
+    color: rgba(0, 0, 0, .8);
 }
 
 .item-description {
@@ -32,23 +36,24 @@
 }
 
 small.item-comments-number {
-    margin-top: 10px;
+    display: flex;
+    gap: 6px;
+    align-items: center;
     color: rgba(0, 0, 0, 0.65);
-    font-size: 14px;;
+    font-size: 14px;
 }
 
 .description-cart {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 10px;
 }
 
 .description-cart-button {
     background-color: #267ad4;
     color: white;
     font-size: 13px;
-    padding: 5px 10px;
+    padding: 3px 9px;
     font-weight: bold;
     cursor: pointer;
     border-radius: 3px;
@@ -56,4 +61,6 @@ small.item-comments-number {
 
 .productValue {
     font-weight: bold;
+    color: rgba(0, 0, 0, .8);
+    font-size: 16px;
 }
