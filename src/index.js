@@ -28,10 +28,10 @@ root.render(
         <Route path="/bag/" element={<BagProducts />} />
         <Route path="/sacoleiras" element={<Sacoleiras />} />
         <Route path="/sacoleiras/:id/products/" element={<SacoleiraProducts />} />
-        <Route path="/products/:id" element={<ProductDetail />} />
-        <Route path="/createProfile" element={<CreateProfile />} />
-        <Route path="/profileDetail/:id" element={<ProfileDetail />} />
+        <Route path="/sacoleiras/:id/products/:pk" element={<ProductDetail />} />
         <Route path="/addProduct" element={<AddProduct />} />
+        <Route path="/profileDetail/:id" element={<ProfileDetail />} />
+        <Route path="/createProfile" element={<CreateProfile />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

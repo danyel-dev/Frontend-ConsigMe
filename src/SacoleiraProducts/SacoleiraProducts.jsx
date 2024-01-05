@@ -35,7 +35,7 @@ const SacoleiraInfos = styled.div`
     flex-direction: column;
     import { useNavigate } from 'react-router-dom';
     align-items: flex-start;
-    gap: 1em;
+    gap: .8em;
     
     @media(max-width: 370px) {
         width: 90%;
@@ -45,6 +45,8 @@ const SacoleiraInfos = styled.div`
 
 const SacoleiraInfoTitle = styled.h4`
     margin-bottom: 3px;
+    font-weight: bold; 
+    color: rgba(0, 0, 0, .9);
 
     @media(max-width: 370px) {
         text-align: center;
@@ -53,7 +55,7 @@ const SacoleiraInfoTitle = styled.h4`
 
 const SacoleiraInfoBio = styled.p`
     font-size: 15px;
-    line-height: 20px;
+    line-height: 18px;
     color: rgba(0, 0, 0, .85);
     
     @media(max-width: 370px) {
@@ -81,7 +83,8 @@ export default function ListProducts() {
     const [products, setProducts] = useState([])
     const { id } = useParams()
     const [productsNumberMessage, setProductsNumberMessage] = useState("")
-    const navigate = useNavigate();
+    const [search, setSearch] = useState("")
+    const [profile, setProfile] = useState("")
 
 
     useEffect(() => {
@@ -90,7 +93,11 @@ export default function ListProducts() {
                 "Content-Type": "application/json"
             }  
         }
-    
+
+        axios.get(`http://127.0.0.1:8000/profileDetail/${id}`, config).then(response => {
+            setProfile(response.data)
+        })
+
         axios.get(`http://127.0.0.1:8000/sacoleiras/${id}/products`, config).then(
             response => {
                 setProducts(response.data)
@@ -103,7 +110,7 @@ export default function ListProducts() {
                     setProductsNumberMessage(`${response.data.length} produtos encontrados`)
             } 
         )
-    }, [id])
+    }, [])
 
     function handleSubmitSearchProducts(e) {
         e.preventDefault()
@@ -114,7 +121,7 @@ export default function ListProducts() {
             }
         }
 
-        axios.get(`http://127.0.0.1:8000/sacoleiras/${id}/products`, config).then(
+        axios.get(`http://127.0.0.1:8000/sacoleiras/${id}/products?search=${search}`, config).then(
             response => {
                 setProducts(response.data)
                 
@@ -128,18 +135,26 @@ export default function ListProducts() {
         )
     }
 
+    function handleChangeInputSearch(e) {
+        setSearch(e.target.value)
+    }
+
     return (
         <>
             <Header color={"rgb(63, 43, 83)"} />
 
             <div className={styles.products}>
                 <SacoleiraPerfil>
-                    <ImageSacoleiraInfo src="https://img.freepik.com/fotos-gratis/foto-da-cintura-para-cima-de-uma-mulher-tenra-feminina-e-gentil-com-penteado-encaracolado-penteado-para-o-lado-direito-inclinando-a-cabeca-e-sorrindo-sedutor-tornando-o-olhar-romantico-para-a-camera-se-abracando-sobre-o-fundo-amarelo_1258-81987.jpg" />
+                    <a href={`/profileDetail/${id}`}>
+                        <ImageSacoleiraInfo src={profile.image} />
+                    </a>
 
                     <SacoleiraInfos>
                         <div>
                             <SacoleiraInfoTitle>
-                                Maria Silva Gonçalves
+                                <a href={`/profileDetail/${id}`}>
+                                    {profile.name}
+                                </a>        
                             </SacoleiraInfoTitle>
                     
                             <SacoleiraInfoBio>
@@ -151,15 +166,15 @@ export default function ListProducts() {
                     </SacoleiraInfos>
                 </SacoleiraPerfil>
 
-                <form className={styles.formSearchProduct}>
-                    <input type="text" placeholder='Pesquise por um produto aqui' />
+                <form className={styles.formSearchProduct} onSubmit={handleSubmitSearchProducts}>
+                    <input type="text" placeholder='Pesquise por um produto aqui' value={search} onChange={handleChangeInputSearch}  />
                     <i className="fa-solid fa-magnifying-glass"></i>
                 </form>
                 
                 <ProductsNumberMessage>{productsNumberMessage}</ProductsNumberMessage>
                 
                 <div className={styles.container}>  
-                    {products.map(product => <Product key={product.id} product={product} />)}
+                    {products.map(product => <Product sacoleiraId={id} key={product.id} product={product} />)}
                 </div>
             </div>
 

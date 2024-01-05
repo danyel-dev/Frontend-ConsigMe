@@ -156,7 +156,7 @@ const Comments = styled.div`
 
 
 export default function ProductDetail() {
-    const { id } = useParams()
+    const { pk } = useParams()
     const [product, setProduct] = useState([])
     const [comments, setComments] = useState([])
     const [user, setUser] = useState();
@@ -183,7 +183,7 @@ export default function ProductDetail() {
             url, 
             {
                 user: user.url,
-                product: `http://127.0.0.1:8000/products/${id}/`,
+                product: `http://127.0.0.1:8000/products/${pk}/`,
                 message: commentInput
             }, 
             config).then(response => {
@@ -204,7 +204,7 @@ export default function ProductDetail() {
 
         axios.get(url, config).then(response => setBag(response.data[0]))
 
-        axios.get(`http://127.0.0.1:8000/products/${id}/`, config).then(response => {
+        axios.get(`http://127.0.0.1:8000/products/${pk}/`, config).then(response => {
             setProduct(response.data)
             setComments(response.data.comment_set.reverse())
         })
