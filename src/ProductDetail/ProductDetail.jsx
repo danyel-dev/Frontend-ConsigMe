@@ -9,29 +9,36 @@ import Comment from "./Comment";
 
 
 const MainProduct = styled.main`
-    width: 90%;
+    width: 80%;
     display: flex;
     flex-direction: column;
     gap: 8em;
     margin: 0 auto 100px auto;
+
+    @media(max-width: 1050px) {
+        width: 90%;
+    }
 `;
 
 const ProductStyle = styled.div`
     margin-top: 50px;
     display: flex;
-    gap: 2em;
+    gap: 3em;
     justify-content: center;
 
-    @media(max-width: 800px) {
+    @media(max-width: 700px) {
         flex-direction: column;
+        gap: 2em;
     }
 `;
 
 const ImageProduct = styled.img`
     width: 300px;
-    height: 400px;
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, .5);
-    
+    height: 350px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, .3);
+    border: 1px solid rgba(137, 43, 226, .2);
+    border-radius: 2px;
+
     @media(max-width: 800px) {
         margin: 0 auto;
     }
@@ -45,14 +52,13 @@ const ProductInfo = styled.div`
     display: flex;
     flex-direction: column;
     gap: 2em;
-    justify-content: space-between;
-    padding: 20px;
+    padding: 0px;
 `;
 
 const ProductInfoTop = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 2em;
+    gap: 1.5em;
 `;
 
 const ProductInfoBottom = styled.div`
@@ -64,7 +70,7 @@ const ProductInfoBottom = styled.div`
 const ProductNameDescription = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 1em;
+    gap: .5em;
 `;
 
 const ProductSizeBagAddition = styled.div`
@@ -75,17 +81,23 @@ const ProductSizeBagAddition = styled.div`
     justify-content: space-between;
 `;
 
-const ProductTitle = styled.h2`
-    @media(max-width: 800px) {
+const ProductTitle = styled.h1`
+    font-size: 1.5em;
+    color: rgba(0, 0, 0, .7);
+    font-weight: bold;
+    line-height: 28px;
+
+    @media(max-width: 700px) {
         text-align: center;
     }
 `;
 
 const ProductDescription = styled.p`
     text-align: justify;
+    width: 600px;
 
-    @media(max-width: 800px) {
-        text-align: center;
+    @media(max-width: 1050px) {
+        width: 100%;
     }
 `;
 
@@ -106,12 +118,12 @@ const ButtonBagAddition = styled.button`
 
 const ButtonBuyProduct = styled.button`
     background-color: blueviolet;
-    padding: 8px 0px;
+    padding: 5px 10px;
     color: white;
     border-radius: 3px;
     font-weight: bold;
     font-size: 13px;
-    width: 140px;
+    width: max-content;
     cursor: pointer;
 `;
 
@@ -152,6 +164,12 @@ const Comments = styled.div`
     display: flex;
     flex-direction: column;
     gap: 4em;
+`;
+
+const ValueProduct = styled.h1`
+    font-weight: bold;
+    font-size: 1.2em;
+    color: rgba(0, 0, 0, .75);
 `;
 
 
@@ -258,9 +276,9 @@ export default function ProductDetail() {
                             </ProductSizeBagAddition>
                         </ProductInfoTop>
 
-                        <h3>Valor: R$ {product.value}</h3>
 
                         <ProductInfoBottom>
+                            <ValueProduct>R$ {product.value}</ValueProduct>
                             <ButtonBuyProduct>Comprar Produto</ButtonBuyProduct>
                             <NumberComments>{comments.length} Comentários</NumberComments>
                         </ProductInfoBottom>
