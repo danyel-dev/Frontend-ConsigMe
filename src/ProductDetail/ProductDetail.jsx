@@ -13,7 +13,7 @@ const MainProduct = styled.main`
     width: 80%;
     display: flex;
     flex-direction: column;
-    gap: 8em;
+    gap: 5em;
     margin: 0 auto 100px auto;
 
     @media(max-width: 1050px) {
@@ -22,7 +22,7 @@ const MainProduct = styled.main`
 `;
 
 const ProductStyle = styled.div`
-    margin-top: 50px;
+    margin-top: 70px;
     display: flex;
     gap: 3em;
     justify-content: center;
@@ -186,9 +186,9 @@ export default function ProductDetail() {
     const disqusShortname = "consigme-1"
 
     const disqusConfig = {
-      url: "http://localhost:3000",
-      identifier: "article-id",
-      title: "Comentários sobre este site"
+      url: window.location.href,
+      identifier: `product:${pk}`,
+      title: `produto ${pk}: ${product.name}`
     }
 
     function handleChangeCommentInput(e) {
@@ -231,8 +231,9 @@ export default function ProductDetail() {
 
         // axios.get(url, config).then(response => setBag(response.data[0]))
 
-        axios.get('http://127.0.0.1:8000/sacoleiras/7/products/1', config).then(response => {
+        axios.get(`http://127.0.0.1:8000/sacoleiras/${id}/products/${pk}`, config).then(response => {
             setProduct(response.data)
+            console.log(response.data)
             // setComments(response.data.comment_set.reverse())
         })
         
