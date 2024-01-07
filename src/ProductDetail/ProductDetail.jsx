@@ -6,6 +6,7 @@ import Header from '../Components/Header/Header';
 import Footer from '../Components/Footer/Footer';
 import { styled } from "styled-components";
 import Comment from "./Comment";
+import Disqus from "disqus-react"
 
 
 const MainProduct = styled.main`
@@ -175,40 +176,49 @@ const ValueProduct = styled.h1`
 
 export default function ProductDetail() {
     const { pk } = useParams()
+    const { id } = useParams()
     const [product, setProduct] = useState([])
     const [comments, setComments] = useState([])
     const [user, setUser] = useState();
     const [commentInput, setCommentInput] = useState("")
     const [bag, setBag] = useState('')
     
+    const disqusShortname = "consigme-1"
+
+    const disqusConfig = {
+      url: "http://localhost:3000",
+      identifier: "article-id",
+      title: "Comentários sobre este site"
+    }
+
     function handleChangeCommentInput(e) {
         setCommentInput(e.target.value)
     }
 
-    function handleSubmitCommentForm(e) {
-        e.preventDefault()
+    // function handleSubmitCommentForm(e) {
+    //     e.preventDefault()
 
-        const url = 'http://127.0.0.1:8000/comments/';
+    //     const url = 'http://127.0.0.1:8000/comments/';
 
-        const config = {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'token ' + localStorage.getItem('token'),
-            }
-        }
+    //     const config = {
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             'Authorization': 'token ' + localStorage.getItem('token'),
+    //         }
+    //     }
     
-        axios.post(
-            url, 
-            {
-                user: user.url,
-                product: `http://127.0.0.1:8000/products/${pk}/`,
-                message: commentInput
-            }, 
-            config).then(response => {
-                setComments([response.data, ...comments])
-                setCommentInput("")
-            })
-    }
+    //     axios.post(
+    //         url, 
+    //         {
+    //             user: user.url,
+    //             product: `http://127.0.0.1:8000/products/${pk}/`,
+    //             message: commentInput
+    //         }, 
+    //         config).then(response => {
+    //             setComments([response.data, ...comments])
+    //             setCommentInput("")
+    //         })
+    // }
 
     useEffect(() => {
         const url = "http://127.0.0.1:8000/bag/"
@@ -216,39 +226,39 @@ export default function ProductDetail() {
         const config = {
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": "token " + localStorage.getItem("token")
             },
         }
 
-        axios.get(url, config).then(response => setBag(response.data[0]))
+        // axios.get(url, config).then(response => setBag(response.data[0]))
 
-        axios.get(`http://127.0.0.1:8000/products/${pk}/`, config).then(response => {
+        axios.get('http://127.0.0.1:8000/sacoleiras/7/products/1', config).then(response => {
             setProduct(response.data)
-            setComments(response.data.comment_set.reverse())
+            // setComments(response.data.comment_set.reverse())
         })
         
-        axios.get("http://127.0.0.1:8000/userLogado/", config).then(
-            response => setUser(response.data[0])
-        )
+        // axios.get("http://127.0.0.1:8000/userLogado/", config).then(
+        //     response => setUser(response.data[0])
+        // )
     }, []) // colocar o id, comments e bag aqui
     
 
     function handleAdditionProduct(e) {
-        const config = {
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": "token " + localStorage.getItem("token")
-            }
-        }
+        console.log("oi")
+        // const config = {
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //         "Authorization": "token " + localStorage.getItem("token")
+        //     }
+        // }
 
-        const formData = {
-            products: [
-                ...bag.products,
-                product.url
-            ]
-        }
+        // const formData = {
+        //     products: [
+        //         ...bag.products,
+        //         product.url
+        //     ]
+        // }
 
-        axios.patch('http://127.0.0.1:8000/bag/22/', formData, config)
+        // axios.patch('http://127.0.0.1:8000/bag/22/', formData, config)
     }
 
     return (
@@ -271,7 +281,7 @@ export default function ProductDetail() {
 
                                 <ButtonBagAddition>
                                     <i className="fa-solid fa-cart-shopping"></i>
-                                    <p onClick={handleAdditionProduct}>Adicionar ao Carrinho</p>
+                                    <p>Adicionar ao Carrinho</p>
                                 </ButtonBagAddition>
                             </ProductSizeBagAddition>
                         </ProductInfoTop>
@@ -284,31 +294,11 @@ export default function ProductDetail() {
                         </ProductInfoBottom>
                     </ProductInfo>
                 </ProductStyle>
-
-                
-                <div className="comment-form">
-                    <CommentTitle>Adicionar um comentário</CommentTitle>
-
-                    <form onSubmit={handleSubmitCommentForm}> 
-                        <CommentTextArea 
-                            value={commentInput} 
-                            onChange={handleChangeCommentInput} 
-                            cols="80" 
-                            rows="15">
-                        </CommentTextArea>
-                        
-                        <SubmitFormComment>Comentar</SubmitFormComment>
-                    </form>
-                </div>
-             
-                
-                <Comments>
-                    <NumberComments>{comments.length} comentários neste produto</NumberComments>
-
-                    {comments.map(comment => (
-                        <Comment comment={comment} key={comment.id} />
-                    ))}
-                </Comments>  
+                             
+                <Disqus.DiscussionEmbed
+                    shortname={disqusShortname}
+                    config={disqusConfig}
+                />
             </MainProduct>
 
             <Footer></Footer>
