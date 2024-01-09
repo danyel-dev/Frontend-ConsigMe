@@ -3,7 +3,7 @@ div.profile {
     margin: 60px auto 60px auto;
     display: flex;
     justify-content: center;
-    align-items: start;
+    align-items: flex-start;
     gap: 3em;
 
     @media(max-width: 900px) {
@@ -107,7 +107,7 @@ div.profile {
         display: flex;
         flex-direction: column;
         gap: 1em;
-
+        color: rgb(120, 40, 151);
         @media(max-width: 900px) {
             padding: 10px;
         }

@@ -5,23 +5,30 @@ import { useParams } from 'react-router-dom';
 import Header from '../Components/Header/Header';
 import Footer from '../Components/Footer/Footer';
 import { styled } from "styled-components";
-import Comment from "./Comment";
-import Disqus from "disqus-react"
+import Disqus from "disqus-react";
 
 
 const MainProduct = styled.main`
     width: 80%;
     display: flex;
     flex-direction: column;
-    gap: 5em;
-    margin: 0 auto 100px auto;
-
+    gap: 3em;
+    margin: 0 auto 0 auto;
+    padding: 0 20px 100px 20px;
+    background: rgba(0, 0, 0, .05);
+    
     @media(max-width: 1050px) {
         width: 90%;
     }
-`;
 
-const ProductStyle = styled.div`
+    @media(max-width: 500px) {
+        width: 100%;
+    }
+`;
+    
+    const ProductStyle = styled.div`
+    border-bottom: 1px solid rgba(137, 43, 226, .3);
+    padding-bottom: 30px;
     margin-top: 70px;
     display: flex;
     gap: 3em;
@@ -96,6 +103,7 @@ const ProductTitle = styled.h1`
 const ProductDescription = styled.p`
     text-align: justify;
     width: 600px;
+    line-height: 20px;
 
     @media(max-width: 1050px) {
         width: 100%;
@@ -128,100 +136,33 @@ const ButtonBuyProduct = styled.button`
     cursor: pointer;
 `;
 
-const NumberComments = styled.p`
-    color: rgba(0, 0, 0, .6);
-    font-weight: bold;
-    font-size: 14px;
-`;
-
-const CommentTitle = styled.h1`
-    color: rgb(74, 49, 97);
-    font-size: 1.3em;
-    margin-bottom: 20px;
-`;
-
-const CommentTextArea = styled.textarea`
-    border-radius: 5px;
-    padding: 10px;
-    background-color: rgba(0, 0, 0, .1);
-    
-    @media(max-width: 800px) {
-        width: 100%;
-    }
-`;
-
-const SubmitFormComment = styled.button`
-    background-color: green;
-    display: block;
-    color: white;
-    margin-top: 20px;
-    padding: 8px 15px;
-    font-weight: bold;
-    border-radius: 3px;
-    cursor: pointer;
-`;
-
-const Comments = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 4em;
-`;
-
 const ValueProduct = styled.h1`
     font-weight: bold;
     font-size: 1.2em;
     color: rgba(0, 0, 0, .75);
 `;
 
+const LinkSeeComments = styled.a`
+    font-size: 14px;
+    color: rgb(120, 40, 151);
+    font-weight: bold;
+    text-decoration: underline;
+`
+
 
 export default function ProductDetail() {
     const { pk } = useParams()
     const { id } = useParams()
     const [product, setProduct] = useState([])
-    const [comments, setComments] = useState([])
-    const [user, setUser] = useState();
-    const [commentInput, setCommentInput] = useState("")
-    const [bag, setBag] = useState('')
-    
     const disqusShortname = "consigme-1"
-
+    
     const disqusConfig = {
       url: window.location.href,
       identifier: `product:${pk}`,
       title: `produto ${pk}: ${product.name}`
     }
 
-    function handleChangeCommentInput(e) {
-        setCommentInput(e.target.value)
-    }
-
-    // function handleSubmitCommentForm(e) {
-    //     e.preventDefault()
-
-    //     const url = 'http://127.0.0.1:8000/comments/';
-
-    //     const config = {
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             'Authorization': 'token ' + localStorage.getItem('token'),
-    //         }
-    //     }
-    
-    //     axios.post(
-    //         url, 
-    //         {
-    //             user: user.url,
-    //             product: `http://127.0.0.1:8000/products/${pk}/`,
-    //             message: commentInput
-    //         }, 
-    //         config).then(response => {
-    //             setComments([response.data, ...comments])
-    //             setCommentInput("")
-    //         })
-    // }
-
     useEffect(() => {
-        const url = "http://127.0.0.1:8000/bag/"
 
         const config = {
             headers: {
@@ -229,38 +170,11 @@ export default function ProductDetail() {
             },
         }
 
-        // axios.get(url, config).then(response => setBag(response.data[0]))
-
         axios.get(`http://127.0.0.1:8000/sacoleiras/${id}/products/${pk}`, config).then(response => {
             setProduct(response.data)
             console.log(response.data)
-            // setComments(response.data.comment_set.reverse())
         })
-        
-        // axios.get("http://127.0.0.1:8000/userLogado/", config).then(
-        //     response => setUser(response.data[0])
-        // )
-    }, []) // colocar o id, comments e bag aqui
-    
-
-    function handleAdditionProduct(e) {
-        console.log("oi")
-        // const config = {
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //         "Authorization": "token " + localStorage.getItem("token")
-        //     }
-        // }
-
-        // const formData = {
-        //     products: [
-        //         ...bag.products,
-        //         product.url
-        //     ]
-        // }
-
-        // axios.patch('http://127.0.0.1:8000/bag/22/', formData, config)
-    }
+    }, [disqusShortname, id, pk]) // colocar o id, comments e bag aqui
 
     return (
         <>
@@ -282,20 +196,19 @@ export default function ProductDetail() {
 
                                 <ButtonBagAddition>
                                     <i className="fa-solid fa-cart-shopping"></i>
-                                    <p>Adicionar ao Carrinho</p>
+                                    <p>Salvar produto</p>
                                 </ButtonBagAddition>
                             </ProductSizeBagAddition>
                         </ProductInfoTop>
 
-
                         <ProductInfoBottom>
                             <ValueProduct>R$ {product.value}</ValueProduct>
                             <ButtonBuyProduct>Comprar Produto</ButtonBuyProduct>
-                            <NumberComments>{comments.length} Comentários</NumberComments>
+                            <LinkSeeComments href="http://localhost:3000/sacoleiras/7/products/1#disqus_thread">Ver comentários</LinkSeeComments>
                         </ProductInfoBottom>
                     </ProductInfo>
                 </ProductStyle>
-                             
+                
                 <Disqus.DiscussionEmbed
                     shortname={disqusShortname}
                     config={disqusConfig}
