@@ -143,12 +143,33 @@ const ValueProduct = styled.h1`
 `;
 
 const LinkSeeComments = styled.a`
-    font-size: 14px;
+    width: max-content;
+    font-size: 12px;
     color: rgb(120, 40, 151);
     font-weight: bold;
-    text-decoration: underline;
+    
+    &:hover {
+        color: rgba(120, 40, 151, .7);
+    }
 `
 
+const InputProductNote = styled.input`    
+    width: 200px;
+    font-size: 14px;
+    border: 1px solid rgba(0, 0, 0, .2);
+    padding: 2px 5px;
+    border-radius: 4px;
+    color: rgba(0, 0, 0, .7);
+`
+
+const ButtonProductNote = styled.button`
+    font-size: 14px;
+    margin-left: 10px;
+    color: white;
+    background-color: rgb(120, 40, 151);
+    padding: 2px 5px;
+    border-radius: 2px;
+`;
 
 export default function ProductDetail() {
     const { pk } = useParams()
@@ -163,7 +184,6 @@ export default function ProductDetail() {
     }
 
     useEffect(() => {
-
         const config = {
             headers: {
                 "Content-Type": "application/json",
@@ -205,6 +225,10 @@ export default function ProductDetail() {
                             <ValueProduct>R$ {product.value}</ValueProduct>
                             <ButtonBuyProduct>Comprar Produto</ButtonBuyProduct>
                             <LinkSeeComments href="http://localhost:3000/sacoleiras/7/products/1#disqus_thread">Ver comentários</LinkSeeComments>
+                            <form>
+                                <InputProductNote type="number" min='1' max='5' placeholder="dê uma nota a este produto" />
+                                <ButtonProductNote>enviar</ButtonProductNote>
+                            </form>
                         </ProductInfoBottom>
                     </ProductInfo>
                 </ProductStyle>
