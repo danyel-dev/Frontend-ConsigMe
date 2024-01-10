@@ -167,16 +167,24 @@ const ButtonProductNote = styled.button`
     margin-left: 10px;
     color: white;
     background-color: rgb(120, 40, 151);
-    padding: 2px 5px;
+    padding: 0px 5px;
     border-radius: 2px;
 `;
+
+const LinkLoginPage = styled.a`
+    font-size: 14px;
+    color: rgb(120, 40, 151);
+    text-decoration: underline;
+`
 
 export default function ProductDetail() {
     const { pk } = useParams()
     const { id } = useParams()
     const [product, setProduct] = useState([])
     const disqusShortname = "consigme-1"
-    
+    const [userLogadoUrl, setUserLogadoUrl] = useState('')
+    const [note, setNote] = useState("")
+
     const disqusConfig = {
       url: window.location.href,
       identifier: `product:${pk}`,
@@ -187,14 +195,42 @@ export default function ProductDetail() {
         const config = {
             headers: {
                 "Content-Type": "application/json",
+                "Authorization": "Token " + localStorage.getItem('token')
             },
         }
 
+        axios.get('http://127.0.0.1:8000/userLogado/', config).then(response => setUserLogadoUrl(response.data[0].url)).catch(response => console.log(response))
+
         axios.get(`http://127.0.0.1:8000/sacoleiras/${id}/products/${pk}`, config).then(response => {
             setProduct(response.data)
-            console.log(response.data)
         })
+    
     }, [disqusShortname, id, pk]) // colocar o id, comments e bag aqui
+
+
+    function handleChangeInput(e) {
+        setNote(e.target.value)
+    }
+
+
+    function handleSubmitProductNote(e) {
+        e.preventDefault()
+
+        if(note !== "") {
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Token " + localStorage.getItem('token')
+                },
+            }
+    
+            axios.post('http://127.0.0.1:8000/productNote/', {user: userLogadoUrl, product: product.url, note: note}, config).then(response => {
+                setUserLogadoUrl(response.data.url)
+                alert("sua avaliação foi enviada")
+                setNote("")
+            })
+        }
+    }
 
     return (
         <>
@@ -224,11 +260,16 @@ export default function ProductDetail() {
                         <ProductInfoBottom>
                             <ValueProduct>R$ {product.value}</ValueProduct>
                             <ButtonBuyProduct>Comprar Produto</ButtonBuyProduct>
-                            <LinkSeeComments href="http://localhost:3000/sacoleiras/7/products/1#disqus_thread">Ver comentários</LinkSeeComments>
-                            <form>
-                                <InputProductNote type="number" min='1' max='5' placeholder="dê uma nota a este produto" />
-                                <ButtonProductNote>enviar</ButtonProductNote>
-                            </form>
+                            <LinkSeeComments href={`http://localhost:3000/sacoleiras/${id}/products/${pk}#disqus_thread`}>Ver comentários</LinkSeeComments>
+                            
+                            {userLogadoUrl? 
+                                <form onSubmit={handleSubmitProductNote}>
+                                    <InputProductNote value={note} onChange={handleChangeInput} type="number" min='1' max='5' placeholder="dê uma nota a este produto" />
+                                    <ButtonProductNote>enviar</ButtonProductNote>
+                                </form>
+                            :
+                                <LinkLoginPage href="/login">faça login para avaliar este produto</LinkLoginPage>    
+                            }
                         </ProductInfoBottom>
                     </ProductInfo>
                 </ProductStyle>
