@@ -39,12 +39,16 @@
     color: rgba(0, 0, 0, .8);
 }
 
-small.item-comments-number {
-    display: flex;
-    gap: 6px;
-    align-items: center;
-    color: rgba(0, 0, 0, 0.65);
-    font-size: 14px;
+a.item-comments-number {
+    width: max-content;
+    font-size: 12px;
+    color: #782897;
+    font-weight: bold;
+    transition: .1s all ease-in;
+}
+
+a.item-comments-number:hover {
+    color: rgba(120, 40, 151, .7);
 }
 
 .description-cart {
@@ -61,6 +65,11 @@ small.item-comments-number {
     font-weight: bold;
     cursor: pointer;
     border-radius: 3px;
+    transition: .2s all ease-in;
+}
+
+.description-cart-button:hover {
+    background-color: #267ad4cc;
 }
 
 .productValue {
