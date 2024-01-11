@@ -14,7 +14,7 @@ const MainProduct = styled.main`
     flex-direction: column;
     gap: 3em;
     margin: 0 auto;
-    padding: 0 20px 100px 20px;
+    padding: 0 20px 50px 20px;
     background: rgba(0, 0, 0, .05);
     
     @media(max-width: 1150px) {
@@ -153,22 +153,35 @@ const LinkSeeComments = styled.a`
     }
 `
 
+const FormProductNote = styled.form`
+    display: flex;
+    align-items: center;
+    gap: .5em;
+
+    @media(max-width: 300px) {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+`
+
 const InputProductNote = styled.input`    
-    width: 200px;
+    width: 210px;
     font-size: 14px;
     border: 1px solid rgba(0, 0, 0, .2);
-    padding: 2px 5px;
+    padding: 2px 10px;
     border-radius: 4px;
     color: rgba(0, 0, 0, .7);
 `
 
 const ButtonProductNote = styled.button`
     font-size: 14px;
-    margin-left: 10px;
+    display: block;
     color: white;
+    height: 25px;
+    padding: 0 6px;
     background-color: rgb(120, 40, 151);
-    padding: 0px 5px;
-    border-radius: 2px;
+    border-radius: 4px;
+    font-weight: bold;
 `;
 
 const LinkLoginPage = styled.a`
@@ -269,10 +282,10 @@ export default function ProductDetail() {
                             <LinkSeeComments href={`http://localhost:3000/sacoleiras/${id}/products/${pk}#disqus_thread`}>Ver comentários</LinkSeeComments>
                             
                             {userLogadoUrl? 
-                                <form onSubmit={handleSubmitProductNote}>
+                                <FormProductNote onSubmit={handleSubmitProductNote}>
                                     <InputProductNote value={note} onChange={handleChangeInput} type="number" min='1' max='5' placeholder="dê uma nota a este produto" />
                                     <ButtonProductNote>enviar</ButtonProductNote>
-                                </form>
+                                </FormProductNote>
                             :
                                 <LinkLoginPage href="/login">faça login para avaliar este produto</LinkLoginPage>    
                             }
