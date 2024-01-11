@@ -12,13 +12,12 @@ export default function Product({ product, sacoleiraId }) {
             const soma = notes.reduce((acumulador, atual) => acumulador + atual, 0)
             setNote(soma/product.productnote_set.length)
         }
-    }, [])
+    }, [product.productnote_set])
 
     return(
         <div className='item'>
             <a href={`/sacoleiras/${sacoleiraId}/products/${product.id}`}>
                 <img className='item-image' src={product.image} alt={product.name} />
-                {note}
             </a>
 
             <div className='item-body'>     
@@ -27,8 +26,18 @@ export default function Product({ product, sacoleiraId }) {
                 </a>
 
                 <p className='item-description'>{product.description.slice(0, 100)}...</p>
-                
-                <a className='item-comments-number' href={`http://localhost:3000/sacoleiras/${sacoleiraId}/products/${product.id}#disqus_thread`}><i className="fa-solid fa-comment"></i> Ver comentários</a>
+
+                {note? 
+                    <p className='note-product'>
+                        <span>
+                            {note.toFixed(1)}
+                            <i class="fa-solid fa-star"></i>
+                        </span>
+                        <small>({product.productnote_set.length} avaliações)</small>
+                    </p> 
+                :
+                    <p className='note-product'>Nenhuma avaliação</p>
+                }
 
                 <div className='description-cart'>
                     <Link to={`/sacoleiras/${sacoleiraId}/products/${product.id}`} className='description-cart-button'>Acessar Produto</Link>

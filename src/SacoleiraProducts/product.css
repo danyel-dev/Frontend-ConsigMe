@@ -39,12 +39,21 @@
     color: rgba(0, 0, 0, .8);
 }
 
-a.item-comments-number {
-    width: max-content;
-    font-size: 12px;
-    color: #782897;
+.note-product {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: .5em;
+}
+
+.note-product span {
     font-weight: bold;
-    transition: .1s all ease-in;
+    color: rgba(0, 0, 0, .8);
+}
+
+.note-product i {
+    color: blueviolet;
+    margin-left: 3px;
 }
 
 a.item-comments-number:hover {
