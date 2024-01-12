@@ -199,6 +199,9 @@ export default function ProductDetail() {
     const [note, setNote] = useState("")
     const [productNote, setProductNote] = useState("")
     const [mediaNotes, setMediaNotes] = useState()
+    
+    const [bagId, setBagId] = useState("")
+    const [products, setProducts] = useState("")
 
     const disqusConfig = {
       url: window.location.href,
@@ -216,6 +219,8 @@ export default function ProductDetail() {
         
         axios.get('http://127.0.0.1:8000/userLogado/', config).then(response => setUserLogadoUrl(response.data[0].url)).catch(response => console.log(response))
         
+        axios.get('http://127.0.0.1:8000/bag/', config).then(response => setBagId(response.data[0].id))
+
         axios.get(`http://127.0.0.1:8000/sacoleiras/${id}/products/${pk}`, config).then(response => {
             setProduct(response.data)
             setProductNote(response.data.productnote_set)
@@ -226,7 +231,7 @@ export default function ProductDetail() {
             const soma = notes.reduce((acumulador, atual) => acumulador + atual, 0)
             setMediaNotes(soma/product.productnote_set.length)
         }
-    }, [productNote]) // colocar o id, comments e bag aqui
+    }, []) // colocar o id, comments e bag aqui
 
     function handleChangeInput(e) {
         setNote(e.target.value)
@@ -251,6 +256,21 @@ export default function ProductDetail() {
         }
     }
 
+    function handleSavedProduct() {
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Token " + localStorage.getItem('token')
+            },
+        }
+
+        axios.get('http://127.0.0.1:8000/bag/', config).then(response => {
+           setProducts(response.data[0].products)
+        })
+
+        axios.patch(`http://127.0.0.1:8000/bag/${bagId}/`, {products: [...products, "http://127.0.0.1:8000/products/1/"]}, config).then(response => console.log(response))
+    }
+
     return (
         <>
             <Header color={"rgb(63, 43, 83)"} />
@@ -258,7 +278,7 @@ export default function ProductDetail() {
             <MainProduct>
                 <ProductStyle>
                     <ImageProduct src={product.image} alt={product.name} />
- 
+                    
                     <ProductInfo>
                         <ProductInfoTop>
                             <ProductNameDescription>
@@ -271,7 +291,7 @@ export default function ProductDetail() {
 
                                 <ButtonBagAddition>
                                     <i className="fa-solid fa-cart-shopping"></i>
-                                    <p>Salvar produto</p>
+                                    <p onClick={handleSavedProduct}>Salvar produto</p>
                                 </ButtonBagAddition>
                             </ProductSizeBagAddition>
                         </ProductInfoTop>
