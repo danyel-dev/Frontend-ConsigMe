@@ -202,6 +202,7 @@ export default function ProductDetail() {
     
     const [bagId, setBagId] = useState("")
     const [products, setProducts] = useState("")
+    const [addBag, setAddBag] = useState(true)
 
     const disqusConfig = {
       url: window.location.href,
@@ -217,10 +218,17 @@ export default function ProductDetail() {
             },
         }
         
-        axios.get('http://127.0.0.1:8000/userLogado/', config).then(response => setUserLogadoUrl(response.data[0].url)).catch(response => console.log(response))
+        axios.get('http://127.0.0.1:8000/userLogado/', config).then(response => setUserLogadoUrl(response.data[0].url)).catch(response => console.log(response)).catch(response => console.log(response))
         
-        axios.get('http://127.0.0.1:8000/bag/', config).then(response => setBagId(response.data[0].id))
+        axios.get('http://127.0.0.1:8000/bag/', config).then(response => {
+            setBagId(response.data[0].id)
+            setProducts(response.data[0].products)
+        }).catch(response => console.log(response))
 
+        if(products.includes(product.url)) {
+            setAddBag(false)
+        }
+        
         axios.get(`http://127.0.0.1:8000/sacoleiras/${id}/products/${pk}`, config).then(response => {
             setProduct(response.data)
             setProductNote(response.data.productnote_set)
@@ -231,7 +239,7 @@ export default function ProductDetail() {
             const soma = notes.reduce((acumulador, atual) => acumulador + atual, 0)
             setMediaNotes(soma/product.productnote_set.length)
         }
-    }, []) // colocar o id, comments e bag aqui
+    }, [addBag]) // colocar o id, comments e bag aqui
 
     function handleChangeInput(e) {
         setNote(e.target.value)
@@ -264,11 +272,7 @@ export default function ProductDetail() {
             },
         }
 
-        axios.get('http://127.0.0.1:8000/bag/', config).then(response => {
-           setProducts(response.data[0].products)
-        })
-
-        axios.patch(`http://127.0.0.1:8000/bag/${bagId}/`, {products: [...products, "http://127.0.0.1:8000/products/1/"]}, config).then(response => console.log(response))
+        axios.patch(`http://127.0.0.1:8000/bag/${bagId}/`, {products: [...products, product.url]}, config).then(response => console.log(response))
     }
 
     return (
@@ -278,7 +282,7 @@ export default function ProductDetail() {
             <MainProduct>
                 <ProductStyle>
                     <ImageProduct src={product.image} alt={product.name} />
-                    
+
                     <ProductInfo>
                         <ProductInfoTop>
                             <ProductNameDescription>
@@ -288,11 +292,20 @@ export default function ProductDetail() {
                             
                             <ProductSizeBagAddition>
                                 <p>Tamanho: {product.size}</p>
-
-                                <ButtonBagAddition>
-                                    <i className="fa-solid fa-cart-shopping"></i>
-                                    <p onClick={handleSavedProduct}>Salvar produto</p>
-                                </ButtonBagAddition>
+                                    {userLogadoUrl? (
+                                        <div>
+                                        {addBag?
+                                            <p>Sinto Muito</p>
+                                        :
+                                            <ButtonBagAddition>
+                                                <i className="fa-solid fa-cart-shopping"></i>
+                                                <p onClick={handleSavedProduct}>Salvar produto</p>
+                                            </ButtonBagAddition>
+                                        }
+                                        </div>
+                                    ) :
+                                        <p>oi</p>
+                                    }
                             </ProductSizeBagAddition>
                         </ProductInfoTop>
 
