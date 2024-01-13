@@ -190,19 +190,29 @@ const LinkLoginPage = styled.a`
     text-decoration: underline;
 `
 
+const Saved = styled.p`
+    font-size: 14px;
+    font-weight: bold;
+    color: green;
+    display: flex;
+    align-items: center;
+    gap: .5em;
+`
+
 export default function ProductDetail() {
     const { pk } = useParams()
     const { id } = useParams()
     const [product, setProduct] = useState([])
     const disqusShortname = "consigme-1"
     const [userLogadoUrl, setUserLogadoUrl] = useState('')
+    const [logado, setLogado] = useState(false)
     const [note, setNote] = useState("")
     const [productNote, setProductNote] = useState("")
     const [mediaNotes, setMediaNotes] = useState()
     
     const [bagId, setBagId] = useState("")
     const [products, setProducts] = useState("")
-    const [addBag, setAddBag] = useState(true)
+    const [addBag, setAddBag] = useState(false)
 
     const disqusConfig = {
       url: window.location.href,
@@ -218,7 +228,10 @@ export default function ProductDetail() {
             },
         }
         
-        axios.get('http://127.0.0.1:8000/userLogado/', config).then(response => setUserLogadoUrl(response.data[0].url)).catch(response => console.log(response)).catch(response => console.log(response))
+        axios.get('http://127.0.0.1:8000/userLogado/', config).then(response => {
+            setUserLogadoUrl(response.data[0].url)
+            setLogado(true)
+        }).catch(response => console.log(response)).catch(response => console.log(response))
         
         axios.get('http://127.0.0.1:8000/bag/', config).then(response => {
             setBagId(response.data[0].id)
@@ -226,7 +239,7 @@ export default function ProductDetail() {
         }).catch(response => console.log(response))
 
         if(products.includes(product.url)) {
-            setAddBag(false)
+            setAddBag(true)
         }
         
         axios.get(`http://127.0.0.1:8000/sacoleiras/${id}/products/${pk}`, config).then(response => {
@@ -239,7 +252,7 @@ export default function ProductDetail() {
             const soma = notes.reduce((acumulador, atual) => acumulador + atual, 0)
             setMediaNotes(soma/product.productnote_set.length)
         }
-    }, [addBag]) // colocar o id, comments e bag aqui
+    }, []) // colocar o id, comments e bag aqui
 
     function handleChangeInput(e) {
         setNote(e.target.value)
@@ -292,20 +305,18 @@ export default function ProductDetail() {
                             
                             <ProductSizeBagAddition>
                                 <p>Tamanho: {product.size}</p>
-                                    {userLogadoUrl? (
-                                        <div>
-                                        {addBag?
-                                            <p>Sinto Muito</p>
-                                        :
-                                            <ButtonBagAddition>
-                                                <i className="fa-solid fa-cart-shopping"></i>
-                                                <p onClick={handleSavedProduct}>Salvar produto</p>
-                                            </ButtonBagAddition>
-                                        }
-                                        </div>
-                                    ) :
-                                        <p>oi</p>
-                                    }
+
+                                {addBag?
+                                    <Saved>
+                                        Produto salvo
+                                        <i className="fa-solid fa-check"></i>
+                                    </Saved>
+                                :
+                                    <ButtonBagAddition>
+                                        <i className="fa-solid fa-bookmark"></i>
+                                        <p onClick={handleSavedProduct}>Salvar produto</p>
+                                    </ButtonBagAddition>
+                                }                        
                             </ProductSizeBagAddition>
                         </ProductInfoTop>
 
@@ -314,7 +325,7 @@ export default function ProductDetail() {
                             <ButtonBuyProduct>Comprar Produto</ButtonBuyProduct>
                             <LinkSeeComments href={`http://localhost:3000/sacoleiras/${id}/products/${pk}#disqus_thread`}>Ver comentários</LinkSeeComments>
                             
-                            {userLogadoUrl? 
+                            {logado? 
                                 <FormProductNote onSubmit={handleSubmitProductNote}>
                                     <InputProductNote value={note} onChange={handleChangeInput} type="number" min='1' max='5' placeholder="dê uma nota a este produto" />
                                     <ButtonProductNote>enviar</ButtonProductNote>
@@ -323,17 +334,21 @@ export default function ProductDetail() {
                                 <LinkLoginPage href="/login">faça login para avaliar este produto</LinkLoginPage>    
                             }
 
-                            {mediaNotes? 
-                                <p className='note-product'>
-                                    <span>
-                                        {mediaNotes.toFixed(1)}
-                                        <i class="fa-solid fa-star"></i>
-                                    </span>
-                                    <small>({productNote.length} avaliações)</small>
-                                </p> 
-                            :
-                                <p className='note-product'>Nenhuma avaliação</p>
-                            }
+                            <div>
+                                {mediaNotes? 
+                                    <p className='note-product'>
+                                        <span>
+                                            {mediaNotes.toFixed(1)}
+                                            <i className="fa-solid fa-star"></i>
+                                        </span>
+                                        <small>({productNote.length} avaliações)</small>
+                                    </p> 
+                                :
+                                    <p className='note-product'>Nenhuma avaliação</p>
+                                }
+
+                                <p>Vendido por: daniel</p>
+                            </div>
                         </ProductInfoBottom>
                     </ProductInfo>
                 </ProductStyle>

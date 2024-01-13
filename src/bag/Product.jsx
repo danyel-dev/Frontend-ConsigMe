@@ -1,8 +1,10 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
+import './product.css'
 
-export default function Product({productURL}) {
-    const [product, setProduct] = useState({})
+
+export default function Product({productURL, idBag}) {
+    const [product, setProduct] = useState("")
 
     useEffect(() => {
         const config = {
@@ -12,29 +14,40 @@ export default function Product({productURL}) {
             }
         }
 
-        axios.get(productURL, config).then(response => setProduct(response.data))
-    }, [])
+        axios.get(productURL, config).then(response => {
+            setProduct(response.data)
+        })
+    }, [product])
 
-    return (
-        <div className="flex items-center gap-2">
-            <img src={product.image} alt={product.name} className="w-20 h-20" />
+    function handleRemovedProduct() {
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "token " + localStorage.getItem("token")
+            }
+        }
 
-            <div className="flex flex-col justify-between gap-2">
-                <div> 
-                    <h1 className="text-sm leading-tight">{product.name}</h1>
-                </div>
+        axios.get(`http://127.0.0.1:8000/bag/${idBag}/`, config)
+        .then(response => {
+            var arr = response.data.products.filter(item => item !== productURL)
+        
+            axios.patch(`http://127.0.0.1:8000/bag/${idBag}/`, {"products": arr}, config).then(response => setProduct(response.data))
+        })
+    }
 
+
+    return (    
+        <div className="bag-product">
+            <img src={product.image} alt={product.name} className="bag-product-image" />
+
+            <div className="bag-product-body">
                 <div>
-                    <small className="block">Tam: <span>{product.size}</span></small>
-                   
-                    <small className="block">Quant: <span>3</span></small>
-                </div>
-
-                <div className="flex justify-between">
-                    <h1 className="font-bold">R$ {product.value}</h1>
-                   
-                    <small className="text-xs cursor-pointer bg-red-600 rounded-xl text-white pt-1 pb-1 pl-2 pr-2 font-bold">Deletar</small>
-                </div>
+                    <p className="product-name">{product.name}</p>
+                    <small>Tam: <span>{product.size}</span></small>
+                    <h1>R$ {product.value}</h1>
+                </div>                
+                
+                <small className="product-button" onClick={handleRemovedProduct}>Remover da lista</small>
             </div>
         </div>
     )    

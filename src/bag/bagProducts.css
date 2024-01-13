@@ -1,0 +1,7 @@
+.bag {
+    width: 80%;
+    margin: 150px auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 100px;
+}
