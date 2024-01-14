@@ -18,9 +18,7 @@ export default function AddProduct() {
             }
         }
 
-        axios.get('http://127.0.0.1:8000/userLogado/', config).then(response => {
-            setUserURL(`http://127.0.0.1:8000/profile/${response.data[0].sacoleira}/`)
-
+        axios.get('http://127.0.0.1:8000/userLogadoProfile/', config).then(response => {
             if(response.data[0].profile == null)
                 setAccessAllowed(false)
             else 

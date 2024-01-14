@@ -17,7 +17,7 @@ export default function Product({productURL, idBag}) {
         axios.get(productURL, config).then(response => {
             setProduct(response.data)
         })
-    }, [product])
+    }, [product, setProduct, productURL])
 
     function handleRemovedProduct() {
         const config = {
