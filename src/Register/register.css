@@ -9,7 +9,7 @@
     display: flex;
     flex-direction: column;
     gap: 1.2em;
-    width: max-content;
+    width: 450px;
     padding: 20px;
     border-radius: 3px;
     background-color: whitesmoke;
@@ -17,8 +17,9 @@
 }
 
 .formRegister h2 {
-    color: rgb(67, 161, 199);
-    margin-bottom: 20px;
+    color: rgb(56, 128, 156);
+    margin-bottom: 10px;
+    font-weight: bold;
 }
 
 .formRegister div.fullname {
@@ -39,22 +40,25 @@
 }
 
 div.iconInput i {
-    position: absolute;
-    top: 12px;
-    left: 12px;
     font-size: 14px;
+    position: absolute;
+    top: 10px;
+    left: 12px;
+    color: rgba(0, 0, 0, 0.6);
 }
 
 div.iconInput:hover i.iconColor {
     color: rgba(0, 47, 255, 0.712) !important;
+    transition: .8s all ease;
 }
 
 .inputForm, .inputFormError {
-    padding: 12px 12px 12px 35px; 
+    font-size: 12px;
+    padding: 8px 12px 8px 33px; 
     border-radius: 2px;
     width: 100%;
     background-color: white;
-    transition: .3s all ease;
+    transition: .8s all ease;
 }
 
 .inputForm {
@@ -87,13 +91,13 @@ div.iconInput:hover i.iconColor {
 }
 
 .formRegister button {
+    font-size: 14px;
     background-color: green;
     color: white;
-    padding: 10px 20px;
+    padding: 4px 20px;
     font-weight: bold;
-    width: max-content;
+    width: 100%;
     margin: 0 auto;
-    border-radius: 30px;
     cursor: pointer;
     transition: .3s all ease;
 }
@@ -110,14 +114,13 @@ div.iconInput:hover i.iconColor {
 }
 
 .formRegister a {
-    color: rgb(77, 77, 209);
+    color: rgb(69, 69, 156);
     cursor: pointer;
-    transition: .2s all ease;
+    transition: .4s all ease;
 }
 
 .formRegister a:hover {
     color: rgb(115, 115, 233);
-    text-decoration: underline;
 }
 
 @media(max-width: 300px) {

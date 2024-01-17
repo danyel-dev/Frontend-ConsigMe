@@ -41,7 +41,6 @@ export default function Register() {
         }
     })
 
-
     function handleSubmitForm(e) {
         e.preventDefault()
         
@@ -76,7 +75,7 @@ export default function Register() {
                             <input
                                 className="inputForm"
                                 type="text"
-                                placeholder="Nome"
+                                placeholder="Nome *"
                                 onChange={useForm.handleChangeForm}
                                 value={useForm.values.first_name}
                                 name="firstname"
@@ -89,7 +88,7 @@ export default function Register() {
                             <input 
                                 className='inputForm'
                                 type="text"
-                                placeholder="Sobrenome"
+                                placeholder="Sobrenome *"
                                 onChange={useForm.handleChangeForm}
                                 value={useForm.values.last_name}
                                 name="lastname"
