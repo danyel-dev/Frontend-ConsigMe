@@ -10,6 +10,12 @@
     --purple-lighter: #9d55cd;
 }
 
+.logo {
+    color: rgba(0, 0, 0, .75);
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
 .mainComponent {
     background-color: var(--white-background);
     width: 100%;
@@ -18,7 +24,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1.3em;   
+    gap: 1em;   
 }
 
 .registerSuccess {
@@ -58,8 +64,8 @@
 .formInput {
     border: 1px solid var(--border-input-black);
     border-radius: 5px;
-    padding: 10px;
-    font-size: 14px;
+    padding: 8px 10px;
+    font-size: 12px;
     transition: 0.3s all ease-in;
     width: 100%;
     background-color: whitesmoke;
@@ -77,15 +83,21 @@
 
 .smallForgotPassword {
     margin: 3px 5px 0 0;
+    font-size: 12px;
+    color: rgb(44, 44, 189);
+}
+
+.smallForgotPassword:hover {
+    text-decoration: underline;
 }
 
 .formButtonSubmit {
-    font-size: 14px;
+    font-size: 12px;
     border-radius: 5px;
     background-color: var(--purple-bold);
     font-weight: bold;
     color: white;
-    padding: 8px 0;
+    padding: 6px 0;
     cursor: pointer;
     margin-top: .5em;
     transition: .3s all ease-in;
@@ -96,17 +108,25 @@
 }
 
 .mainSmallToRegister {
-    margin-top: 1em;
-    padding: 10px 20px;
-    border: 1px solid var(--border-small-black);
+    padding: 8px 20px;
     border-radius: 3px;
     text-align: center;
+    border: 1px solid #9d55cd8f;
+    line-height: 17px;
+    margin: 10px 5px 0 5px;
 }
 
+.mainSmallToRegister a {
+    color: var(--purple-bold);
+}
+
+.mainSmallToRegister a:hover {
+    text-decoration: underline;
+}
 
 @media(max-width: 350px) {
     .formLogin {
         width: 100%;
-        padding: 10px;
+        padding: 0 5px;
     }
 }

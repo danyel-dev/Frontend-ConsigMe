@@ -40,7 +40,7 @@ export default function Login({register}) {
                 : ""
                 }
                     
-                <h1>ConsigMe</h1>
+                <h1 className={styles.logo}>ConsigMe</h1>
                 
                 {messageError? 
                     <div className={styles.messageError}>
@@ -77,7 +77,7 @@ export default function Login({register}) {
                 </form>
 
                 <small className={styles.mainSmallToRegister}>Ainda não possui uma conta? 
-                    <a href="/register"> Crie uma</a>
+                    <a href="/register"> Então crie uma!</a>
                 </small>
             </main>
         ); 
