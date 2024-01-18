@@ -28,6 +28,7 @@
 .menu {
     list-style: none;
     display: flex;
+    align-items: center;
     gap: 2rem;
 }
 
@@ -40,6 +41,31 @@
     transition: .2s all ease-in;
 }
 
+.user {
+    font-size: 16px;
+    padding: 3px 10px;
+    text-transform: uppercase;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: .2s all ease-in;
+    position: relative;
+}
+
+.user:hover {
+    background-color: #1465bb;
+}
+
+.modalProfile {
+    width: 200px;
+    height: 200px;
+    opacity: 0;
+    background-color: rgb(144, 94, 190);
+    position: absolute;
+    right: -20px;
+    top: 30px;
+    border-radius: 3px;
+}
+
 .menuItem:hover {
     background-color: #1465bb;
 }
@@ -47,6 +73,7 @@
 .menuOpen {
     list-style: none;
     display: flex;
+    align-items: center;
     gap: 2rem;
 }
 
@@ -78,6 +105,20 @@
 
     .menuItem {
         border-bottom: 1px solid #1465bb;
+    }
+
+    .user {
+        border-bottom: 1px solid #1465bb;
+    }
+
+    .modalProfile {
+        width: 200px;
+        height: 200px;
+        background-color: blueviolet;
+        position: absolute;
+        right: -80px;
+        top: 30px;
+        border-radius: 3px;
     }
 
     .btnButton {

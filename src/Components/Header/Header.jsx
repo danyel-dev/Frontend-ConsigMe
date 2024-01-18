@@ -20,6 +20,15 @@ export default function Header() {
         setToken(localStorage.getItem('token'))
     }
 
+    function handleChangeModal() {
+        let elemento = document.querySelector('#modalProfile')
+        
+        if(elemento.style.opacity == 0)
+            elemento.style.opacity = 1
+        else 
+            elemento.style.opacity = 0
+    }
+
     return(
         <header className={styles.header}>
             <a className={styles.logo} href="/">ConsigMe</a>
@@ -33,9 +42,15 @@ export default function Header() {
                         <li className={styles.menuItem}><a className={styles.linkMenu} href="/#about">About</a></li>
                         <li className={styles.menuItem}><a className={styles.linkMenu} href="/#contact">Contato</a></li>
                         
-                        {token ? 
-                            <li className={styles.menuItem}><a onClick={handleLogout}>Sair</a></li>:
+                        {token? 
+                            <li>
+                                <i className="fa-solid fa-user"></i>
 
+                                <div className={styles.modalProfile}>
+
+                                </div>
+                            </li>
+                            :
                             <li className={styles.menuItem}><a href='/login'>Entrar</a></li>
                         }
                     </ul>
@@ -45,9 +60,15 @@ export default function Header() {
                         <li className={styles.menuItem}><a className={styles.linkMenu} href="/#about">About</a></li>
                         <li className={styles.menuItem}><a className={styles.linkMenu} href="/#contact">Contato</a></li>
                         
-                        {token ? 
-                            <li className={styles.menuItem}><a onClick={handleLogout}>Sair</a></li>:
+                        {token? 
+                            <li className={styles.user} onClick={handleChangeModal}>
+                                <i className="fa-solid fa-user"></i>
 
+                                <div className={styles.modalProfile} id='modalProfile'>
+
+                                </div>
+                            </li>
+                            :
                             <li className={styles.menuItem}><a href='/login'>Entrar</a></li>
                         }
                     </ul>
