@@ -232,27 +232,24 @@ export default function ProductDetail() {
             setUserLogadoUrl(response.data[0].url)
             setLogado(true)
         }).catch(response => console.log(response)).catch(response => console.log(response))
-        
-        axios.get('http://127.0.0.1:8000/bag/', config).then(response => {
-            setBagId(response.data[0].id)
-            setProducts(response.data[0].products)
-        }).catch(response => console.log(response))
 
-        if(products.includes(product.url)) {
-            setAddBag(true)
-        }
-        
         axios.get(`http://127.0.0.1:8000/sacoleiras/${id}/products/${pk}`, config).then(response => {
             setProduct(response.data)
             setProductNote(response.data.productnote_set)
         })
 
+        axios.get('http://127.0.0.1:8000/bag/', config).then(response => {
+            setBagId(response.data[0].id)
+            setProducts(response.data[0].products)
+            setAddBag(response.data[0].products.includes(product.url))
+        }).catch(response => console.log(response))    
+        
         if(productNote.length > 0) {
             const notes = productNote.map(item => item.note)
             const soma = notes.reduce((acumulador, atual) => acumulador + atual, 0)
             setMediaNotes(soma/product.productnote_set.length)
         }
-    }, []) // colocar o id, comments e bag aqui
+    }, [products]) // colocar o id, comments e bag aqui
 
     function handleChangeInput(e) {
         setNote(e.target.value)
@@ -284,8 +281,8 @@ export default function ProductDetail() {
                 "Authorization": "Token " + localStorage.getItem('token')
             },
         }
-
-        axios.patch(`http://127.0.0.1:8000/bag/${bagId}/`, {products: [...products, product.url]}, config).then(response => console.log(response))
+        
+        axios.patch(`http://127.0.0.1:8000/bag/${bagId}/`, {products: [...products, product.url]}, config).then(response => setAddBag(true))
     }
 
     return (
@@ -295,34 +292,32 @@ export default function ProductDetail() {
             <MainProduct>
                 <ProductStyle>
                     <ImageProduct src={product.image} alt={product.name} />
-
+                    
                     <ProductInfo>
                         <ProductInfoTop>
                             <ProductNameDescription>
                                 <ProductTitle>{product.name}</ProductTitle>
                                 <ProductDescription>{product.description}</ProductDescription>
                             </ProductNameDescription>
-                            
-                            <ProductSizeBagAddition>
-                                <p>Tamanho: {product.size}</p>
-
-                                {addBag?
-                                    <Saved>
-                                        Produto salvo
-                                        <i className="fa-solid fa-check"></i>
-                                    </Saved>
-                                :
-                                    <ButtonBagAddition>
-                                        <i className="fa-solid fa-bookmark"></i>
-                                        <p onClick={handleSavedProduct}>Salvar produto</p>
-                                    </ButtonBagAddition>
-                                }                        
-                            </ProductSizeBagAddition>
+            
+                            <p>Tamanho: {product.size}</p>                        
                         </ProductInfoTop>
 
                         <ProductInfoBottom>
                             <ValueProduct>R$ {product.value}</ValueProduct>
-                            <ButtonBuyProduct>Comprar Produto</ButtonBuyProduct>
+                            
+                            {addBag?
+                                <Saved>
+                                    Produto salvo
+                                    <i className="fa-solid fa-check"></i>
+                                </Saved>
+                            :
+                                <ButtonBagAddition>
+                                    <i className="fa-solid fa-bookmark"></i>
+                                    <p onClick={handleSavedProduct}>Salvar produto</p>
+                                </ButtonBagAddition>
+                            }
+
                             <LinkSeeComments href={`http://localhost:3000/sacoleiras/${id}/products/${pk}#disqus_thread`}>Ver comentários</LinkSeeComments>
                             
                             {logado? 
@@ -346,8 +341,6 @@ export default function ProductDetail() {
                                 :
                                     <p className='note-product'>Nenhuma avaliação</p>
                                 }
-
-                                <p>Vendido por: daniel</p>
                             </div>
                         </ProductInfoBottom>
                     </ProductInfo>

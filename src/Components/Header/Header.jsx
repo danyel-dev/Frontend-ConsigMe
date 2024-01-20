@@ -4,7 +4,6 @@ import styles from './header.module.css'
 
 export default function Header() {
     const [toggleMenu, setToggleMenu] = useState(false)
-    
     const [token, setToken] = useState('')    
 
     useEffect(() => {
