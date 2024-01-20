@@ -58,7 +58,7 @@
 .modalProfile {
     width: 200px;
     height: 200px;
-    opacity: 0;
+    display: none;
     background-color: rgb(144, 94, 190);
     position: absolute;
     right: -20px;

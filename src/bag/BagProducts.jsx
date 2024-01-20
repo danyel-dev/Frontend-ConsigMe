@@ -36,7 +36,7 @@ export default function Bag() {
                 {/* <p>Quantidade de Items: {bagProducts.length}</p> */}
             
                 {bagProducts.map(product => 
-                    <Product key={uuidv4()} productURL={product} idBag={idBag} />  
+                    <Product key={uuidv4()} productURL={product} idBag={idBag} setBagProducts={setBagProducts} />  
                 )}
             </main>
 

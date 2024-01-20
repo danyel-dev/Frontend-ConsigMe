@@ -1,13 +1,27 @@
 import { useEffect, useState } from 'react';
 import styles from './header.module.css'
+import axios from 'axios';
 
 
 export default function Header() {
     const [toggleMenu, setToggleMenu] = useState(false)
     const [token, setToken] = useState('')    
+    const [haveProfile, setHaveProfile] = useState(false)
 
     useEffect(() => {
         setToken(localStorage.getItem('token'))
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Token " + localStorage.getItem('token')
+            },
+        }
+        
+        axios.get('http://127.0.0.1:8000/profileverify/', config).then(response => {
+            setHaveProfile(response.data[0].HaveProfile)
+            console.log(response.data[0].HaveProfile)
+        }).catch(response => console.log(response))
     }, [])
 
     function handleToggleMenu() {
@@ -22,10 +36,10 @@ export default function Header() {
     function handleChangeModal() {
         let elemento = document.querySelector('#modalProfile')
         
-        if(elemento.style.opacity == 0)
-            elemento.style.opacity = 1
+        if(elemento.style.display == 'none')
+            elemento.style.display = 'block'
         else 
-            elemento.style.opacity = 0
+            elemento.style.display = 'none'
     }
 
     return(
@@ -43,11 +57,19 @@ export default function Header() {
                         
                         {token? 
                             <li>
-                                <i className="fa-solid fa-user"></i>
 
-                                <div className={styles.modalProfile}>
+                                {haveProfile?
+                                    <div>
+                                        <i className="fa-solid fa-user"></i>
+                                        
+                                        <div className={styles.modalProfile}>
+                                            Sair
+                                        </div>
+                                    </div>
+                                :
+                                    <p>Sair</p>
+                                }
 
-                                </div>
                             </li>
                             :
                             <li className={styles.menuItem}><a href='/login'>Entrar</a></li>
@@ -61,11 +83,16 @@ export default function Header() {
                         
                         {token? 
                             <li className={styles.user} onClick={handleChangeModal}>
-                                <i className="fa-solid fa-user"></i>
+                                {haveProfile? 
+                                    <div>
+                                        <i className="fa-solid fa-user"></i>
 
-                                <div className={styles.modalProfile} id='modalProfile'>
-
-                                </div>
+                                        <div className={styles.modalProfile} id='modalProfile'>
+                                        </div>
+                                    </div>
+                                :
+                                    <p>Sair</p>
+                                }
                             </li>
                             :
                             <li className={styles.menuItem}><a href='/login'>Entrar</a></li>

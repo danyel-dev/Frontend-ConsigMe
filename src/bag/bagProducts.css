@@ -1,7 +1,19 @@
 .bag {
-    width: 80%;
+    width: 90%;
     margin: 150px auto;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 100px;
+    gap: 50px;
+}
+
+@media(max-width: 1160px) {
+    .bag {
+        grid-template-columns: 1fr 1fr;
+    }   
+}
+
+@media(max-width: 1160px) {
+    .bag {
+        grid-template-columns: 1fr;
+    }   
 }

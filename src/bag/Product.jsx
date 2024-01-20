@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import './product.css'
 
 
-export default function Product({productURL, idBag}) {
+export default function Product({productURL, idBag, setBagProducts}) {
     const [product, setProduct] = useState("")
 
     useEffect(() => {
@@ -17,7 +17,7 @@ export default function Product({productURL, idBag}) {
         axios.get(productURL, config).then(response => {
             setProduct(response.data)
         })
-    }, [product, setProduct, productURL])
+    }, [])
 
     function handleRemovedProduct() {
         const config = {
@@ -31,7 +31,11 @@ export default function Product({productURL, idBag}) {
         .then(response => {
             var arr = response.data.products.filter(item => item !== productURL)
         
-            axios.patch(`http://127.0.0.1:8000/bag/${idBag}/`, {"products": arr}, config).then(response => setProduct(response.data))
+            axios.patch(`http://127.0.0.1:8000/bag/${idBag}/`, {"products": arr}, config).then(response => {
+                setProduct(response.data)
+                setBagProducts(response.data.products)
+                alert('Produto removido!')
+            })
         })
     }
 
