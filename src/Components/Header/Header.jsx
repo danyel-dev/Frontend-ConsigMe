@@ -7,6 +7,8 @@ export default function Header() {
     const [toggleMenu, setToggleMenu] = useState(false)
     const [token, setToken] = useState('')    
     const [haveProfile, setHaveProfile] = useState(false)
+    const [profile, setProfile] = useState({})
+
 
     useEffect(() => {
         setToken(localStorage.getItem('token'))
@@ -20,7 +22,12 @@ export default function Header() {
         
         axios.get('http://127.0.0.1:8000/profileverify/', config).then(response => {
             setHaveProfile(response.data[0].HaveProfile)
-            console.log(response.data[0].HaveProfile)
+            
+            if(response.data[0].HaveProfile) {
+                axios.get('http://127.0.0.1:8000/profile/', config).then(
+                    response => setProfile(response.data[0])
+                )
+            }
         }).catch(response => console.log(response))
     }, [])
 
@@ -28,16 +35,16 @@ export default function Header() {
         setToggleMenu(!toggleMenu)
     }
 
-    function handleLogout() {
-        localStorage.removeItem('token')
-        setToken(localStorage.getItem('token'))
-    }
+    // function handleLogout() {
+    //     localStorage.removeItem('token')
+    //     setToken(localStorage.getItem('token'))
+    // }
 
     function handleChangeModal() {
         let elemento = document.querySelector('#modalProfile')
         
-        if(elemento.style.display == 'none')
-            elemento.style.display = 'block'
+        if(elemento.style.display === 'none')
+            elemento.style.display = 'flex'
         else 
             elemento.style.display = 'none'
     }
@@ -57,7 +64,6 @@ export default function Header() {
                         
                         {token? 
                             <li>
-
                                 {haveProfile?
                                     <div>
                                         <i className="fa-solid fa-user"></i>
@@ -69,7 +75,6 @@ export default function Header() {
                                 :
                                     <p>Sair</p>
                                 }
-
                             </li>
                             :
                             <li className={styles.menuItem}><a href='/login'>Entrar</a></li>
@@ -82,12 +87,23 @@ export default function Header() {
                         <li className={styles.menuItem}><a className={styles.linkMenu} href="/#contact">Contato</a></li>
                         
                         {token? 
-                            <li className={styles.user} onClick={handleChangeModal}>
+                            <li className={styles.ItemUser}>
                                 {haveProfile? 
                                     <div>
-                                        <i className="fa-solid fa-user"></i>
+                                        <i id={styles.faUser} className="fa-solid fa-user" onClick={handleChangeModal}></i>
 
                                         <div className={styles.modalProfile} id='modalProfile'>
+                                            <div className={styles.profileTop}>
+                                                <img className={styles.profileImage} src={profile.image} />
+                                                <p className={styles.profileName}>{profile.name}</p>
+                                            </div>
+
+                                            <div className={styles.profileLinks}>
+                                                <a href="#">Acessar Perfil</a>
+                                                <a href="#">Meus produtos</a>
+                                            </div>
+
+                                            <button className={styles.buttonLogout}>Sair <i class="fa-solid fa-right-from-bracket"></i></button>
                                         </div>
                                     </div>
                                 :

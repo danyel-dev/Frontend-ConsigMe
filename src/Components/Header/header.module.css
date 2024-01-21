@@ -41,29 +41,84 @@
     transition: .2s all ease-in;
 }
 
-.user {
-    font-size: 16px;
-    padding: 3px 10px;
-    text-transform: uppercase;
-    border-radius: 2px;
-    cursor: pointer;
-    transition: .2s all ease-in;
+.ItemUser {
     position: relative;
 }
 
-.user:hover {
+#faUser {
+    font-size: 16px;
+    padding: 4px 10px;
+    border-radius: 2px;
+    transition: .2s all ease-in;
+    cursor: pointer;
+}
+
+#faUser:hover {
     background-color: #1465bb;
 }
 
 .modalProfile {
     width: 200px;
-    height: 200px;
-    display: none;
-    background-color: rgb(144, 94, 190);
+    height: max-content;
+    display: flex;
+    gap: 1em;
+    padding: 10px;
+    background-color: rgb(93, 52, 117);
     position: absolute;
+    flex-direction: column;
+    justify-content: space-between;
     right: -20px;
-    top: 30px;
+    top: 35px;
     border-radius: 3px;
+}
+
+.profileTop {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .5em;
+}
+
+.profileLinks {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    padding: 5px;
+    border: 5px;
+}
+
+.profileLinks a {
+    text-transform: capitalize;
+    font-size: 12px;
+    border-radius: 3px;
+    text-align: center;
+    line-height: 14px;
+    background-color: white;
+    padding: 2px 5px;
+    color: blueviolet;
+    font-weight: bold;
+}
+
+.profileImage {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+.profileName {
+    text-transform: capitalize;
+    color: whitesmoke;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.buttonLogout {
+    background-color: rgb(226, 34, 34);
+    font-size: 12px;
+    padding: 2px;
+    color: white;
+    font-weight: bold;
+    border-radius: 2px;
 }
 
 .menuItem:hover {
