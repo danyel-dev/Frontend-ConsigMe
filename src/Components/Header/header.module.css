@@ -65,7 +65,7 @@
 
 .modalProfile {
     width: 200px;
-    height: 500px;
+    height: max-content;
     display: none;
     gap: 1em;
     padding: 10px;

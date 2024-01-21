@@ -70,7 +70,7 @@ export default function Header() {
 
                                         <div className={styles.modalProfile} id='modalProfile'>
                                             <div className={styles.profileTop}>
-                                                <img className={styles.profileImage} src={profile.image} />
+                                                <img className={styles.profileImage} src={profile.image} alt='profile.name' />
                                                 <p className={styles.profileName}>{profile.name}</p>
                                             </div>
 
@@ -111,7 +111,7 @@ export default function Header() {
 
                                         <div className={styles.modalProfile} id='modalProfile'>
                                             <div className={styles.profileTop}>
-                                                <img className={styles.profileImage} src={profile.image} />
+                                                <img className={styles.profileImage} src={profile.image} alt={profile.name} />
                                                 <p className={styles.profileName}>{profile.name}</p>
                                             </div>
 

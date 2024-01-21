@@ -15,7 +15,7 @@ const SacoleiraPerfil = styled.div`
     display: flex;
     align-items:center;
     gap: 1.5em;
-    margin: 50px 0; 
+    margin-top: 50px;
 
     @media(max-width: 370px) {
         flex-direction: column;
@@ -165,9 +165,20 @@ export default function ListProducts() {
                         <SacoleiraInfoEmail>e-mail: mariasilva87@gmail.com</SacoleiraInfoEmail>
                     </SacoleiraInfos>
                 </SacoleiraPerfil>
+                
+                <div className={styles.evaluateDealer}>
+                    <button className={styles.evaluateDealerTitle}>Avaliar revendedor</button>
+
+                    <form className={styles.evaluateDealerForm}>
+                        <input type="number" className={styles.evaluateDealerField} min='1' max='5' placeholder='Nota de 1 a 5' />
+                        <textarea placeholder='Comentário' cols="20" rows="5" className={styles.evaluateDealerField}></textarea>
+                    </form>
+
+                    <button className={styles.evaluateDealerButton}>Enviar</button>
+                </div>
 
                 <form className={styles.formSearchProduct} onSubmit={handleSubmitSearchProducts}>
-                    <input type="text" placeholder='Pesquise por um produto aqui' value={search} onChange={handleChangeInputSearch}  />
+                    <input type="text" placeholder='Pesquise por um produto aqui' value={search} onChange={handleChangeInputSearch} />
                     <i className="fa-solid fa-magnifying-glass"></i>
                 </form>
                 
