@@ -35,10 +35,10 @@ export default function Header() {
         setToggleMenu(!toggleMenu)
     }
 
-    // function handleLogout() {
-    //     localStorage.removeItem('token')
-    //     setToken(localStorage.getItem('token'))
-    // }
+    function handleLogout() {
+        localStorage.removeItem('token')
+        setToken(localStorage.getItem('token'))
+    }
 
     function handleChangeModal() {
         let elemento = document.querySelector('#modalProfile')
@@ -99,15 +99,15 @@ export default function Header() {
                                             </div>
 
                                             <div className={styles.profileLinks}>
-                                                <a href="#">Acessar Perfil</a>
-                                                <a href="#">Meus produtos</a>
+                                                <a href={`/profileDetail/${profile.id}`}>Acessar Perfil</a>
+                                                <a href={`/sacoleiras/${profile.id}/products`}>Meus produtos</a>
                                             </div>
 
-                                            <button className={styles.buttonLogout}>Sair <i class="fa-solid fa-right-from-bracket"></i></button>
+                                            <button onClick={handleLogout} className={styles.buttonLogout}>Sair <i class="fa-solid fa-right-from-bracket"></i></button>
                                         </div>
                                     </div>
                                 :
-                                    <p>Sair</p>
+                                    <p>Entrar</p>
                                 }
                             </li>
                             :

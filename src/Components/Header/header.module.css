@@ -99,6 +99,22 @@
     font-weight: bold;
 }
 
+.profileLinks a {
+    text-transform: capitalize;
+    font-size: 12px;
+    border-radius: 3px;
+    text-align: center;
+    line-height: 14px;
+    padding: 2px 5px;
+    color: blueviolet;
+    font-weight: bold;
+    transition: .2s all ease-in;
+}
+
+.profileLinks a:hover {
+    background-color: whitesmoke;
+}
+
 .profileImage {
     width: 70px;
     height: 70px;
@@ -113,12 +129,17 @@
 }
 
 .buttonLogout {
-    background-color: rgb(226, 34, 34);
+    background-color: rgb(192, 16, 16);
     font-size: 12px;
     padding: 2px;
     color: white;
     font-weight: bold;
     border-radius: 2px;
+    transition: .2s all ease-in;
+}
+
+.buttonLogout:hover {
+    background-color: rgb(226, 34, 34);
 }
 
 .menuItem:hover {
