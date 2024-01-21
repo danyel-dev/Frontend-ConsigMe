@@ -32,13 +32,15 @@ export default function Bag() {
         <>
             <Header color={"rgb(63, 43, 83)"} />
             
-            <main className='bag'>
-                {/* <p>Quantidade de Items: {bagProducts.length}</p> */}
-            
-                {bagProducts.map(product => 
-                    <Product key={uuidv4()} productURL={product} idBag={idBag} setBagProducts={setBagProducts} />  
-                )}
-            </main>
+            <div className='bagProducts'>
+                <p className='numberProducts'>Quantidade de Items: {bagProducts.length}</p>
+                
+                <main className='bag'>
+                    {bagProducts.map(product => 
+                        <Product key={uuidv4()} productURL={product} idBag={idBag} setBagProducts={setBagProducts} />  
+                        )}
+                </main>
+            </div>
 
             <Footer />            
         </>

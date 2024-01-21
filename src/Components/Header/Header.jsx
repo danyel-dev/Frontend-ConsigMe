@@ -63,17 +63,34 @@ export default function Header() {
                         <li className={styles.menuItem}><a className={styles.linkMenu} href="/#contact">Contato</a></li>
                         
                         {token? 
-                            <li>
-                                {haveProfile?
+                            <li className={styles.ItemUser}>
+                                {haveProfile? 
                                     <div>
-                                        <i className="fa-solid fa-user"></i>
-                                        
-                                        <div className={styles.modalProfile}>
-                                            Sair
+                                        <i id={styles.faUser} className="fa-solid fa-user" onClick={handleChangeModal}></i>
+
+                                        <div className={styles.modalProfile} id='modalProfile'>
+                                            <div className={styles.profileTop}>
+                                                <img className={styles.profileImage} src={profile.image} />
+                                                <p className={styles.profileName}>{profile.name}</p>
+                                            </div>
+
+                                            <div className={styles.profileLinks}>
+                                                <a href={`/profileDetail/${profile.id}`}>Acessar Perfil</a>
+                                                <a href={`/sacoleiras/${profile.id}/products`}>Meus produtos</a>
+                                            </div>
+
+                                            <a href="/login" onClick={handleLogout} className={styles.linkLogout}>
+                                                Sair 
+                                                <i class="fa-solid fa-right-from-bracket"></i>
+                                            </a>
                                         </div>
                                     </div>
                                 :
-                                    <p>Sair</p>
+                                    <div className={styles.divLogout}>
+                                        <li className={styles.menuItem}><a className={styles.linkMenu} href="/bag">produtos salvos</a></li>
+
+                                        <li className={styles.menuItem}><a className={styles.linkMenu} onClick={handleLogout} href="/login">sair</a></li>
+                                    </div>
                                 }
                             </li>
                             :
@@ -103,11 +120,18 @@ export default function Header() {
                                                 <a href={`/sacoleiras/${profile.id}/products`}>Meus produtos</a>
                                             </div>
 
-                                            <button onClick={handleLogout} className={styles.buttonLogout}>Sair <i class="fa-solid fa-right-from-bracket"></i></button>
+                                            <a href="/login" onClick={handleLogout} className={styles.linkLogout}>
+                                                Sair 
+                                                <i class="fa-solid fa-right-from-bracket"></i>
+                                            </a>
                                         </div>
                                     </div>
                                 :
-                                    <p>Entrar</p>
+                                    <div className={styles.divLogout}>
+                                        <li className={styles.menuItem}><a className={styles.linkMenu} href="/bag">produtos salvos</a></li>
+
+                                        <li className={styles.menuItem}><a className={styles.linkMenu} onClick={handleLogout} href="/login">sair</a></li>
+                                    </div>
                                 }
                             </li>
                             :

@@ -1,6 +1,16 @@
-.bag {
+.bagProducts {
     width: 90%;
-    margin: 150px auto;
+    display: flex;
+    gap: 4em;
+    margin: 135px auto;
+    flex-direction: column;
+}
+
+.numberProducts {
+    text-align: center;
+}
+
+.bag {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 50px;

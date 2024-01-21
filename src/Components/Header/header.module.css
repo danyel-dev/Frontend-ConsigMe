@@ -57,10 +57,16 @@
     background-color: #1465bb;
 }
 
+.divLogout {
+    display: flex;
+    gap: 2em;
+    text-align: center;
+}
+
 .modalProfile {
     width: 200px;
-    height: max-content;
-    display: flex;
+    height: 500px;
+    display: none;
     gap: 1em;
     padding: 10px;
     background-color: rgb(93, 52, 117);
@@ -128,18 +134,22 @@
     font-size: 14px;
 }
 
-.buttonLogout {
-    background-color: rgb(192, 16, 16);
+.linkLogout {
+    width: max-content;
+    background-color: rgb(226, 34, 34);
     font-size: 12px;
-    padding: 2px;
+    padding: 2px 10px;
+    display: flex;
+    gap: 4px;
+    align-items: center;
     color: white;
     font-weight: bold;
     border-radius: 2px;
     transition: .2s all ease-in;
 }
 
-.buttonLogout:hover {
-    background-color: rgb(226, 34, 34);
+.linkLogout:hover {
+    background-color: rgb(192, 16, 16);
 }
 
 .menuItem:hover {
@@ -158,6 +168,10 @@
 } 
  
 @media(max-width: 600px) {
+    .divLogout {
+        flex-direction: column;
+    }
+
     .header {
         padding: 10px 30px;
     }
