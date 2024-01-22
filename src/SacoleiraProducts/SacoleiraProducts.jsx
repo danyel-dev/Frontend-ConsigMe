@@ -89,9 +89,10 @@ export default function ListProducts() {
     const [productsNumberMessage, setProductsNumberMessage] = useState("")
     const [search, setSearch] = useState("")
     const [profile, setProfile] = useState("")
+    const [note, setNote] = useState("")
+    const [comment, setComment] = useState("")
 
-
-    useEffect(() => {
+    useEffect(() => {   
         const config = {
             headers: {
                 "Content-Type": "application/json"
@@ -152,6 +153,18 @@ export default function ListProducts() {
             form.style.display = 'none'
     }
 
+    function handleSubmitEvaluateDealerForm(e) {
+        e.preventDefault()
+    }
+
+    function handleChangeInputNote(e) {
+        setNote(e.target.value)
+    }
+
+    function handleChangeInputComment(e) {
+        setComment(e.target.value)
+    }
+
     return (
         <>
             <Header color={"rgb(63, 43, 83)"} />
@@ -183,9 +196,22 @@ export default function ListProducts() {
                     <div className={styles.evaluateDealer}>
                         <button onClick={handleShowFormEvaluateDealer} className={styles.evaluateDealerTitle}>Avaliar revendedor</button>
 
-                        <form id='evaluateDealerForm' className={styles.evaluateDealerForm}>
-                            <input type="number" className={styles.evaluateDealerField} min='1' max='5' placeholder='Nota de 1 a 5' />
-                            <textarea placeholder='Comentário' cols="20" rows="5" className={styles.evaluateDealerField}></textarea>
+                        <form id='evaluateDealerForm' className={styles.evaluateDealerForm} onSubmit={handleSubmitEvaluateDealerForm}>
+                            <input
+                                value={note}
+                                onChange={handleChangeInputNote} 
+                                type="number"
+                                className={styles.evaluateDealerField}
+                                min='1' max='5'
+                                placeholder='Nota de 1 a 5'
+                            />
+                            <textarea
+                                value={comment}
+                                onChange={handleChangeInputComment}
+                                placeholder='Comentário'
+                                cols="20" rows="5"
+                                className={styles.evaluateDealerField}>
+                            </textarea>
                             
                             <button className={styles.evaluateDealerButton}>Enviar</button>
                         </form>
