@@ -12,13 +12,17 @@ import { useNavigate } from 'react-router-dom';
 
 
 const SacoleiraPerfil = styled.div`
+    margin: 50px 0;
     display: flex;
-    align-items:center;
     gap: 1.5em;
-    margin-top: 50px;
-
-    @media(max-width: 370px) {
+    position: relative;
+    
+    @media(max-width: 1120px) {
         flex-direction: column;
+    }
+
+    @media(max-width: 700px) {
+        align-items: center;
     }
 `;
 
@@ -139,44 +143,55 @@ export default function ListProducts() {
         setSearch(e.target.value)
     }
 
+    function handleShowFormEvaluateDealer(e) {
+        let form = document.querySelector('#evaluateDealerForm')
+        
+        if(form.style.display === 'none')
+            form.style.display = 'flex'
+        else 
+            form.style.display = 'none'
+    }
+
     return (
         <>
             <Header color={"rgb(63, 43, 83)"} />
 
             <div className={styles.products}>
                 <SacoleiraPerfil>
-                    <a href={`/profileDetail/${id}`}>
-                        <ImageSacoleiraInfo src={profile.image} />
-                    </a>
+                    <div className={styles.profileLeft}>
+                        <a href={`/profileDetail/${id}`}>
+                            <ImageSacoleiraInfo src={profile.image} />
+                        </a>
 
-                    <SacoleiraInfos>
-                        <div>
-                            <SacoleiraInfoTitle>
-                                <a href={`/profileDetail/${id}`}>
-                                    {profile.name}
-                                </a>        
-                            </SacoleiraInfoTitle>
-                    
-                            <SacoleiraInfoBio>
-                                Revendedora de produtos femininos a mais de 3 anos, sempre entregando produtos de qualidade e com um serviço excelente.
-                            </SacoleiraInfoBio>
-                        </div>
+                        <SacoleiraInfos>
+                            <div>
+                                <SacoleiraInfoTitle>
+                                    <a href={`/profileDetail/${id}`}>
+                                        {profile.name}
+                                    </a>        
+                                </SacoleiraInfoTitle>
+                        
+                                <SacoleiraInfoBio>
+                                    Revendedora de produtos femininos a mais de 3 anos, sempre entregando produtos de qualidade e com um serviço excelente.
+                                </SacoleiraInfoBio>
+                            </div>
 
-                        <SacoleiraInfoEmail>e-mail: mariasilva87@gmail.com</SacoleiraInfoEmail>
-                    </SacoleiraInfos>
+                            <SacoleiraInfoEmail>e-mail: mariasilva87@gmail.com</SacoleiraInfoEmail>
+                        </SacoleiraInfos>
+                    </div>
+
+                    <div className={styles.evaluateDealer}>
+                        <button onClick={handleShowFormEvaluateDealer} className={styles.evaluateDealerTitle}>Avaliar revendedor</button>
+
+                        <form id='evaluateDealerForm' className={styles.evaluateDealerForm}>
+                            <input type="number" className={styles.evaluateDealerField} min='1' max='5' placeholder='Nota de 1 a 5' />
+                            <textarea placeholder='Comentário' cols="20" rows="5" className={styles.evaluateDealerField}></textarea>
+                            
+                            <button className={styles.evaluateDealerButton}>Enviar</button>
+                        </form>
+                    </div>
                 </SacoleiraPerfil>
                 
-                <div className={styles.evaluateDealer}>
-                    <button className={styles.evaluateDealerTitle}>Avaliar revendedor</button>
-
-                    <form className={styles.evaluateDealerForm}>
-                        <input type="number" className={styles.evaluateDealerField} min='1' max='5' placeholder='Nota de 1 a 5' />
-                        <textarea placeholder='Comentário' cols="20" rows="5" className={styles.evaluateDealerField}></textarea>
-                    </form>
-
-                    <button className={styles.evaluateDealerButton}>Enviar</button>
-                </div>
-
                 <form className={styles.formSearchProduct} onSubmit={handleSubmitSearchProducts}>
                     <input type="text" placeholder='Pesquise por um produto aqui' value={search} onChange={handleChangeInputSearch} />
                     <i className="fa-solid fa-magnifying-glass"></i>

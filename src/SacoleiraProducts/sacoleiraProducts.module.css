@@ -7,22 +7,43 @@
     margin: 0 auto 100px auto;
 }
 
+.profileLeft {
+    display: flex;
+    align-items: center;
+    gap: 1.5em;
+}
+
+@media(max-width: 370px) {
+    .profileLeft {
+        flex-direction: column;
+    }
+}
+
 .evaluateDealer {
-    margin: 20px 0 50px 0;
     width: 300px;
     display: flex;
     flex-direction: column;
     gap: .5em;
+    position: absolute;
+    right: 0;
+}
+
+@media(max-width: 1120px) {
+    .evaluateDealer {
+        position: relative;
+    }
 }
 
 .evaluateDealerTitle {
     color: rgb(118, 54, 158);
     font-weight: bold;
     font-size: 14px;
+    width: max-content;
+    margin: 0 auto;
 }
 
 .evaluateDealerForm {
-    display: flex;
+    display: none;
     gap: 10px;
     flex-direction: column;
 }
@@ -34,7 +55,7 @@
     border-radius: 1px;
     background-color: whitesmoke;
     box-shadow: 0 0 0 1px rgba(136, 14, 206, 0.2);
-    transition: .2s all ease-in;
+    transition: .3s all ease-in;
 }
 
 .evaluateDealerField:hover {
@@ -64,7 +85,7 @@
 }
 
 .formSearchProduct {
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     position: relative;
 }
 
