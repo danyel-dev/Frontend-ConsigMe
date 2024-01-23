@@ -91,11 +91,13 @@ export default function ListProducts() {
     const [profile, setProfile] = useState("")
     const [note, setNote] = useState("")
     const [comment, setComment] = useState("")
+    const [userLogado, setUserLogado] = useState("")
 
     useEffect(() => {   
         const config = {
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": "Token " + localStorage.getItem('token')
             }  
         }
 
@@ -115,6 +117,8 @@ export default function ListProducts() {
                     setProductsNumberMessage(`${response.data.length} produtos encontrados`)
             } 
         )
+
+        axios.get('http://127.0.0.1:8000/userLogado/', config).then(response => setUserLogado(response.data[0].url))
     }, [])
 
     function handleSubmitSearchProducts(e) {
@@ -155,6 +159,24 @@ export default function ListProducts() {
 
     function handleSubmitEvaluateDealerForm(e) {
         e.preventDefault()
+        
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Token " + localStorage.getItem('token')
+            }
+        }
+
+        axios.post('http://127.0.0.1:8000/reviews/',
+        {
+            note: note,
+            comment: comment,
+            profile: profile.url,
+            user: userLogado
+        }, config).then(alert('Avaliação enviada com sucesso!'))
+
+        setNote('')
+        setComment('')
     }
 
     function handleChangeInputNote(e) {

@@ -61,7 +61,7 @@ export default function Header() {
                         <li className={styles.menuItem}><a className={styles.linkMenu} href="#services">Serviços</a></li>
                         <li className={styles.menuItem}><a className={styles.linkMenu} href="/#about">About</a></li>
                         <li className={styles.menuItem}><a className={styles.linkMenu} href="/#contact">Contato</a></li>
-                        
+                        class
                         {token? 
                             <li className={styles.ItemUser}>
                                 {haveProfile? 
@@ -81,7 +81,7 @@ export default function Header() {
 
                                             <a href="/login" onClick={handleLogout} className={styles.linkLogout}>
                                                 Sair 
-                                                <i class="fa-solid fa-right-from-bracket"></i>
+                                                <i className="fa-solid fa-right-from-bracket"></i>
                                             </a>
                                         </div>
                                     </div>
