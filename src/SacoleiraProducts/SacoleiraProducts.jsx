@@ -23,6 +23,7 @@ const SacoleiraPerfil = styled.div`
 
     @media(max-width: 700px) {
         align-items: center;
+        justify-content: center;
     }
 `;
 
@@ -41,7 +42,7 @@ const SacoleiraInfos = styled.div`
     align-items: flex-start;
     gap: .8em;
     
-    @media(max-width: 370px) {
+    @media(max-width: 500px) {
         width: 90%;
         align-items: center;
     }
@@ -92,6 +93,8 @@ export default function ListProducts() {
     const [note, setNote] = useState("")
     const [comment, setComment] = useState("")
     const [userLogado, setUserLogado] = useState("")
+    const [isLogged, setIsLogged] = useState(true)
+    const [haveEvaluete, setHaveEvaluete] = useState(true)
 
     useEffect(() => {   
         const config = {
@@ -103,7 +106,7 @@ export default function ListProducts() {
 
         axios.get(`http://127.0.0.1:8000/profileDetail/${id}`, config).then(response => {
             setProfile(response.data)
-        })
+        }).catch(response => console.log(response))
 
         axios.get(`http://127.0.0.1:8000/sacoleiras/${id}/products`, config).then(
             response => {
@@ -118,7 +121,15 @@ export default function ListProducts() {
             } 
         )
 
-        axios.get('http://127.0.0.1:8000/userLogado/', config).then(response => setUserLogado(response.data[0].url))
+        axios.get('http://127.0.0.1:8000/userLogado/', config).then(response => setUserLogado(response.data[0].url)).catch(response => setIsLogged(false)).catch(response => console.log(response))
+        
+        axios.get('http://127.0.0.1:8000/reviews/', config).then(response => {
+            if(response.data[0] !== undefined) {
+                setHaveEvaluete(false)
+            }
+           
+            console.log(haveEvaluete)
+        }).catch(response => console.log(response))
     }, [])
 
     function handleSubmitSearchProducts(e) {
@@ -215,34 +226,49 @@ export default function ListProducts() {
                         </SacoleiraInfos>
                     </div>
 
-                    <div className={styles.evaluateDealer}>
-                        <button onClick={handleShowFormEvaluateDealer} className={styles.evaluateDealerTitle}>Avaliar revendedor</button>
-
-                        <form id='evaluateDealerForm' className={styles.evaluateDealerForm} onSubmit={handleSubmitEvaluateDealerForm}>
-                            <input
-                                value={note}
-                                onChange={handleChangeInputNote} 
-                                type="number"
-                                className={styles.evaluateDealerField}
-                                min='1' max='5'
-                                placeholder='Nota de 1 a 5'
-                            />
-                            <textarea
-                                value={comment}
-                                onChange={handleChangeInputComment}
-                                placeholder='Comentário'
-                                cols="20" rows="5"
-                                className={styles.evaluateDealerField}>
-                            </textarea>
-                            
-                            <button className={styles.evaluateDealerButton}>Enviar</button>
-                        </form>
-                    </div>
+                    {isLogged?
+                        <div className={styles.evaluateDealer}>
+                            {haveEvaluete?
+                                <p className={styles.evaluateDealerCheck}>
+                                    Revendedor já avaliado
+                                    <i class="fa-solid fa-check"></i>
+                                </p>
+                            :
+                                <div>
+                                    <button onClick={handleShowFormEvaluateDealer} className={styles.evaluateDealerTitle}>Avaliar revendedor</button>
+                                    
+                                    <form id='evaluateDealerForm' className={styles.evaluateDealerForm} onSubmit={handleSubmitEvaluateDealerForm}>
+                                        <input
+                                            value={note}
+                                            onChange={handleChangeInputNote} 
+                                            type="number"
+                                            className={styles.evaluateDealerField}
+                                            min='1' max='5'
+                                            placeholder='Nota de 1 a 5'
+                                        />
+                                        <textarea
+                                            value={comment}
+                                            onChange={handleChangeInputComment}
+                                            placeholder='Comentário'
+                                            cols="20" rows="5"
+                                            className={styles.evaluateDealerField}>
+                                        </textarea>
+                                        
+                                        <button className={styles.evaluateDealerButton}>Enviar</button>
+                                    </form>
+                                </div>
+                            }
+                        </div>
+                        :
+                        <div className={styles.evaluateDealer}>
+                            <a href="/login" className={styles.notLoggedMessage}>Faça login ou crie uma conta para avaliar este revendedor</a>
+                        </div>
+                    }
                 </SacoleiraPerfil>
                 
                 <form className={styles.formSearchProduct} onSubmit={handleSubmitSearchProducts}>
-                    <input type="text" placeholder='Pesquise por um produto aqui' value={search} onChange={handleChangeInputSearch} />
                     <i className="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder='Pesquise por um produto aqui' value={search} onChange={handleChangeInputSearch} />
                 </form>
                 
                 <ProductsNumberMessage>{productsNumberMessage}</ProductsNumberMessage>

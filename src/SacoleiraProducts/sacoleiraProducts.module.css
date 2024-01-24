@@ -28,6 +28,28 @@
     right: 0;
 }
 
+.evaluateDealerCheck {
+    color: forestgreen;
+    font-weight: bold;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: .5em;
+}
+
+.notLoggedMessage {
+    line-height: 18px;
+    font-size: 14px;
+    text-align: center;
+    padding: 5px;
+    width: 250px;
+    color: rgb(15, 89, 173);
+}
+
+.notLoggedMessage:hover {
+    color: rgb(101, 143, 192);
+}
+
 @media(max-width: 1120px) {
     .evaluateDealer {
         position: relative;
@@ -90,7 +112,7 @@
 }
 
 .formSearchProduct input {
-    padding: 7px 12px;
+    padding: 6px 12px 6px 32px;
     color: rgba(0, 0, 0, .7);
     width: 500px;
     border-radius: 3px;
@@ -100,14 +122,21 @@
     transition: .2s all ease-in;
 }
 
+@media(max-width: 600px) {
+    .formSearchProduct input {
+        width: 100%;       
+    }
+}
+
 .formSearchProduct input:hover {
     box-shadow: 0px 0px 3px 1px rgba(47, 118, 160, 0.6);
 }
 
 .formSearchProduct i {
     position: absolute;
-    left: 472px;
-    top: 9px;
+    font-size: 12px;
+    left: 10px;
+    top: 11px;
     color: rgba(0, 0, 0, 0.438);
 }
 
@@ -125,28 +154,8 @@
     }
 }
 
-@media(max-width: 500px) {
+@media(max-width: 650px) {
     .container {
         grid-template-columns: 1fr;
-    }
-}
-
-@media(max-width: 650px) {
-    .formSearchProduct input {
-        width: 300px;
-    }
-
-    .formSearchProduct i {
-        left: 270px;
-    }
-}
-
-@media(max-width: 380px) {
-    .formSearchProduct input {
-        width: 260px;
-    }
-
-    .formSearchProduct i {
-        left: 230px;
     }
 }

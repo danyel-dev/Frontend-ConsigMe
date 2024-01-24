@@ -99,26 +99,10 @@
     border-radius: 3px;
     text-align: center;
     line-height: 14px;
-    background-color: white;
     padding: 2px 5px;
-    color: blueviolet;
-    font-weight: bold;
-}
-
-.profileLinks a {
-    text-transform: capitalize;
-    font-size: 12px;
-    border-radius: 3px;
-    text-align: center;
-    line-height: 14px;
-    padding: 2px 5px;
-    color: blueviolet;
+    color: white;
     font-weight: bold;
     transition: .2s all ease-in;
-}
-
-.profileLinks a:hover {
-    background-color: whitesmoke;
 }
 
 .profileImage {
