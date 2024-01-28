@@ -1,0 +1,25 @@
+.sacoleira {
+    display: flex;
+    align-items: center;
+    gap: 5em;
+    background-color: aqua;
+    padding: 15px 20px;
+    border-radius: 5px;
+    width: max-content;
+}
+
+.sacoleiraImage {
+    width: 60px;
+    border-radius: 20px;
+    height: 60px;
+}
+
+.sacoleiraName {
+    /* background-color: red; */
+    width: 250px;
+}
+
+.sacoleiraAvaliacao {
+    width: 30;
+    background-color: red;
+}
