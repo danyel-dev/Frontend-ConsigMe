@@ -1,6 +1,7 @@
 import SacoleiraPosition from './SacoleiraPosition'
+import Header from '../Components/Header/Header'
+import Footer from '../Components/Footer/Footer'
 import styles from './RankingSacoleira.module.css'
-
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -24,14 +25,25 @@ export default function RankingSacoleira() {
                 const listaOrdenada = _.orderBy(listaDeObjetos, ['media'], ['desc']);
 
                 setRanking(listaOrdenada);
-                console.log(listaOrdenada)
             }
         )
     }, [])
 
     return(
-        <div className={styles.ranking}>
-            {ranking.map((item, indice) => <SacoleiraPosition key={item.id} indice={indice + 1} sacoleira={item} />)}
-        </div>
+        <>
+            <Header />
+            
+
+            <div className={styles.ranking}>
+                <h1 className={styles.titleRanking}>
+                    <i class="fa-solid fa-ranking-star"></i>
+                    Ranking Sacoleiras
+                </h1>
+
+                {ranking.map((item, indice) => <SacoleiraPosition key={item.id} indice={indice + 1} sacoleira={item} />)}
+            </div>
+            
+            <Footer />
+        </>
     );
 }
