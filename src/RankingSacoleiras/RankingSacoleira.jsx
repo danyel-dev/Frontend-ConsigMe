@@ -21,8 +21,8 @@ export default function RankingSacoleira() {
                 const _ = require('lodash');
 
                 const listaDeObjetos = response.data
-
-                const listaOrdenada = _.orderBy(listaDeObjetos, ['media'], ['desc']);
+                
+                const listaOrdenada = _.orderBy(listaDeObjetos, ['avaliacao'], ['desc']);
 
                 setRanking(listaOrdenada);
             }

@@ -6,9 +6,11 @@ export default function RankingSacoleira({indice, sacoleira}) {
         <div className={styles.sacoleira}>
             <p className={styles.sacoleiraIndice}>{indice}°</p>
             
-            <img src={sacoleira.image}className={styles.sacoleiraImage} />
+            <a href={`/profileDetail/${sacoleira.id}`}><img src={sacoleira.image}className={styles.sacoleiraImage} /></a>
             
-            <p className={styles.sacoleiraName}>{sacoleira.name}</p>
+            <a href={`/profileDetail/${sacoleira.id}`}>
+                <p className={styles.sacoleiraName}>{sacoleira.name}</p>
+            </a>
             
             <p className={styles.sacoleiraAvaliacao}>
                 {sacoleira.avaliacao}
