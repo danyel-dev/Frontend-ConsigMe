@@ -4,7 +4,7 @@
     flex-direction: column;
     gap: 1em;
     align-items: center;
-    margin: 100px 0 200px 0;
+    margin: 100px 10px 200px 10px;
 }
 
 .titleRanking {
@@ -20,4 +20,10 @@
 
 .titleRanking i {
     color: rebeccapurple;   
+}
+
+@media(max-width: 500px) {
+    .ranking {
+        gap: 2em;
+    }
 }
