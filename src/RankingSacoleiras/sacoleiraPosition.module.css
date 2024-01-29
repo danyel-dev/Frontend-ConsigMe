@@ -21,7 +21,20 @@
 .sacoleiraName {
     width: 250px;
     text-transform: capitalize;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     font-size: 15px;
+}
+
+.phoneNumber {
+    font-size: 12px;
+    font-weight: normal;
+}
+
+#whatsapp {
+    margin-right: 5px;
+    color: green;
 }
 
 .sacoleiraAvaliacao {

@@ -9,7 +9,13 @@ export default function RankingSacoleira({indice, sacoleira}) {
             <a href={`/profileDetail/${sacoleira.id}`}><img src={sacoleira.image}className={styles.sacoleiraImage} /></a>
             
             <a href={`/profileDetail/${sacoleira.id}`}>
-                <p className={styles.sacoleiraName}>{sacoleira.name}</p>
+                <div className={styles.sacoleiraName}>
+                    <p>{sacoleira.name}</p>
+                    <p className={styles.phoneNumber}>
+                        <i id={styles.whatsapp} class="fa-brands fa-whatsapp"></i>
+                        {sacoleira.phone_number}
+                    </p>
+                </div>
             </a>
             
             <p className={styles.sacoleiraAvaliacao}>
