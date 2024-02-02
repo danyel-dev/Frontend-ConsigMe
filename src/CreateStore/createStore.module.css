@@ -1,0 +1,26 @@
+.container {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.storeForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    width: 400px;
+}
+
+.storeForm input, textarea {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    padding: 4px 10px;
+    border-radius: 3px;
+}
+
+input[type="file"] {
+    border: 0;
+    padding: 0;
+    font-size: 12px;
+}
