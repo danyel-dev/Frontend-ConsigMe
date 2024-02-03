@@ -4,21 +4,33 @@ import styles from './createStore.module.css'
 export default function CreateStore() {
     return (
         <div className={styles.container}>
-            <form className={styles.storeForm}>
-                <input type="text" placeholder="name" />
-                <textarea cols="30" rows="5" placeholder="description"></textarea>
-                <input type="email" placeholder="email" />
-                <input type="text" placeholder="phone_number" />
-                <input type="file" placeholder="image" />
-                <input type="text" placeholder="cnpj" />
-                <input type="text" placeholder="cep" />
-                <input type="text" placeholder="state" />
-                <input type="text" placeholder="city" />
-                <input type="text" placeholder="district" />
-                <input type="text" placeholder="street" />
-                <input type="number" placeholder="number" />
-                <input type="text" placeholder="complement" />
-            </form>
+            <div className={styles.sidebar}>
+            
+            </div>
+
+            <main className={styles.main}>
+                <form className={styles.storeForm}>
+                    <input type="text" placeholder="Nome da loja" />
+                    <textarea cols="30" rows="4" placeholder="Descrição"></textarea>
+                    <input type="email" placeholder="E-mail" />
+                    <input type="text" placeholder="Número de telefone" />
+                    <input type="file" placeholder="Image" />
+                    <input type="text" placeholder="CNPJ" />
+                    <div className={styles.doubleInput}>
+                        <input type="text" placeholder="CEP" />
+                        <input type="text" placeholder="Estado" />
+                    </div>
+                    <div className={styles.doubleInput}>
+                        <input type="text" placeholder="Cidade" />
+                        <input type="text" placeholder="Bairro" />
+                    </div>
+                    <div className={styles.doubleInput}>
+                        <input type="text" placeholder="Rua" />
+                        <input type="number" placeholder="Número" />
+                    </div>
+                    <input type="text" placeholder="Complemento" />
+                </form>
+            </main>
         </div>
     );    
 }

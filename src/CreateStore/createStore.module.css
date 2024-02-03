@@ -2,25 +2,46 @@
     height: 100vh;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+}
+
+.sidebar {
+    width: 40%;
+    height: 100%;
+    background-color: rgb(117, 38, 190);
+}
+
+.main {
+    display: flex;
+    align-items: center;
     justify-content: center;
+    width: 60%;
+    height: 100%;
 }
 
 .storeForm {
     display: flex;
     flex-direction: column;
     gap: 1em;
-    width: 400px;
+    padding: 5px;
+    width: max-content;
 }
 
 .storeForm input, textarea {
     border: 1px solid rgba(0, 0, 0, 0.2);
-    font-size: 14px;
+    font-size: 12px;
     padding: 4px 10px;
     border-radius: 3px;
+    width: 100%;
 }
 
 input[type="file"] {
     border: 0;
     padding: 0;
-    font-size: 12px;
+    font-size: 10px;
+}
+
+.doubleInput {
+    display: flex;
+    gap: .5em;
 }
