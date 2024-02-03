@@ -47,8 +47,10 @@
 
 .main {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 2em;
     width: 50%;
     height: 100%;
 }
@@ -90,4 +92,66 @@ input[type="file"] {
     padding: 3px 10px;
     font-weight: bold;
     border-radius: 2px;
+}
+
+.haveAccount {
+    display: none;
+} 
+
+@media(max-width: 870px) {
+    .container {
+        flex-direction: column;
+        height: max-content;
+        gap: 3em;
+    }    
+    
+    .sidebar {
+        width: 100%;
+        /* margin-bottom: 30px; */
+        padding: 20px 50px;
+        background-color: rgb(77, 36, 116);
+    }
+
+    .sidebar h1 {
+        color: white;
+    }
+
+    .sidebar div {
+        display: none;
+    }
+
+    .main {
+        width: 100%;
+    }
+
+    .haveAccount {
+        display: flex;
+        flex-direction: column;
+        gap: .5em;
+        text-align: center;
+    }
+
+    .haveAccount p {
+        text-align: center;
+        line-height: 22px;
+    }
+
+    .haveAccount a {
+        color: rgb(77, 36, 116);
+    }
+}
+
+@media(max-width: 430px) {
+    .sidebar {
+        padding: 20px;
+    }
+    
+    .sidebar h1 {
+        font-size: 1.3em;
+    }
+
+    .storeForm {
+        padding: 0 15px;
+        width: 100%;
+    }
 }
