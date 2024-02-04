@@ -1,7 +1,56 @@
+import { useState } from 'react'
 import styles from './createStore.module.css'
 
 
 export default function CreateStore() {
+    // const [messageError, setMessagee]
+    function useFormRegister(props) {
+        const [values, setValues] = useState(props.initialValues)
+    
+        return {
+            values,
+            setValues,
+            handleChangeForm: (e) => {
+                const value = e.target.value
+                const name = e.target.name
+            
+                setValues({
+                    ...values,
+                    [name]: value
+                })
+            },
+            clearForm() {
+                setValues({})
+            }
+        }
+    }
+    
+    const useForm = useFormRegister({
+        initialValues: {
+            name: "",
+            description: "",
+            proprietario: "",
+            email: "",
+            phone_number: "",
+            image: "",
+            cnpj: "",
+            cep: "",
+            state: "",
+            city: "",
+            district: "",
+            street: "",  
+            number: "",
+            complement: ""
+        }
+    })
+
+    function handleSubmitForm(e) {
+        e.preventDefault()
+        
+        if(useForm.values.name === "" || useForm.values.description === "" || useForm.values.email === "" || useForm.values.phone_number === "" || useForm.values.image === "" || useForm.values.cnpj === "" || useForm.values.cep === "" || useForm.values.state === "" || useForm.values.city === "" || useForm.values.district === "" || useForm.values.street === "" || useForm.values.number === "") 
+            alert('oii')
+    }
+
     return (
         <div className={styles.container}>
             <div className={styles.sidebar}>
@@ -9,46 +58,125 @@ export default function CreateStore() {
 
                 <div>
                     <p>Caso já tenha uma conta, clique no botão abaixo</p>
-                    <a>Acessar conta</a>
+                    <a href='/login'>Acessar conta</a>
                 </div>
             </div>
 
             <main className={styles.main}>
-                <form className={styles.storeForm}>
-                    <input type="text" placeholder="Nome da loja" />
-                    <textarea cols="30" rows="4" placeholder="Descrição"></textarea>
+                <form className={styles.storeForm} onSubmit={handleSubmitForm}>
+                    <input 
+                        onChange={useForm.handleChangeForm} 
+                        value={useForm.values.name}
+                        name='name'
+                        type="text"
+                        placeholder="Nome da loja"
+                    />
+                    <textarea
+                        onChange={useForm.handleChangeForm} 
+                        value={useForm.values.description}
+                        name='description'
+                        cols="30"
+                        rows="4"
+                        placeholder="Descrição">
+                    </textarea>
 
                     <div className={styles.doubleInput}>
-                        <input type="email" placeholder="E-mail" />
-                        <input type="text" placeholder="Número de telefone" />
+                        <input 
+                            onChange={useForm.handleChangeForm} 
+                            value={useForm.values.email}
+                            name='email'
+                            type="email"
+                            placeholder="E-mail"
+                        />
+                        <input 
+                            onChange={useForm.handleChangeForm} 
+                            value={useForm.values.phone_number}
+                            name='phone_number'
+                            type="text"
+                            placeholder="Número de telefone"
+                        />
                     </div>
                     
-                    <input type="file" placeholder="Image" />
-                    <input type="text" placeholder="CNPJ" />
+                    <input 
+                        onChange={useForm.handleChangeForm} 
+                        value={useForm.values.image}
+                        name='image'
+                        type="file"
+                        placeholder="Image"
+                    />
+                    <input 
+                        onChange={useForm.handleChangeForm} 
+                        value={useForm.values.cnpj}
+                        name='cnpj'
+                        type="text"
+                        placeholder="CNPJ"
+                    />
                     
                     <div className={styles.doubleInput}>
-                        <input type="text" placeholder="CEP" />
-                        <input type="text" placeholder="Estado" />
+                        <input 
+                            onChange={useForm.handleChangeForm} 
+                            value={useForm.values.cep}
+                            name='cep'
+                            type="text"
+                            placeholder="CEP"
+                        />
+                        <input 
+                            onChange={useForm.handleChangeForm} 
+                            value={useForm.values.state}
+                            name='state'
+                            type="text"
+                            placeholder="Estado"
+                        />
                     </div>
                     
                     <div className={styles.doubleInput}>
-                        <input type="text" placeholder="Cidade" />
-                        <input type="text" placeholder="Bairro" />
+                        <input 
+                            onChange={useForm.handleChangeForm} 
+                            value={useForm.values.city}
+                            name='city'
+                            type="text"
+                            placeholder="Cidade"
+                        />
+                        <input 
+                            onChange={useForm.handleChangeForm} 
+                            value={useForm.values.district}
+                            name='district'
+                            type="text"
+                            placeholder="Bairro"
+                        />
                     </div>
                     
                     <div className={styles.doubleInput}>
-                        <input type="text" placeholder="Rua" />
-                        <input type="number" placeholder="Número" />
+                        <input 
+                            onChange={useForm.handleChangeForm} 
+                            value={useForm.values.street}
+                            name='street'
+                            type="text"
+                            placeholder="Rua"
+                        />
+                        <input 
+                            onChange={useForm.handleChangeForm} 
+                            value={useForm.values.number}
+                            name='number'
+                            type="number"
+                            placeholder="Número"
+                        />
                     </div>
                     
-                    <input type="text" placeholder="Complemento" />
+                    <input
+                        onChange={useForm.handleChangeForm} 
+                        value={useForm.values.complement}
+                        name='complement'
+                        type="text"
+                        placeholder="Complemento"
+                    />
                     
                     <button>Criar conta</button>
                 </form>
 
                 <div className={styles.haveAccount}>
                     <p>Caso já tenha uma conta, clique no botão abaixo</p>
-                    <a>Acessar conta</a>
+                    <a href='/login'>Acessar conta</a>
                 </div>
             </main>
         </div>

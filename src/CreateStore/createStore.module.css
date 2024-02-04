@@ -72,6 +72,10 @@
     background-color: whitesmoke;
 }
 
+.storeForm input::placeholder, textarea::placeholder {
+    color: rgba(0, 0, 0, 0.4);
+}
+
 input[type="file"] {
     border: 0;
     padding: 0;
