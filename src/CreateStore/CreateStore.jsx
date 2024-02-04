@@ -1,12 +1,27 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from './createStore.module.css'
+import axios from 'axios'
 
 
 export default function CreateStore() {
-    // const [messageError, setMessagee]
+    const [messageError, setMessageError] = useState(null)
+    const [userUrl, setUserUrl] = useState("")
+
+    useEffect(() => {
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Token " + localStorage.getItem('token')
+            }
+        }
+
+        axios.get('http://127.0.0.1:8000/userLogado/', config).then(response => setUserUrl(response.data[0].url)).catch(response => console.log(response))
+    }, [])
+
+
     function useFormRegister(props) {
         const [values, setValues] = useState(props.initialValues)
-    
+
         return {
             values,
             setValues,
@@ -47,8 +62,49 @@ export default function CreateStore() {
     function handleSubmitForm(e) {
         e.preventDefault()
         
-        if(useForm.values.name === "" || useForm.values.description === "" || useForm.values.email === "" || useForm.values.phone_number === "" || useForm.values.image === "" || useForm.values.cnpj === "" || useForm.values.cep === "" || useForm.values.state === "" || useForm.values.city === "" || useForm.values.district === "" || useForm.values.street === "" || useForm.values.number === "") 
-            alert('oii')
+        if(useForm.values.name === "" || useForm.values.description === "" || useForm.values.email === "" || useForm.values.phone_number === "" || useForm.values.image === "" || useForm.values.cnpj === "" || useForm.values.cep === "" || useForm.values.state === "" || useForm.values.city === "" || useForm.values.district === "" || useForm.values.street === "" || useForm.values.number === "" || useForm.values.complement === "") {
+            setMessageError("Todos os campos devem ser preenchidos!")
+        } 
+        else {
+            useForm.values["proprietario"] = userUrl
+
+            var input = document.getElementById('image');
+            var reader = new FileReader();
+            
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            }   
+
+            if(input.files.length !== 0) {
+                reader.onload = function (e) {
+                    var base64Image = e.target.result;
+                    axios.post('http://127.0.0.1:8000/lojista/', {...useForm.values, image: base64Image}, config).then(response => {
+                        alert("Produto adicionado com sucesso!!")
+                        
+                        useForm.setValues({
+                            name: "",
+                            description: "",
+                            proprietario: "",
+                            email: "",
+                            phone_number: "",
+                            image: "",
+                            cnpj: "",
+                            cep: "",
+                            state: "",
+                            city: "",
+                            district: "",
+                            street: "",  
+                            number: "",
+                            complement: ""
+                        })
+                    })
+                };
+                
+                reader.readAsDataURL(input.files[0]);
+            } 
+        }
     }
 
     return (
@@ -63,6 +119,12 @@ export default function CreateStore() {
             </div>
 
             <main className={styles.main}>
+                {messageError?
+                    <p className={styles.messageError}>{messageError}</p>
+                :
+                    ""
+                }
+
                 <form className={styles.storeForm} onSubmit={handleSubmitForm}>
                     <input 
                         onChange={useForm.handleChangeForm} 
@@ -98,6 +160,7 @@ export default function CreateStore() {
                     </div>
                     
                     <input 
+                        id='image'
                         onChange={useForm.handleChangeForm} 
                         value={useForm.values.image}
                         name='image'
