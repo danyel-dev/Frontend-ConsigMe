@@ -1,0 +1,45 @@
+.main {
+    width: 90%;
+    margin: 80px auto 250px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.main h1 {
+    font-size: 1.3em;
+    width: 800px;
+    line-height: 26px;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.searchStore {
+    margin-top: 20px;
+    width: 600px;
+    position: relative;
+    font-size: 14px;
+}
+
+.searchStore input {
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 5px 10px 5px 38px;
+    border-radius: 20px;
+    color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(137, 43, 226, 0.05);
+    transition: 0.2s all ease-in;
+}
+
+.searchStore input:hover {
+    box-shadow: 0px 0px 2px 0px rgb(118, 75, 161);
+}
+
+.searchStore i {
+    position: absolute;   
+    top: 9px; 
+    left: 14px;
+    color: rgb(108, 70, 146);
+    font-weight: bold;
+}
