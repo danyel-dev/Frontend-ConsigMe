@@ -1,10 +1,12 @@
 .main {
-    width: 90%;
-    margin: 80px auto 250px auto;
+    width: 80%;
+    margin: 80px auto 100px auto;
+}
+
+.containerForm {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
 }
 
 .main h1 {
@@ -33,7 +35,7 @@
 }
 
 .searchStore input:hover {
-    box-shadow: 0px 0px 2px 0px rgb(118, 75, 161);
+    box-shadow: 0px 0px 1px 1px rgb(118, 75, 161);
 }
 
 .searchStore i {
@@ -42,4 +44,13 @@
     left: 14px;
     color: rgb(108, 70, 146);
     font-weight: bold;
+}
+
+.stores {
+    margin-top: 70px;
+}
+
+.store {
+    width: 200px;
+    height: 200px;
 }
