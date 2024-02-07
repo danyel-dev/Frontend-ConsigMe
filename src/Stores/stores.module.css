@@ -14,7 +14,7 @@
     width: 800px;
     line-height: 26px;
     text-align: center;
-    color: rgba(0, 0, 0, 0.8);
+    color: rgba(0, 0, 0, 0.7);
 }
 
 .searchStore {
@@ -51,6 +51,63 @@
 }
 
 .store {
-    width: 200px;
-    height: 200px;
+    width: 250px;
+    height: max-content;
+    background-color: whitesmoke;
+    box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.2);
+}
+
+.bodyStore {
+    display: flex;
+    flex-direction: column;
+    gap: .2em;
+    align-items: center;
+    text-align: justify;
+    font-size: 14px;
+    padding: 10px;
+}
+
+.bodyStore h1 {
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+p.storeDescription {
+    line-height: 18px;
+}
+
+p.storeAddress {
+    display: flex;
+    gap: .5em;
+    align-items: center;
+    margin-top: 10px;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+p.storeAddress i {
+    color: rgb(221, 58, 58);
+}
+
+a.readMoreLink {
+    color: rgb(48, 98, 189);
+    transition: .2s all ease-in;
+}
+
+a.readMoreLink:hover {
+    color: rgba(48, 97, 189, 0.7);
+}
+
+a.storeDetailButton {
+    margin-top: 6px;
+    background-color: rgb(108, 70, 146);
+    color: white;
+    padding: 2px 10px;
+    border-radius: 2px;
+    font-weight: bold;
+    font-size: 12px;
+    transition: .2s all ease-in;
+}
+
+a.storeDetailButton:hover {
+    background-color: rgba(108, 70, 146, 0.8);
 }
