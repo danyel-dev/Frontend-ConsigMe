@@ -9,7 +9,7 @@
     align-items: center;
 }
 
-.main h1 {
+.containerForm h1 {
     font-size: 1.3em;
     width: 800px;
     line-height: 26px;
@@ -113,8 +113,9 @@ a.readMoreLink:hover {
 
 a.storeDetailButton {
     margin-top: 6px;
-    background-color: rgb(108, 70, 146);
-    color: white;
+    border: 1px solid rgba(0, 0, 0, 0.253);
+    background-color: white;
+    color: rgb(108, 70, 146);
     padding: 2px 10px;
     border-radius: 20px;
     font-weight: bold;
@@ -123,7 +124,8 @@ a.storeDetailButton {
 }
 
 a.storeDetailButton:hover {
-    background-color: rgba(108, 70, 146, 0.8);
+    background-color: rgba(108, 70, 146, 0.9);
+    color: white;
 }
 
 @media(max-width: 1130px) {
@@ -142,6 +144,14 @@ a.storeDetailButton:hover {
 }
 
 @media(max-width: 900px) {
+    .containerForm h1 {
+        width: 100%;
+    }
+    
+    .searchStore {
+        width: 80%;
+    }
+    
     .stores {
         grid-template-columns: 1fr 1fr;
     }
@@ -152,6 +162,10 @@ a.storeDetailButton:hover {
 }
 
 @media(max-width: 580px) {
+    .searchStore {
+        width: 100%;
+    }
+
     .stores {
         grid-template-columns: 1fr;
     }
