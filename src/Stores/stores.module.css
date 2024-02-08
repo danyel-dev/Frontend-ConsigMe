@@ -48,13 +48,25 @@
 
 .stores {
     margin-top: 70px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 2  em;
 }
 
 .store {
-    width: 250px;
+    width: 200px;
     height: max-content;
     background-color: whitesmoke;
     box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.2);
+}
+
+.store img:hover {
+    transition: .3s all ease-in;
+}
+
+.store img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 .bodyStore {
@@ -69,7 +81,8 @@
 
 .bodyStore h1 {
     font-weight: bold;
-    font-size: 1.3em;
+    font-size: 1.2em;
+    width: max-content;
 }
 
 p.storeDescription {
@@ -102,7 +115,7 @@ a.storeDetailButton {
     background-color: rgb(108, 70, 146);
     color: white;
     padding: 2px 10px;
-    border-radius: 2px;
+    border-radius: 20px;
     font-weight: bold;
     font-size: 12px;
     transition: .2s all ease-in;
