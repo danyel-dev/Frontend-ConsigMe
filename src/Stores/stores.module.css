@@ -50,7 +50,8 @@
     margin-top: 70px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 2  em;
+    gap: 2em;
+    justify-items: center;
 }
 
 .store {
@@ -123,4 +124,39 @@ a.storeDetailButton {
 
 a.storeDetailButton:hover {
     background-color: rgba(108, 70, 146, 0.8);
+}
+
+@media(max-width: 1130px) {
+    .main {
+        width: 90%;
+    }
+
+    .stores {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 2em 1em;
+    }
+
+    .store {
+        width: 250px;
+    }
+}
+
+@media(max-width: 900px) {
+    .stores {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .store {
+        width: 250px;
+    }
+}
+
+@media(max-width: 580px) {
+    .stores {
+        grid-template-columns: 1fr;
+    }
+
+    .store {
+        width: 250px;
+    }
 }
