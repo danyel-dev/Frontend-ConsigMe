@@ -17,6 +17,7 @@ import AddProduct from './AddProduct/AddProduct';
 import RankingSacoleira from './RankingSacoleiras/RankingSacoleira';
 import CreateStore from './CreateStore/CreateStore';
 import Stores from './Stores/Stores';
+import StoreDetail from './StoreDetail/StoreDetail';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -37,6 +38,7 @@ root.render(
         <Route path="/ranking" element={<RankingSacoleira />} />
         <Route path="/createStore" element={<CreateStore />} />
         <Route path="/stores" element={<Stores />} />
+        <Route path="/stores/:id" element={<StoreDetail />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

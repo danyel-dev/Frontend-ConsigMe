@@ -13,9 +13,11 @@ export default function Stores() {
     useEffect(() => {
         const config = {
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": "Token " + localStorage.getItem('token')
             }
         }
+
         axios.get('http://127.0.0.1:8000/lojista/', config).then(response => setStores(response.data))
     }, [])
 
