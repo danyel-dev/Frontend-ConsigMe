@@ -1,0 +1,33 @@
+.mainContainer {
+    width: 80%;
+    margin: 20px auto 200px auto;
+    flex-direction: column;
+    gap: 1em;
+    display: flex;
+    align-items: center;
+}
+
+.mainContainer img {
+    width: 700px;
+    height: 300px;
+}
+
+.mainContainer h1 {
+    font-size: 1.3em;
+    font-weight: bold;   
+    color: rgba(0, 0, 0, 0.9); 
+}
+
+.mainContainer p {  
+    text-align: center;
+}
+
+@media(max-width: 500px) {
+    .mainContainer {
+        width: 90%;
+    }
+
+    .mainContainer img {
+        height: 200px;
+    }
+}
