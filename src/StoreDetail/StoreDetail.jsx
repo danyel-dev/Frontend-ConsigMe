@@ -26,8 +26,14 @@ export default function StoreDetail() {
             
             <main className={styles.mainContainer}>
                 <h1>{store.name}</h1>
-                <img src={store.image} alt={store.name} />
-                <p>{store.description}</p>
+
+                <div>
+                    <img src={store.image} alt={store.name} />
+                    <p className={styles.address}>{store.address}</p>
+                </div>
+                
+                <p className={styles.description}>{store.description}</p>
+                <p className={styles.email}>E-mail para contato: {store.email}</p>
             </main>
 
             <Footer />            

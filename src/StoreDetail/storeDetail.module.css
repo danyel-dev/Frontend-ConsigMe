@@ -12,14 +12,27 @@
     height: 300px;
 }
 
+.address {
+    color: rgba(0, 0, 0, .8);
+    font-size: 12px;
+    margin-top: 3px;
+}
+
 .mainContainer h1 {
     font-size: 1.3em;
     font-weight: bold;   
     color: rgba(0, 0, 0, 0.9); 
 }
 
-.mainContainer p {  
-    text-align: center;
+.mainContainer p.description {  
+    text-align: justify;
+    margin-top: 10px;
+}
+
+p.email {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.9);
+    font-weight: bold;
 }
 
 @media(max-width: 500px) {
