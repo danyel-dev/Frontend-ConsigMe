@@ -32,7 +32,7 @@ export default function Footer () {
                 <div className='detail-about'>
                     <h3>Sobre</h3>
 
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum dolor molestias placeat fugiat aut laboriosam voluptatum, maiores unde ullam.</p>
+                    <p>Site construido ao longo da disciplina de trabalho de conclusão de curso pelo discente Carlos Daniel Sousa Pinheiro.</p>
                 </div>
 
                 <div className='contacts'>

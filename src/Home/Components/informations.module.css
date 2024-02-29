@@ -4,6 +4,7 @@
     flex-direction: column;
     align-items: center;
     gap: 4em;
+    padding: 20px;
 }
 
 .titleInformations {
@@ -12,6 +13,8 @@
     font-weight: bold;
     border-bottom: 2px solid rgba(103, 60, 145, 0.4);
     color: rgb(115, 36, 189);
+    line-height: 24px;
+    padding-bottom: 3px;
 }
 
 .informationsParts {
@@ -46,6 +49,12 @@
 .informationsParts img {
     width: 70px;
     height: 70px;
+}
+
+@media(max-width: 700px) {
+    .informationsParts {
+        flex-direction: column;
+    }
 }
 
 /* 

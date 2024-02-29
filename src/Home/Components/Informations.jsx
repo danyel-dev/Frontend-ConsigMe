@@ -1,7 +1,7 @@
 import styles from './informations.module.css'
-import distribuidor from '../img/distribuidor.png'
-import revendedor from '../img/revendedor.png'
-import consumidorFinal from '../img/consumidor_final.png'
+import distribuidor from '../../img/distribuidor.png'
+import revendedor from '../../img/revendedor.png'
+import consumidorFinal from '../../img/consumidor_final.png'
 
 
 export default function Informations() {
