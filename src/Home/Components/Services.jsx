@@ -9,10 +9,10 @@ export default function Services() {
             <div className={styles.card_services}>
                 <div className={styles.card}>
                     <div id={styles.one} className={styles.cardImage}>
-                        <h1>Histórico de revendas</h1>
+                        <h1>Score</h1>
                     </div>
 
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad consectetur deserunt labore beatae?</p>
+                    <p>O Score é uma pontuação dada as sacoleiras, ele é calculado através das avaliações dos clientes  e lojistas</p>
                 </div>
                 
                 <div className={styles.card}>
@@ -20,7 +20,7 @@ export default function Services() {
                         <h1>Ranqueamento de sacoleiros(as)</h1>
                     </div>
 
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad consectetur deserunt labore beatae? </p>
+                    <p>Sacoleiras que se dedicam e tem boas avaliações estarão em posições altas no nosso ranking de sacoleiras.</p>
                 </div>
                 
                 <div className={styles.card}>
@@ -28,7 +28,7 @@ export default function Services() {
                         <h1>Catálogo de produtos</h1>
                     </div>
 
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad consectetur deserunt labore beatae? </p>
+                    <p>O catálogo de produtos é uma forma das sacoleiras mostrarem os seus produtos para os seus clientes.</p>
                 </div>
                 
                 <div className={styles.card}>
@@ -36,23 +36,23 @@ export default function Services() {
                         <h1>Sacola fácil</h1>
                     </div>
 
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad consectetur deserunt labore beatae? </p>
+                    <p>A "Sacola" é onde estarão os produtos que você teve interesse e salvou para consultar depois</p>
                 </div>
                 
                 <div className={styles.card}>
                     <div id={styles.five} className={styles.cardImage}>
-                        <h1>Sistema Intuitivo</h1>
+                        <h1>Plataforma Intuitiva</h1>
                     </div>
 
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad consectetur deserunt labore beatae? </p>
+                    <p>O ConsigMe é uma Plataforma fácil de se usar, o usuário não vai ter dificuldades de usar, encontrando todas as informações necessárias numa interface simples com instruções curtas.</p>
                 </div>
                 
                 <div className={styles.card}>
                     <div id={styles.six} className={styles.cardImage}>
-                        <h1>Estoque Consignado</h1>
+                        <h1>Cadastro de Lojistas</h1>
                     </div>
 
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad consectetur deserunt labore beatae? </p>
+                    <p>A plataforma também permite o cadastro de estabelecimentos dos lojistas, sendo assim completando as 3 partes nesse modelo de negócio.</p>
                 </div>
             </div>
         </div>        

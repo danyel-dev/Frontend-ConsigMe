@@ -17,7 +17,10 @@ export default function StoreDetail() {
             }
         }
 
-        axios.get(`http://127.0.0.1:8000/lojistaDetail/${id}`, config).then(response => setStore(response.data)).catch(response => console.log(response))
+        axios.get(`http://127.0.0.1:8000/lojistaDetail/${id}`, config).then(response => {
+            setStore(response.data)
+            console.log(response)
+        }).catch(response => console.log(response))
     }, [id])
 
     return(

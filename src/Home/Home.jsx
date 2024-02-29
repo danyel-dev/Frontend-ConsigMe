@@ -15,7 +15,7 @@ export default function Home() {
             <main className={styles.main}>
                 <div className={styles.banner}>
                     <div className={styles.bannerText}>
-                        <h1>Consig-Me é uma plataforma para facilitar lojistas e sacoleiras no processo de compra e revenda de produtos consignados. clique no botão abaixo e encontre sacoleiras perto da sua região e veja seus produtos</h1>
+                        <h1>Consig-Me é uma plataforma para facilitar lojistas, sacoleiras, e consumidores no processo de compra e venda de produtos consignados. clique no botão abaixo e encontre sacoleiras perto da sua região e veja seus produtos</h1>
 
                         <a href='/sacoleiras'>Encontrar sacoleiras</a>
                     </div>           
@@ -28,7 +28,7 @@ export default function Home() {
                 <div className={styles.about} id='about'>
                     <h1>Como funciona a venda por consignação?</h1>
 
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus saepe voluptatem laboriosam? Cumque, quas, tempora perspiciatis aut consequuntur expedita corporis dolor quaerat dignissimos accusantium ullam adipisci praesentium possimus! Libero, nostrum. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos, cupiditate minima similique quisquam quo error, sint officiis fugiat, repellat facere quidem velit praesentium? Ullam molestiae animi tenetur nesciunt voluptate dolores!. Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia dolores repudiandae ab corrupti adipisci natus ut vel ducimus commodi quisquam magnam fuga nobis, ea at consequatur sunt voluptatibus, accusantium ipsum?</p>
+                    <p>A venda por consignação é um arranjo comercial em que um consignador(fornecedor) fornece mercadorias a um consignatário(varejista), mas a propriedade legal permanece com o fornecedor até que as mercadorias sejam vendidas aos consumidores finais. O varejista exibe e vende os produtos, pagando ao fornecedor uma comissão acordada sobre as vendas realizadas. Isso permite ao fornecedor expandir a distribuição sem assumir riscos financeiros, enquanto o varejista diversifica seu estoque sem a necessidade de investir antecipadamente nas mercadorias. O modelo envolve contratos detalhados e relatórios transparentes para garantir uma gestão eficaz do estoque consignado.</p>
                 </div>
                 
                 <Informations />

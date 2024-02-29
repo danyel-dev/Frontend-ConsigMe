@@ -13,17 +13,17 @@ export default function Informations() {
                 <div>
                     <img src={distribuidor} alt="distribuidor" />
 
-                    <h3>Distribuidor</h3>
+                    <h3>Consignador</h3>
 
-                    <p>O distribuidor é a fábrica ou depósito que usa a venda consignada como um canal de distribuição de suas mercadorias. Ele deixa estoque consignado com vendedores representantes e revendedoras sacoleiras.</p>
+                    <p>Esta é a parte que fornece as mercadorias para serem vendidas pelo varejista. O consignador mantém a propriedade legal das mercadorias até que sejam vendidas ao consumidor final.</p>
                 </div>
 
                 <div>
                     <img src={revendedor} alt="revendedor" />
 
-                    <h3>Revendedor</h3>
+                    <h3>Consignatário</h3>
                     
-                    <p>A revendedora é também conhecida como sacoleira. Ela é a cliente do vendedor, relaciona-se com ele. Recebe o kit de mercadorias e fica com um pequeno estoque consignado para vender e paga os valores na cobrança da consignação.</p>
+                    <p>O consignatário é a parte que recebe as mercadorias do consignador e as exibe para venda em sua loja. O varejista não é o proprietário legal das mercadorias até que sejam vendidas ao consumidor final.</p>
                 </div>
 
                 <div>
@@ -31,7 +31,7 @@ export default function Informations() {
 
                     <h3>Consumidor Final</h3>
 
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque illo esse, cupiditate ab aliquam corporis error dignissimos laboriosam et enim eaque nam, iure nulla beatae sed reprehenderit nesciunt neque sint.</p>
+                    <p>Esta é a pessoa que compra as mercadorias do varejista. Quando a venda é realizada, o varejista paga uma comissão ao consignador, e a propriedade legal das mercadorias é transferida do consignador.</p>
                 </div>
             </div>
         </div>
