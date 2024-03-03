@@ -136,7 +136,6 @@ export default function FormSearchSacoleiras() {
             <SacoleirasStyle>
                 {sacoleiras.map(sacoleira => <SacoleiraComponent key={sacoleira.id} sacoleira={sacoleira} />)}
             </SacoleirasStyle>
-
         </>
     );
 }
