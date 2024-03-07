@@ -95,24 +95,26 @@ export default function FormSearchSacoleiras() {
 
     function handleSubmitSearchSacoleiras(e) {
         e.preventDefault()
-
-        const config = {
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }
-    
-        axios.get(`http://127.0.0.1:8000/sacoleiras/?search=${valueSacoleira}`, config).then(
-            response => {
-                setSacoleiras(response.data)
-
-                if(response.data.length < 1) {
-                    setQtdSacoleiras(`Nenhum resultado encontrado para "${valueSacoleira}"`)
-                } else {
-                    setQtdSacoleiras(`${response.data.length} resultado(s) encontrado(s) para "${valueSacoleira}"`)
+        
+        if(valueSacoleira !== "") {
+            const config = {
+                headers: {
+                    "Content-Type": "application/json"
                 }
             }
-        )
+        
+            axios.get(`http://127.0.0.1:8000/sacoleiras/?search=${valueSacoleira}`, config).then(
+                response => {
+                    setSacoleiras(response.data)
+
+                    if(response.data.length < 1) {
+                        setQtdSacoleiras(`Nenhum resultado encontrado para "${valueSacoleira}"`)
+                    } else {
+                        setQtdSacoleiras(`${response.data.length} resultado(s) encontrado(s) para "${valueSacoleira}"`)
+                    }
+                }
+            )
+        }
     }
 
     function handleChangeSearchInput(e) {
