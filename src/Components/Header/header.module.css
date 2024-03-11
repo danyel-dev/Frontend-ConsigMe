@@ -151,7 +151,7 @@
     display: none;
 } 
  
-@media(max-width: 600px) {
+@media(max-width: 690px) {
     .divLogout {
         flex-direction: column;
     }
@@ -170,7 +170,7 @@
         align-items: center;
         padding-top: 80px !important;
         position: absolute;
-        width: 100%;
+        width: 200px;
         right: 0;
         padding: 10px 0 20px 0;
         z-index: 1000;

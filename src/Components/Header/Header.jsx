@@ -29,9 +29,9 @@ export default function Header() {
                 <ul className={toggleMenu? styles.menuOpen: styles.menu} id='menu'>
                     <li className={styles.menuItem}><a className={styles.linkMenu} href="/">Home</a></li>
 
-                    <li className={styles.menuItem}><a className={styles.linkMenu} href="/">Para Sacoleiras</a></li>
+                    <li className={styles.menuItem}><a className={styles.linkMenu} href="/createProfile">Para Sacoleiras</a></li>
                     
-                    <li className={styles.menuItem}><a className={styles.linkMenu} href="/">Para Lojistas</a></li>
+                    <li className={styles.menuItem}><a className={styles.linkMenu} href="/createStore">Para Lojistas</a></li>
 
                     {token?
                         <div className={styles.divLogout}>
@@ -40,7 +40,7 @@ export default function Header() {
                             <li className={styles.menuItem}><a className={styles.linkMenu} onClick={handleLogout} href="/login">sair</a></li>
                         </div>
                     :
-                        <li className={styles.menuItem}><a href='/login'>Entrar</a></li>
+                        <li className={styles.menuItem}><a href='/login'>Login</a></li>
                     }
                 </ul>
             </nav>

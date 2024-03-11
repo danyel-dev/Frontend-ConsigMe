@@ -12,8 +12,9 @@ const MainProduct = styled.main`
     width: 80%;
     display: flex;
     flex-direction: column;
-    gap: 3em;
-    margin: 0 auto;
+    gap: 5em;
+    margin: 50px auto 50px auto;
+    border-radius: 5px;
     padding: 0 20px 50px 20px;
     background: rgba(0, 0, 0, .05);
     
@@ -29,7 +30,7 @@ const MainProduct = styled.main`
     const ProductStyle = styled.div`
     border-bottom: 1px solid rgba(137, 43, 226, .3);
     padding-bottom: 30px;
-    margin-top: 70px;
+    margin-top: 40px;
     display: flex;
     gap: 3em;
     justify-content: center;

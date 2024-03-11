@@ -231,7 +231,7 @@ export default function ListProducts() {
                             {haveEvaluete?
                                 <p className={styles.evaluateDealerCheck}>
                                     Revendedor já avaliado
-                                    <i class="fa-solid fa-check"></i>
+                                    <i className="fa-solid fa-check"></i>
                                 </p>
                             :
                                 <div>

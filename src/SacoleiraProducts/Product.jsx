@@ -31,7 +31,7 @@ export default function Product({ product, sacoleiraId }) {
                     <p className='note-product'>
                         <span>
                             {note.toFixed(1)}
-                            <i class="fa-solid fa-star"></i>
+                            <i className="fa-solid fa-star"></i>
                         </span>
                         <small>({product.productnote_set.length} avaliações)</small>
                     </p> 
